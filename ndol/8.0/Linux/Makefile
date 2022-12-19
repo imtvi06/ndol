@@ -13,7 +13,7 @@
 #
 #CPP	= cpp -P -traditional
 DEBUG	= 
-EXE     = ndol2015-7.0.4.x
+EXE     = ndol8.0.x
 FC	= gfortran
 #FFLAGS  = -O3 -march=pentium -fbounds-check -fno-automatic
 FFLAGS  = -O3 -march=native -fbounds-check -fno-automatic

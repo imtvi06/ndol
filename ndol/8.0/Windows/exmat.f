@@ -30,12 +30,12 @@
       CHARACTER*5 state5
       CHARACTER*6 state6
       CHARACTER*3 qs/'_QS'/, qt/'_QT'/, stq
-      CHARACTER*150 qjmol/'jmolscript:isosurface resolution 10 molecular
-     & 0.0 map MEP; background white; color isosurface range -0.1 0.1;
-     & isosurface translucent'/,
-     & dqjmol/'jmolscript:isosurface resolution 10 molecular
-     & 0.0 map MEP; background white; color isosurface range -0.05 0.05;
-     & isosurface translucent'/
+      CHARACTER*150 qjmol/'jmolscript:isosurface resolution 5 molecular
+     & 0.0 map MEP translucent; background white; color isosurface range
+     & -0.1 0.1'/
+      CHARACTER*150 dqjmol/'jmolscript:isosurface resolution 5 molecular
+     &  0.0 map MEP translucent; background white; color isosurface rang
+     & e -0.02 0.02'/
       DIMENSION C(N,N),PO(KORD,KORD),PEII(*),DEX(999,(N*N)/4),
      &          P(NA,2),PE(NA,2),XC(NA),YC(NA),ZC(NA),
      &          INDI(*),JNDI(*)

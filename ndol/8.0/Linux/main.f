@@ -51,10 +51,11 @@
 *         zacion NDOL cuando se introducen parametros especiales para un atomo.
 * Version 2015 7.0.4 es la anterior corrigiendo la denominación de los 
 *         Hamiltonianos CNDOL en la salida
+* Version 8.0 incluye UHF
 
-* (C) Copyright Luis A. Montero and Ana L. Montero, 1985-2017
+* (C) Copyright Luis A. Montero and Ana L. Montero, 1985-2022
 
-*                   VERSION 7.0.4, 2017
+*                   VERSION 8.0 2022
 
 * PROGRAMA PRINCIPAL
 
@@ -174,7 +175,7 @@ C Dimensionado para la memoria dinamica
            CLOSE (14)
            CLOSE (15)
            CLOSE (16)
-		   GOTO 103
+           GOTO 103
          ENDIF
          if (IOPT(2).lt.0) then
             NFCI = (N*N)/4

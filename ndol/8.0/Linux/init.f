@@ -96,8 +96,8 @@ c Escritura del encabezamiento del fichero de salida
      &/' *',T80,'*'
      &/' *',T33,'*** NDOL ***',T80,'*'
      &/' *',T21,'Molecular Orbitals by SCF-NDO Methods',T80,'*'
-     &/' *',T19,'Version 7.0.4 for Windows and Linux, 2017',T80,'*'
-     &/' *',T19,'(C) Copyright Luis A. Montero, 1985-2017',T80,
+     &/' *',T19,'Version 8.0 for Windows and Linux, 2022',T80,'*'
+     &/' *',T19,'(C) Copyright Luis A. Montero, 1985-2022',T80,
      &'*'
      &/' *',T10,'Universidad de La Habana and Universidad Autonoma de Ma
      &drid',T80,'*'
@@ -105,11 +105,11 @@ c Escritura del encabezamiento del fichero de salida
      &/' *',T80,'*'
      &/1X,79('*'))
 2098  FORMAT (/' Cite this program as:'//
-     &t10,'NDOL2015 v. 7.0.4,'/
+     &t10,'NDOL v. 8.0,'/
      &t10,'Luis A. Montero-Cabrera, Ana L. Montero-Alejo, Carlos Bunge-M
      &olina,'/
      &t10,'María E. Fuentes, Rachel Crespo-Otero, Nelaine Mora-Díez'/
      &t10,'Universidad de La Habana, Facultad de Química,'/
      &t10,'Laboratorio de Química Computacional y Teórica,'/ 
-     &t10,'La Habana 10400, Cuba, 2017')
+     &t10,'La Habana 10400, Cuba, 2022')
       END

@@ -23,9 +23,9 @@
       CHARACTER*80 jfile, qfile
       CHARACTER*4 ext/'.xyz'/
 	  CHARACTER*5 qs0/'__QS0'/
-      CHARACTER*150 qjmol/'jmolscript:isosurface resolution 10 molecular
-     & 0.0 map MEP; background white; color isosurface range -0.1 0.1;
-     & isosurface translucent'/
+      CHARACTER*150 qjmol/'jmolscript:isosurface resolution 5 molecular
+     & 0.0 map MEP translucent; background white; color isosurface range
+     & -0.1 0.1'/
       character*2 elemnt
       PARAMETER (DOS=2.D0, CERO=0.D0)
       DIMENSION PB(N,N),P(NA,2),HMUMU(N),C(N,N),AII(N),

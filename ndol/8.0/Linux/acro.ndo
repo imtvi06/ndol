@@ -2,8 +2,8 @@
  *                                                                             *
  *                              *** NDOL ***                                   *
  *                  Molecular Orbitals by SCF-NDO Methods                      *
- *                Version 7.0.4 for Windows and Linux, 2017                    *
- *                (C) Copyright Luis A. Montero, 1985-2017                     *
+ *                Version 8.0 for Windows and Linux, 2022                      *
+ *                (C) Copyright Luis A. Montero, 1985-2022                     *
  *       Universidad de La Habana and Universidad Autonoma de Madrid           *
  *                        This is a freeware program                           *
  *                                                                             *
@@ -11,15 +11,15 @@
 
  Cite this program as:
 
-         NDOL2015 v. 7.0.4,
+         NDOL v. 8.0,
          Luis A. Montero-Cabrera, Ana L. Montero-Alejo, Carlos Bunge-Molina,
          María E. Fuentes, Rachel Crespo-Otero, Nelaine Mora-Díez
          Universidad de La Habana, Facultad de Química,
          Laboratorio de Química Computacional y Teórica,
-         La Habana 10400, Cuba, 2017
+         La Habana 10400, Cuba, 2022
 
 
- Job beginning at: Wed Dec 20 15:53:23 2017      
+ Job beginning at: Mon Nov 21 18:53:05 2022      
 
  MODE CNDOL/2CC
 
@@ -1210,7 +1210,7 @@ OHM            -955.13866     -262.82323     -960.13454     -267.81911
  Differences are dMU = MU(excited) - MU(ground)
 
 
- Job ending at: Wed Dec 20 15:53:23 2017      
+ Job ending at: Mon Nov 21 18:53:05 2022      
 
 
- CPU time elapsed by the run :.1562500E-01 s
+ CPU time elapsed by the run :.0000000E+00 s
