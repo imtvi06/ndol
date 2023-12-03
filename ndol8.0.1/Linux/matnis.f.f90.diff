@@ -1,0 +1,174 @@
+1a2
+>               USE general
+3,5c4,6
+< * CALCULO DE LAS INTEGRALES BICENTRICAS BIELECTRONICAS POR LA FORMULA
+< * DE MATAGA-NISHIMOTO, DE OHNO, DE OHNO MODIFICADA O
+< * DE DEWAR-SABELLI-KLOPMAN
+---
+> ! CALCULO DE LAS INTEGRALES BICENTRICAS BIELECTRONICAS POR LA FORMULA   
+> ! DE MATAGA-NISHIMOTO, DE OHNO, DE OHNO MODIFICADA O                    
+> ! DE DEWAR-SABELLI-KLOPMAN                                              
+10,11c11,12
+<       COMMON IR,IW,IC,JOB,IERR,NEX,NOCC,ICHGE,NR,KORD,INSP,IDUMB,
+<      &       AUI,AUII,AUEV,AUEVI,NO1(NATMAX)
+---
+>       COMMON IR, IW, IC, JOB, IERR, NEX, NOCC, ICHGE, NR, KORD, INSP,   &
+>       IDUMB, AUI, AUII, AUEV, AUEVI, NO1 (NATMAX)                       
+13d13
+<       PARAMETER (CERO=0.D0)
+27c27
+< * CASOS NDO DE POPLE
+---
+> ! CASOS NDO DE POPLE                                                    
+32c32
+< * TERMINOS DIAGONALES
+---
+> ! TERMINOS DIAGONALES                                                   
+42c42
+< * TERMINOS MONOCENTRICOS NO DIAGONALES
+---
+> ! TERMINOS MONOCENTRICOS NO DIAGONALES                                  
+57c57
+< * TERMINOS BICENTRICOS NO DIAGONALES
+---
+> ! TERMINOS BICENTRICOS NO DIAGONALES                                    
+63c63
+< * s-s
+---
+> ! s-s                                                                   
+65,66d64
+<           if (iopt(23).ne.0)
+<      &	    write (32,1000) li,lj,ii1,jj1,r(i,j),gg*auevi
+71c69
+< * CASO A-H
+---
+> ! CASO A-H                                                              
+79c77
+< * CASO H-A
+---
+> ! CASO H-A                                                              
+91,92c89,90
+< * CASOS A-A Y A-B
+< * p-s
+---
+> ! CASOS A-A Y A-B                                                       
+> ! p-s                                                                   
+103c101
+< * s-p
+---
+> ! s-p                                                                   
+110c108
+< * p-p
+---
+> ! p-p                                                                   
+131,132c129,130
+< 30        CONTINUE
+< 20      CONTINUE
+---
+>    30           END DO 
+>    20      END DO 
+134c132
+< * CASOS NDOL
+---
+> ! CASOS NDOL                                                            
+139c137
+< * TERMINOS DIAGONALES
+---
+> ! TERMINOS DIAGONALES                                                   
+154c152
+< * TERMINOS MONOCENTRICOS NO DIAGONALES
+---
+> ! TERMINOS MONOCENTRICOS NO DIAGONALES                                  
+169c167
+< * TERMINOS BICENTRICOS NO DIAGONALES
+---
+> ! TERMINOS BICENTRICOS NO DIAGONALES                                    
+175c173
+< * s-s
+---
+> ! s-s                                                                   
+177,179d174
+< * salida de gammas
+<           if (iopt(23).ne.0)
+<      &	   write (32,1000) li,lj,ii1,jj1,r(i,j),ggss*auevi
+187c182
+< * CASO A-H
+---
+> ! CASO A-H                                                              
+189,191d183
+< * salida de gammas
+<           if (iopt(23).ne.0)
+<      &	    write (32,1000) li,lj,ii2,jj1,r(i,j),ggps*auevi
+203c195
+< * CASO H-A
+---
+> ! CASO H-A                                                              
+208,210d199
+< * salida de gammas
+<           if (iopt(23).ne.0)
+<      &	   write (32,1000) li,lj,ii1,jj2,r(i,j),ggsp*auevi
+222,223c211,212
+< * CASOS A-A Y A-B
+< * p-s
+---
+> ! CASOS A-A Y A-B                                                       
+> ! p-s                                                                   
+228,230d216
+< * salida de gammas
+<           if (iopt(23).ne.0)
+<      &	    write (32,1000) li,lj,ii2,jj1,r(i,j),ggps*auevi
+241c227
+< * s-p
+---
+> ! s-p                                                                   
+243,245d228
+< * salida de gammas
+<           if (iopt(23).ne.0)
+<      &	    write (32,1000) li,lj,ii1,jj2,r(i,j),ggsp*auevi
+256c239
+< * p-p
+---
+> ! p-p                                                                   
+258,260d240
+< * salida de gammas
+<           if (iopt(23).ne.0)
+<      &	    write (32,1000) li,lj,ii2,jj2,r(i,j),ggpp*auevi
+279,280c259,260
+< 130       CONTINUE
+< 120     CONTINUE
+---
+>   130           END DO 
+>   120      END DO 
+284,286c264,267
+<       END
+< *
+<       REAL*8 FUNCTION GMNOH (B,L1,L2,K1,K2)
+---
+>       END SUBROUTINE MATNIS                         
+> !                                                                       
+>       REAL(8) FUNCTION GMNOH (B, L1, L2, K1, K2) 
+>               USE general
+293,296c274,277
+<       COMMON IR,IW,IC,JOB,IERR,NEX,NOCC,ICHGE,NR,KORD,INSP,IDUMB,
+<      &       AUI,AUII,AUEV,AUEVI,NO1(NATMAX)
+<       PARAMETER (DOS=2.D0,P9=0.9d0,P8=0.8d0)
+< *
+---
+>       COMMON IR, IW, IC, JOB, IERR, NEX, NOCC, ICHGE, NR, KORD, INSP,   &
+>       IDUMB, AUI, AUII, AUEV, AUEVI, NO1 (NATMAX)                       
+>       PARAMETER (P9 = 0.9d0, P8 = 0.8d0) 
+> !                                                                       
+300c281,282
+<          TERM = CREP2/(DOS*GE(L1,K1)) + CREP2/(DOS*GE(L2,K2))
+---
+>            TERM = CREP2 / (DOS * GE (L1, K1) ) + CREP2 / (DOS * GE (L2, &
+>            K2) )                                                        
+315c297,298
+< 	   g = crep1 / SQRT(C1*B*B + C2*B*TERM + C3*TERM*TERM)
+---
+>            G = crep1 / SQRT (C1 * B * B + C2 * B * TERM + C3 * TERM *   &
+>            TERM)                                                        
+319c302
+<       END
+---
+>       END FUNCTION GMNOH                            

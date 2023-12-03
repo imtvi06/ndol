@@ -1,0 +1,73 @@
+26d25
+<       common /nallconfig/ NALL
+34,40c33,39
+<       CHARACTER*150 qjmol/'jmolscript:isosurface resolution 5 molecular
+<      & 0.0 map MEP translucent; background white; color isosurface range
+<      & -0.1 0.1'/
+<       CHARACTER*150 dqjmol/'jmolscript:isosurface resolution 5 molecular
+<      &  0.0 map MEP translucent; background white; color isosurface rang
+<      & e -0.02 0.02'/
+<       DIMENSION C(N,N),PO(N,N),PEII(N),DEX(999,(N*N)/4),
+---
+>       CHARACTER*150 qjmol/'jmolscript:isosurface resolution 10 molecular
+>      & 0.0 map MEP; background white; color isosurface range -0.1 0.1;
+>      & isosurface translucent'/,
+>      & dqjmol/'jmolscript:isosurface resolution 10 molecular
+>      & 0.0 map MEP; background white; color isosurface range -0.05 0.05;
+>      & isosurface translucent'/
+>       DIMENSION C(N,N),PO(KORD,KORD),PEII(*),DEX(999,(N*N)/4),
+62c61
+< * ESTE ES EL LAZO PRINCIPAL SOBRE CADA ESTADO "k" DE CI
+---
+> * ESTE ES EL LAZO PRINCIPAL SOBRE CADA ESTADO "k"
+70d68
+<           PEII(i) = CERO
+76c74
+< * Calculo del estado CI "k" iterando sobre cada estado SCF "l"
+---
+> * Calculo del estado CI "k" iterando sobre cada estado "l"
+78c76
+<         do l=1,KORD
+---
+>         do l=1,kord
+86,87c84,85
+<           do mu=1,n
+<             do nu=1,mu
+---
+>           do 10 mu=1,n
+>             do 10 nu=1,mu
+102,103c100
+<             enddo
+<           enddo
+---
+> 10        continue
+109,119c106,110
+<           do mu=2,n
+<             do nu=1,mu-1
+<               po(nu,mu) = po(nu,mu) + dex(k,l)*po(mu,nu)
+<             enddo
+<           enddo  
+<           do mu=1,n
+<             po(mu,mu) = po(mu,mu) + dex(k,l)*peii(mu)
+< *      write (*,'(a,i3,a,i3,a,i3,a,3f10.5)')
+< *     &' estado CI k,SCF l, orbital mu, dex(k,l), peii(mu), po(mu,mu)',
+< *     &k,',',l,',',mu,',',dex(k,l), peii(mu),po(mu,mu)
+<           enddo
+---
+>           do 20 mu=2,n
+>             do 20 nu=1,mu-1
+> 20        po(nu,mu) = po(nu,mu) + dex(k,l)*po(mu,nu)
+>           do 30 mu=1,n
+> 30           po(mu,mu) = po(mu,mu) + dex(k,l)*peii(mu)
+130c121
+<         DO I=1,NA
+---
+>         DO 100 I=1,NA
+141c132
+<         enddo
+---
+> 100     CONTINUE
+190c181
+<         endif     
+---
+>       endif     

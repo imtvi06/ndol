@@ -1,0 +1,4 @@
+      IMPLICIT REAL*8 (A-H,O,P,R-Z)
+      IMPLICIT LOGICAL (Q)
+      parameter (NATMAX=3000)
+*      parameter (NEXMAX=400,NATMAX=150,NFCI=NEXMAX*NEXMAX/64)

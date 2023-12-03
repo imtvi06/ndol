@@ -1,0 +1,284 @@
+1c1,2
+<       SUBROUTINE ENERGY (N,NA,F,GAMMA,PB,R,P,HMUMU,PZG,VA)
+---
+>       SUBROUTINE ENERGY (N, NA, E0, F, GAMMA, PB, R, P, HMUMU, PZG, VA) 
+>               USE general
+4c5
+< * CALCULO DE LAS ENERGIAS SCF DEL ESTADO BASE
+---
+> ! CALCULO DE LAS ENERGIAS SCF DEL ESTADO BASE                           
+6,7c7,9
+<       COMMON /A1/ ZNS(107),ZNP(107),ZND(107),ZND2(107),VAR(10),
+<      &            ANS(107),ANP(107),ANV(107),F2(17),G1(17),EA(107)
+---
+>       COMMON / A1 / ZNS (107), ZNP (107), ZND (107), ZND2 (107),        &
+>       VAR (10), ANS (107), ANP (107), ANV (107), F2 (17), G1 (17),      &
+>       EA (107)                                                          
+11,14c13,16
+<       COMMON /OV/ BINCOE(7,7),C1(107),C2(107),BETA(9),
+<      &            NS(107),NP(107),ND(107)
+<       COMMON IR,IW,IC,JOB,IERR,NEX,NOCC,ICHGE,NR,KORD,INSP,IDUMB,
+<      &       AUI,AUII,AUEV,AUEVI,NO1(NATMAX)
+---
+>       COMMON / OV / BINCOE (7, 7), C1 (107), C2 (107), BETA (9),        &
+>       NS (107), NP (107), ND (107)                                      
+>       COMMON IR, IW, IC, JOB, IERR, NEX, NOCC, ICHGE, NR, KORD, INSP,   &
+>       IDUMB, AUI, AUII, AUEV, AUEVI, NO1 (NATMAX)                       
+16,31c18,31
+<       PARAMETER (CERO=0.D0, AMED=0.5D0, UNO=1.D0, DOS=2.D0, 
+<      &           OT=.0833335D0, SIETE=.07D0, ONCE=.11D0, VDOS=.22D0,
+<      &           OCHO=8.D0)
+<       DIMENSION PB(N,N),GAMMA(N,N),HMUMU(N),R(NA,NA),PZG(NA,2),
+<      &            P(NA,2),VA(NA),ECORION(6), ENER(8,6),F(N,N)
+<       CHARACTER*65 CORION(6)
+<      &/'Ground theory as Z(A)*Z(B)/R(A,B)',
+<      & 'Effective core as [Z(A)+CHG(A)]*[Z(B)+CHG(B)]/R(A,B)',
+<      & 'Mataga-Nishimoto of s-core as Z(A)*Z(B)*GAMMAmn(A(s),B(s))',
+<      & 'Ohno of s-core as Z(A)*Z(B)*GAMMAoh(A(s),B(s))',
+<      & 'Dewar-Sabelli-Klopman of s-core: Z(A)*Z(B)*GAMMAdsk(A(s),B(s))',
+<      & 'Modified Ohno of s-core as Z(A)*Z(B)*GAMMAohm(A(s),B(s))'
+<      &/
+<       CHARACTER*10 CORION1(6) /'Ground T.','Eff.Chge.','Mat-Nish',
+<      & 'Ohno','DSK','OHM'/ 
+< C CASO DE LAS ENERGIAS DE INTERACCION CON EL CORION
+---
+>       PARAMETER (AMED = 0.5D0, OT =                                     &
+>       .0833335D0, SIETE = .07D0, ONCE = .11D0, VDOS = .22D0, OCHO =     &
+>       8.D0)                                                             
+>       DIMENSION PB (N, N), GAMMA (N, N), HMUMU (N), R (NA, NA), PZG (NA,&
+>       2), P (NA, 2), VA (NA), ECORION (6), ENER (8, 6), F (N, N)        
+>       CHARACTER(65)  CORION (6)  / 'Ground theory as Z(A)*Z(B)/R(A,B)', &
+>      &'Effective core as [Z(A)+CHG(A)]*[Z(B)+CHG(B)]/R(A,B)', 'Mataga-Ni&
+>      &shimoto of s-core as Z(A)*Z(B)*GAMMAmn(A(s),B(s))', 'Ohno of s-cor&
+>      &e as Z(A)*Z(B)*GAMMAoh(A(s),B(s))', 'Dewar-Sabelli-Klopman of s-co&
+>      &re: Z(A)*Z(B)*GAMMAdsk(A(s),B(s))', 'Modified Ohno of s-core as Z(&
+>      &A)*Z(B)*GAMMAohm(A(s),B(s))' /                                    
+>       CHARACTER(10) CORION1 (6) / 'Ground T.', 'Eff.Chge.', 'Mat-Nish', &
+>       'Ohno', 'DSK', 'OHM' /                                            
+> ! CASO DE LAS ENERGIAS DE INTERACCION CON EL CORION                     
+43c43,44
+<             SUMV = SUMV + (P(J,1) + P(J,2) - ANV(LJ))/(R(I,J)*AUI)
+---
+>            SUMV = SUMV + (P (J, 1) + P (J, 2) - ANV (LJ) ) / (R (I, J)  &
+>            * AUI)                                                       
+52,58c53,59
+< C
+< C  Eelect=0.5*SUM{P(MU,NU)[H(MU,NU)+F(MU,NU)]}
+< C
+< C CASO DE MU > NU  ->  H(MU,NU) = PB(MU,NU)
+< C CASO DE MU < NU  ->  PO(MU,NU) = PB(MU,NU)
+< C LOS TERMINOS NO DIAGONALES SE MULTIPLICAN POR DOS PORQUE LAS
+< C MATRICES H Y F SON HERMITICAS
+---
+> !                                                                       
+> !  Eelect=0.5*SUM{P(MU,NU)[H(MU,NU)+F(MU,NU)]}                          
+> !                                                                       
+> ! CASO DE MU > NU  ->  H(MU,NU) = PB(MU,NU)                             
+> ! CASO DE MU < NU  ->  PO(MU,NU) = PB(MU,NU)                            
+> ! LOS TERMINOS NO DIAGONALES SE MULTIPLICAN POR DOS PORQUE LAS          
+> ! MATRICES H Y F SON HERMITICAS                                         
+67c68
+< C
+---
+> !                                                                       
+74c75
+< * CALCULO DE LA ENERGIA TOTAL DE LOS ATOMOS SEPARADOS
+---
+> ! CALCULO DE LA ENERGIA TOTAL DE LOS ATOMOS SEPARADOS                   
+78c79
+< * TERMINOS BICENTRICOS NO DIAGONALES
+---
+> ! TERMINOS BICENTRICOS NO DIAGONALES                                    
+84,96c85,99
+< * CALCULO DE LA REPULSION ENTRE LOS CORIONES
+< C Repulsion como ZA*ZB/R
+< C
+<           ECORION(1) = ECORION(1) + (ANV(LI)*ANV(LJ))/RIJ 
+< C
+< C POTENCIAL ENTRE LAS CARGAS NUCLEARES EFECTIVAS QUE VEN LOS ELECTRONES
+< C "S" DE LA CAPA DE VALENCIA POR 1/R
+< *          ECORION(2) = ECORION(2) + ZNS(LI)*ANS(LI)*ZNS(LJ)*ANS(LJ)/RIJ
+<           ECORION(2) = ECORION(2) +
+<      &              ((ANV(LI)+AQ(LI,3))*(ANV(LJ)+AQ(LJ,3)))/RIJ
+< C POTENCIAL DE LA REPULSION ELECTRONICA ENTRE CORIONES s CON LA
+< C FORMULA DE MATAGA-NISHIMOTO
+<           GAMMN = UNO/(RIJ + (DOS/(GAMMA(MU,MU)+GAMMA(NU,NU))))
+---
+> ! CALCULO DE LA REPULSION ENTRE LOS CORIONES                            
+> ! Repulsion como ZA*ZB/R                                                
+> !                                                                       
+>                 ECORION (1) = ECORION (1) + (ANV (LI) * ANV (LJ) )      &
+>                 / RIJ                                                   
+> !                                                                       
+> ! POTENCIAL ENTRE LAS CARGAS NUCLEARES EFECTIVAS QUE VEN LOS ELECTRONES 
+> ! "S" DE LA CAPA DE VALENCIA POR 1/R                                    
+> !          ECORION(2) = ECORION(2) + ZNS(LI)*ANS(LI)*ZNS(LJ)*ANS(LJ)/RIJ
+>                 ECORION (2) = ECORION (2) + ( (ANV (LI) + AQ (LI, 3) )  &
+>                 * (ANV (LJ) + AQ (LJ, 3) ) ) / RIJ                      
+> ! POTENCIAL DE LA REPULSION ELECTRONICA ENTRE CORIONES s CON LA         
+> ! FORMULA DE MATAGA-NISHIMOTO                                           
+>                 GAMMN = UNO / (RIJ + (DOS / (GAMMA (MU, MU) + GAMMA (NU,&
+>                 NU) ) ) )                                               
+98,101c101,104
+< C POTENCIAL DE LA REPULSION ELECTRONICA ENTRE CORIONES s CON LA
+< C FORMULA DE OHNO
+<           GAMOH = UNO/DSQRT(RIJ**2 +
+<      &(DOS/(GAMMA(MU,MU)+GAMMA(NU,NU)))**2)
+---
+> ! POTENCIAL DE LA REPULSION ELECTRONICA ENTRE CORIONES s CON LA         
+> ! FORMULA DE OHNO                                                       
+>                 GAMOH = UNO / DSQRT (RIJ**2 + (DOS / (GAMMA (MU, MU)    &
+>                 + GAMMA (NU, NU) ) ) **2)                               
+103,112c106,116
+< c POTENCIAL DE LA REPULSION ELECTRONICA ENTRE CORIONES s CON LA
+< c FORMULA DE DEWAR-SABELLI-KLOPMAN
+<           GAMDSK = UNO/DSQRT(RIJ**2 +
+<      &(UNO/(DOS*GAMMA(MU,MU))+UNO/(DOS*GAMMA(NU,NU)))**2)
+<           ECORION(5) = ECORION(5) + ANV(LI)*ANV(LJ)*GAMDSK
+< c POTENCIAL DE LA REPULSION ELECTRONICA ENTRE CORIONES s CON LA
+< c FORMULA MODIFICADA DE OHNO
+<           GAMOM = UNO/DSQRT(RIJ**2 +
+<      & RIJ*(DOS/(GAMMA(MU,MU)+GAMMA(NU,NU))) +
+<      &(DOS/(GAMMA(MU,MU)+GAMMA(NU,NU)))**2)
+---
+> ! POTENCIAL DE LA REPULSION ELECTRONICA ENTRE CORIONES s CON LA         
+> ! FORMULA DE DEWAR-SABELLI-KLOPMAN                                      
+>                 GAMDSK = UNO / DSQRT (RIJ**2 + (UNO / (DOS * GAMMA (MU, &
+>                 MU) ) + UNO / (DOS * GAMMA (NU, NU) ) ) **2)            
+>                 ECORION (5) = ECORION (5) + ANV (LI) * ANV (LJ) *       &
+>                 GAMDSK                                                  
+> ! POTENCIAL DE LA REPULSION ELECTRONICA ENTRE CORIONES s CON LA         
+> ! FORMULA MODIFICADA DE OHNO                                            
+>                 GAMOM = UNO / DSQRT (RIJ**2 + RIJ * (DOS / (GAMMA (MU,  &
+>                 MU) + GAMMA (NU, NU) ) ) + (DOS / (GAMMA (MU, MU)       &
+>                 + GAMMA (NU, NU) ) ) **2)                               
+114c118
+< c Calculo del termino dispersivo
+---
+> ! Calculo del termino dispersivo                                        
+120,122c124,127
+<           SDISP = SDISP - (1.5D0*POI*POJ*PII*PIJ)/(SPI*RIJ**6)
+< 40      CONTINUE
+< 20    CONTINUE
+---
+>                 SDISP = SDISP - (1.5D0 * POI * POJ * PII * PIJ) /       &
+>                 (SPI * RIJ**6)                                          
+>    40      END DO 
+>    20 END DO 
+124,125c129,130
+< * SALIDA DE LAS ENERGIAS SCF
+< * Energia entre los electrones de valencia y el CORION
+---
+> ! SALIDA DE LAS ENERGIAS SCF                                            
+> ! Energia entre los electrones de valencia y el CORION                  
+130c135
+< * Energia electronica
+---
+> ! Energia electronica                                                   
+133,134c138,139
+< * Energia de repulsion entre coriones
+< *      (Z*Z)/R
+---
+> ! Energia de repulsion entre coriones                                   
+> !      (Z*Z)/R                                                          
+137c142,143
+< * Cargas efectivas
+---
+>       E0 = EE + ECORION(1)
+> ! Cargas efectivas                                                      
+140c146,147
+< * Mataga - Nishimoto
+---
+> !      E0 = EE + ECORION(2) 
+> ! Mataga - Nishimoto                                                    
+143c150,151
+< * Ohno
+---
+> !      E0 = EE + ECORION(3)
+> ! Ohno                                                                  
+146c154,155
+< * Dewar - Sabelli - Klopman
+---
+> !      E0 = EE + ECORION(4)
+> ! Dewar - Sabelli - Klopman                                             
+149c158,159
+< * Ohno mdificada
+---
+> !      E0 = EE + ECORION(5)
+> ! Ohno mdificada                                                        
+152c162,163
+< * Energía dispersiva
+---
+> !      E0 = EE + ECORION(6)
+> ! Energía dispersiva                                                    
+176,177c187,188
+< 60    continue
+< *
+---
+>    60 END DO 
+> !                                                                       
+203,204c214,215
+< *
+< 1001  FORMAT (//T35,8('*')/T35,'ENERGIES'/T35,8('*')
+---
+> !                                                                       
+>  1001 FORMAT (//T35,8('*')/T35,'ENERGIES'/T35,8('*')                    &
+208,209c219,220
+< 1006  FORMAT (/6X,'BINDING ENERGY [dE] :',T58,F15.5,' EV'
+<      &/6X,'correspond to the process : nA + mB + ... -> AnBm...
+---
+>  1006 FORMAT (/6X,'BINDING ENERGY [dE] :',T58,F15.5,' EV'               &
+>      &/6X,'correspond to the process : nA + mB + ... -> AnBm...         &
+211,214c222,225
+< 1016	format (/' ENERGIES IN MATRIX FORM (ev)'/
+<      &' Method          Total         Binding        Total.+      Bindin
+<      &g +'/
+<      &'                 Energy        Energy        CoreVal.      CoreVa
+---
+>  1016 FORMAT (/' ENERGIES IN MATRIX FORM (ev)'/                         &
+>      &' Method          Total         Binding        Total.+      Bindin&
+>      &g +'/                                                             &
+>      &'                 Energy        Energy        CoreVal.      CoreVa&
+216,219c227,230
+< 1026    format (/
+<      &' Method          Total +       Binding +      Total.+      Bindin
+<      &g +'/ 
+<      &'               Dispersive     Dispersive      all Corr.    all Co
+---
+>  1026 FORMAT   (/                                                       &
+>      &' Method          Total +       Binding +      Total.+      Bindin&
+>      &g +'/                                                             &
+>      &'               Dispersive     Dispersive      all Corr.    all Co&
+222c233
+< 1017  FORMAT (//T32,'CORRECTION TERMS'/T32,16('-')
+---
+>  1017 FORMAT (//T32,'CORRECTION TERMS'/T32,16('-')                      &
+224c235
+< 1019  FORMAT ( /6X,'CORE-VALENCE ELECTRON BICENTRIC POT. ENERGY :',
+---
+>  1019 FORMAT ( /6X,'CORE-VALENCE ELECTRON BICENTRIC POT. ENERGY :',     &
+226,227c237,238
+< 1018  FORMAT (//T22,'EXPRESSIONS WITH THE CORRECTION TERMS'//
+<      &T40,'SCF',   T60,'BINDING'/
+---
+>  1018 FORMAT (//T22,'EXPRESSIONS WITH THE CORRECTION TERMS'//           &
+>      &T40,'SCF',   T60,'BINDING'/                                       &
+229c240
+< 1013  FORMAT (6X,'Including the dispersive Term',T40,F15.5,T60,F15.5,
+---
+>  1013 FORMAT (6X,'Including the dispersive Term',T40,F15.5,T60,F15.5,   &
+231c242
+< 1014  FORMAT (6X,'Including the core-valence term',T40,F15.5,T60,
+---
+>  1014 FORMAT (6X,'Including the core-valence term',T40,F15.5,T60,       &
+235,236c246,247
+< 1011  FORMAT (//16X,'CORE-VALENCE ONE ELECTRON POTENTIAL ENERGIES (EV)'
+<      &/16X,49('-')
+---
+>  1011 FORMAT (//16X,'CORE-VALENCE ONE ELECTRON POTENTIAL ENERGIES (EV)' &
+>      &/16X,49('-')                                                      &
+238,239c249
+<       END
+<       
+---
+>       END SUBROUTINE ENERGY                         

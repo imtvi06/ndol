@@ -1,0 +1,429 @@
+1,3c1,4
+<       SUBROUTINE EXCITE (N,NA,NFCI,
+<      &                   C,GAMO,EST,ETT,EES,EET,AII,XC,YC,ZC,ESS,ETS,
+<      &                   INDX,JNDX,NSYM,INDI,JNDI,ISTATE,IA,M,MOCOMP)
+---
+>       SUBROUTINE EXCITE (N, NA, NFCI, C, GAMO, EST, ETT, EES, EET, AII, &
+>       XC, YC, ZC, ESS, ETS, INDX, JNDX, NSYM, INDI, JNDI, ISTATE, IA, M,&
+>       MOCOMP)                                                           
+>       USE general
+6c7
+< * CALCULO DE LAS ENERGIAS DE EXCITACION DE LAS CONFIGURACIONES SCF
+---
+> ! CALCULO DE LAS ENERGIAS DE EXCITACION DE LAS CONFIGURACIONES SCF      
+8,12c9
+<       CHARACTER*3 ISYMT,DH,C2V,C22,CS,STAR
+<       CHARACTER*2 IATOM,TORB
+<       CHARACTER*9 MODES
+<       INTEGER*8 NFCI
+<       COMMON /CHA/ IATOM(107),TORB(4),ISYMT(8),MODES(15)
+---
+>       INTEGER(8) NFCI 
+15,19c12,14
+<       COMMON /CI/ NUM(8),
+<      &            ICS(3),IC2(3),IC2V(10),ID2H(36)
+<       COMMON /SYG/ DH(8),C2V(4),C22(2),CS(2),STAR
+<       COMMON IR,IW,IC,JOB,IERR,NEX,NOCC,ICHGE,NR,KORD,INSP,IDUMB,
+<      &       AUI,AUII,AUEV,AUEVI,NO1(NATMAX)
+---
+>       COMMON / CI / NUM (8), ICS (3), IC2 (3), IC2V (10), ID2H (36) 
+>       COMMON IR, IW, IC, JOB, IERR, NEX, NOCC, ICHGE, NR, KORD, INSP,   &
+>       IDUMB, AUI, AUII, AUEV, AUEVI, NO1 (NATMAX)                       
+22c17
+<       character*24 mocomp(6,N,2)
+---
+>       CHARACTER(24) mocomp (6, N, 2) 
+24,33c19,28
+<       PARAMETER (CERO=0.D0, DOS=2.D0, EVN=.8065817D0, EINV=1.D+03,
+<      &           EFOSC=1.085D-1, E200=.227732D0)
+<       DIMENSION C(N,N),GAMO(N,N),EST(*),ETT(*),EES(*),EET(*),
+<      &          INDX(*),JNDX(*),
+<      &          AII(*),XC(NA),YC(NA),ZC(NA),ESS(*),ETS(*),
+<      &          NSYM(*),INDI(*),JNDI(*),ISTATE(*),IA(*),M(*)
+<       DIMENSION ITYPE(8,8),IST(NFCI),IJNDI(NFCI),IINDI(NFCI),
+<      .          AUX1(N,2),AUX2(N,2),CKV(N)
+<       REAL*8 SUMJ,SUMK,SUMX,SUMY,SUMZ
+<       integer*8 NLIM, NLIMH, NCMAX
+---
+>       PARAMETER (EVN = .8065817D0, EINV =                               &
+>       1.D+03, EFOSC = 1.085D-1, E200 = .227732D0)                       
+>       DIMENSION C (N, N), GAMO (N, N), EST ( * ), ETT ( * ), EES ( * ), &
+>       EET ( * ), INDX ( * ), JNDX ( * ), AII ( * ), XC (NA), YC (NA),   &
+>       ZC (NA), ESS ( * ), ETS ( * ), NSYM ( * ), INDI ( * ), JNDI ( * ),&
+>       ISTATE ( * ), IA ( * ), M ( * )                                   
+>       DIMENSION ITYPE (8, 8), IST (NFCI), IJNDI (NFCI), IINDI (NFCI),   &
+>       AUX1 (N, 2), AUX2 (N, 2), CKV (N)                                 
+>       REAL(8) SUMJ, SUMK, SUMX, SUMY, SUMZ 
+>       INTEGER(8) NLIM, NLIMH, NCMAX 
+35c30
+< *
+---
+> !                                                                       
+38,39c33,34
+<       WRITE (IW,'(T19,A,F7.3,A/)')
+<      &    'Koopman''s ionization potential: ',EIP*AUEVI, ' EV' 
+---
+>       WRITE (IW, '(T19,A,F7.3,A/)') 'Koopman''s ionization potential: ',&
+>       EIP * AUEVI, ' EV'                                                
+41,42c36,37
+< * NLIM ES EL ORDEN MAXIMO PERMITIDO A ESTA MOLECULA EN EL ARREGLO PRIN-
+< * CIPAL PARA LA MATRIZ DE INTERACCION DE CONFIGURACIONES
+---
+> ! NLIM ES EL ORDEN MAXIMO PERMITIDO A ESTA MOLECULA EN EL ARREGLO PRIN- 
+> ! CIPAL PARA LA MATRIZ DE INTERACCION DE CONFIGURACIONES                
+47,48c42,43
+< * NCMAX ES EL NUMERO MAXIMO DE CONFIGURACIONES POSIBLES EN ESTA
+< * MOLECULA
+---
+> ! NCMAX ES EL NUMERO MAXIMO DE CONFIGURACIONES POSIBLES EN ESTA         
+> ! MOLECULA                                                              
+55,59c50,54
+< * En este lazo se calculan las transiciones singulete (EST) y triplete 
+< * (ETT) que resultan del SCF en el estado base, el número total de
+< * ellas (NALL), y el número de las que son menos energeticas que el
+< * potencial de ionizacion de Koopman (KORDIP). Los valores NO SALEN
+< * ORDENADOS aun por la energía en EST ni ETT.
+---
+> ! En este lazo se calculan las transiciones singulete (EST) y triplete  
+> ! (ETT) que resultan del SCF en el estado base, el número total de      
+> ! ellas (NALL), y el número de las que son menos energeticas que el     
+> ! potencial de ionizacion de Koopman (KORDIP). Los valores NO SALEN     
+> ! ORDENADOS aun por la energía en EST ni ETT.                           
+65,66c60,61
+< * SUMJ Y SUMK SON LAS INTEGRALES DE COULOMB Y DE INTERCAMBIO RESPECTI-
+< * VAMENTE DE CADA TRANSICION
+---
+> ! SUMJ Y SUMK SON LAS INTEGRALES DE COULOMB Y DE INTERCAMBIO RESPECTI-  
+> ! VAMENTE DE CADA TRANSICION                                            
+71c66
+< * SUMATORIAS PARCIALES SOBRE CADA PAR ATOMICO
+---
+> ! SUMATORIAS PARCIALES SOBRE CADA PAR ATOMICO                           
+78c73,74
+<             DELTAJ = AUX1(MU,1)*AUX2(MU,1)*GAMO(MU,MU)
+---
+>                      DELTAJ = AUX1 (MU, 1) * AUX2 (MU, 1) * GAMO (MU,   &
+>                      MU)                                                
+86,87c82,83
+<               SUMJ = SUMJ +
+<      &               (AUX1(MU,1)*AUX2(NU,1) + AUX1(NU,1)*AUX2(MU,1))*GAM
+---
+>                           SUMJ = SUMJ + (AUX1 (MU, 1) * AUX2 (NU, 1)    &
+>                           + AUX1 (NU, 1) * AUX2 (MU, 1) ) * GAM         
+89c85
+< 12        CONTINUE
+---
+>    12           END DO 
+91c87
+< * CASO DE LA APROXIMACION INDO
+---
+> ! CASO DE LA APROXIMACION INDO                                          
+93c89,90
+<           IF (ICHGE.GT.7) CALL EXCINDO (N,NA,K,KV,C,SUMJ,SUMK)
+---
+>                 IF (ICHGE.GT.7) CALL EXCINDO (N, NA, K, KV, C, SUMJ,    &
+>                 SUMK)                                                   
+95,97c92,94
+< * Calculo de las excitaciones SCF singulete EST y triplete ETT y
+< * fijacion del orbital donador INDX(KORD) y aceptor JNDX(KORD) de carga
+< * en cada una de ellas, respectivamente
+---
+> ! Calculo de las excitaciones SCF singulete EST y triplete ETT y        
+> ! fijacion del orbital donador INDX(KORD) y aceptor JNDX(KORD) de carga 
+> ! en cada una de ellas, respectivamente                                 
+105,108c102,105
+< * KORDIP es el numero de transiciones de energia menor que el potencial
+< * de ionizacion de Koopman
+< * KORD200 es el numero de transiciones de energia menor que 50000 cm-1 
+< * o 200 nm.
+---
+> ! KORDIP es el numero de transiciones de energia menor que el potencial 
+> ! de ionizacion de Koopman                                              
+> ! KORD200 es el numero de transiciones de energia menor que 50000 cm-1  
+> ! o 200 nm.                                                             
+115,117c112,114
+<         WRITE (IW,'(T15,A,I8/T15,A,I6,A/)')
+<      &     'The number of possible SCF excitations is',NCMAX,
+<      &     'but is limited to', KORD,' because input commands' 
+---
+>       WRITE (IW, '(T15,A,I8/T15,A,I6,A/)') 'The number of possible SCF e&
+>      &xcitations is', NCMAX, 'but is limited to', KORD, ' because input &
+>      &commands'                                                         
+121,123c118,120
+< * Si hay menos de 10 transiciones a menos de 200 nm y las menores
+< * que el potencial de ionizacion som mas, entonces se se toman
+< * KORDIP transiciones
+---
+> ! Si hay menos de 10 transiciones a menos de 200 nm y las menores       
+> ! que el potencial de ionizacion som mas, entonces se se toman          
+> ! KORDIP transiciones                                                   
+127,129c124,126
+< * LAS CONFIGURACIONES SON ORDENADAS DE MENOR A MAYOR ENERGIA DE
+< * TRANSICION. Observese que ahora las transiciones ordenadas singuletes
+< * estan en ESS y las tripletes correspondientes en ETS (con INDI y JNDI)
+---
+> ! LAS CONFIGURACIONES SON ORDENADAS DE MENOR A MAYOR ENERGIA DE         
+> ! TRANSICION. Observese que ahora las transiciones ordenadas singuletes 
+> ! estan en ESS y las tripletes correspondientes en ETS (con INDI y JNDI)
+143c140
+<   500 CONTINUE
+---
+>   500 END DO 
+147,149c144,146
+< * SI ISUB.NE.0 SE ASIGNA LA REPRESENTACION IRREDUCIBLE CORRESPONDIENTE.
+< * NR ES EL NUMERO DE REPRESENTACIONES IRREDUCIBLES DEL GRUPO PUNTUAL A
+< * QUE CORRESPONDE LA MOLECULA
+---
+> ! SI ISUB.NE.0 SE ASIGNA LA REPRESENTACION IRREDUCIBLE CORRESPONDIENTE. 
+> ! NR ES EL NUMERO DE REPRESENTACIONES IRREDUCIBLES DEL GRUPO PUNTUAL A  
+> ! QUE CORRESPONDE LA MOLECULA                                           
+170c167
+< * CASO DE NO ASIGNACION A NINGUN GRUPO DE SIMETRIA
+---
+> ! CASO DE NO ASIGNACION A NINGUN GRUPO DE SIMETRIA                      
+177,178c174,175
+< * ISTATE(I) ES EL NUMERO DE ORDEN DE LA REPRESENTACION IRREDUCIBLE ALA
+< * QUE CORRESPONDE LA TRANSICION I
+---
+> ! ISTATE(I) ES EL NUMERO DE ORDEN DE LA REPRESENTACION IRREDUCIBLE ALA  
+> ! QUE CORRESPONDE LA TRANSICION I                                       
+188,189c185,186
+< * REORDENAMIENTO DE LAS TRANSICIONES POR BLOQUES SEGUN LA REPRESENTACIO
+< * IRREDUCIBLE  A QUE PERTENECEN
+---
+> ! REORDENAMIENTO DE LAS TRANSICIONES POR BLOQUES SEGUN LA REPRESENTACIO 
+> ! IRREDUCIBLE  A QUE PERTENECEN                                         
+197,198c194,195
+< * NUM(I) ES EL NUMERO DE TRANSICIONES QUE CORRESPONDEN A LA REPRESENTA
+< * CION IRREDUCIBLE I
+---
+> ! NUM(I) ES EL NUMERO DE TRANSICIONES QUE CORRESPONDEN A LA REPRESENTA  
+> ! CION IRREDUCIBLE I                                                    
+207,208c204,205
+<  5060    CONTINUE
+<  5050 CONTINUE
+---
+>  5060      END DO 
+>  5050 END DO 
+218,221c215,218
+< c Creacion de los arreglos de descripcion de orbitales para las excitaciones
+< c CI. Observese que el arreglo mocomp(j,i,1) contiene los datos del orbital 
+< c ocupado nocc+1-i en cuanto a sus 6 (subindice j) participaciones de OA
+< c mas notables y el arreglo mocomp(j,i,2) los del orbital virtual nocc+i. 
+---
+> ! Creacion de los arreglos de descripcion de orbitales para las excitaci
+> ! CI. Observese que el arreglo mocomp(j,i,1) contiene los datos del orbi
+> ! ocupado nocc+1-i en cuanto a sus 6 (subindice j) participaciones de OA
+> ! mas notables y el arreglo mocomp(j,i,2) los del orbital virtual nocc+i
+230,236c227,233
+< c Se crean de nuevo los vectores aux1(i,1) y aux2(i,1) para los cuadra-
+< c dos de los coeficientes sobre cada orbital atomico y aux1(i,2) y
+< c aux2(i,2) para los coeficientes. Los aux1 se refieren a los orbitales
+< c moleculares ocupados y aux2 a los virtuales.
+< c
+< c Sumatoria general sobre orbitales moleculares ocupados (koc) y virtuales
+< c (kvi)
+---
+> ! Se crean de nuevo los vectores aux1(i,1) y aux2(i,1) para los cuadra- 
+> ! dos de los coeficientes sobre cada orbital atomico y aux1(i,2) y      
+> ! aux2(i,2) para los coeficientes. Los aux1 se refieren a los orbitales 
+> ! moleculares ocupados y aux2 a los virtuales.                          
+> !                                                                       
+> ! Sumatoria general sobre orbitales moleculares ocupados (koc) y virtual
+> ! (kvi)                                                                 
+241c238
+< c Sumatoria sobre los orbitales atomicos para koc y kvi 
+---
+> ! Sumatoria sobre los orbitales atomicos para koc y kvi                 
+248,249c245,246
+< c Seleccion de los tres valores mayores de tales cuadrados y de sus orbitales
+< c atomicos correspondientes
+---
+> ! Seleccion de los tres valores mayores de tales cuadrados y de sus orbi
+> ! atomicos correspondientes                                             
+254c251
+< c Seleccion del mayor para el ocupado y para el virtual en un mismo lazo        
+---
+> ! Seleccion del mayor para el ocupado y para el virtual en un mismo lazo
+265c262
+< c Seleccion del segundo mayor para el ocupado y para el virtual en un mismo lazo        
+---
+> ! Seleccion del segundo mayor para el ocupado y para el virtual en un mi
+267,268c264
+<             if (aux1(ii,1).gt.comax(2) .and.
+<      &          ii.ne.iomax(1)) then
+---
+>       IF (aux1 (ii, 1) .gt.comax (2) .and.ii.ne.iomax (1) ) then 
+272,273c268
+<             if (aux2(ii,1).gt.cvmax(2) .and.
+<      &          ii.ne.ivmax(1)) then
+---
+>       IF (aux2 (ii, 1) .gt.cvmax (2) .and.ii.ne.ivmax (1) ) then 
+278c273
+< c Seleccion del tercer mayor para el ocupado y para el virtual en un mismo lazo        
+---
+> ! Seleccion del tercer mayor para el ocupado y para el virtual en un mis
+280,282c275,276
+<             if (aux1(ii,1).gt.comax(3) .and.
+<      &          ii.ne.iomax(1) .and.
+<      &          ii.ne.iomax(2)) then
+---
+>       IF (aux1 (ii, 1) .gt.comax (3) .and.ii.ne.iomax (1)               &
+>       .and.ii.ne.iomax (2) ) then                                       
+286,288c280,281
+<             if (aux2(ii,1).gt.cvmax(3) .and.
+<      &          ii.ne.ivmax(1) .and.
+<      &          ii.ne.ivmax(2)) then
+---
+>       IF (aux2 (ii, 1) .gt.cvmax (3) .and.ii.ne.ivmax (1)               &
+>       .and.ii.ne.ivmax (2) ) then                                       
+293c286
+< c Seleccion del cuarto mayor para el ocupado y para el virtual en un mismo lazo        
+---
+> ! Seleccion del cuarto mayor para el ocupado y para el virtual en un mis
+295,298c288,289
+<             if (aux1(ii,1).gt.comax(4) .and.
+<      &          ii.ne.iomax(1) .and.
+<      &          ii.ne.iomax(2) .and.
+<      &          ii.ne.iomax(3)) then
+---
+>       IF (aux1 (ii, 1) .gt.comax (4) .and.ii.ne.iomax (1)               &
+>       .and.ii.ne.iomax (2) .and.ii.ne.iomax (3) ) then                  
+302,305c293,294
+<             if (aux2(ii,1).gt.cvmax(4) .and.
+<      &          ii.ne.ivmax(1) .and.
+<      &          ii.ne.ivmax(2) .and.
+<      &          ii.ne.ivmax(3)) then
+---
+>       IF (aux2 (ii, 1) .gt.cvmax (4) .and.ii.ne.ivmax (1)               &
+>       .and.ii.ne.ivmax (2) .and.ii.ne.ivmax (3) ) then                  
+310c299
+< c Seleccion del quinto mayor para el ocupado y para el virtual en un mismo lazo        
+---
+> ! Seleccion del quinto mayor para el ocupado y para el virtual en un mis
+312,316c301,303
+<             if (aux1(ii,1).gt.comax(5) .and.
+<      &          ii.ne.iomax(1) .and.
+<      &          ii.ne.iomax(2) .and.
+<      &          ii.ne.iomax(3) .and.
+<      &          ii.ne.iomax(4)) then
+---
+>       IF (aux1 (ii, 1) .gt.comax (5) .and.ii.ne.iomax (1)               &
+>       .and.ii.ne.iomax (2) .and.ii.ne.iomax (3) .and.ii.ne.iomax (4) )  &
+>       then                                                              
+320,324c307,309
+<             if (aux2(ii,1).gt.cvmax(5) .and.
+<      &          ii.ne.ivmax(1) .and.
+<      &          ii.ne.ivmax(2) .and.
+<      &          ii.ne.ivmax(3) .and.
+<      &          ii.ne.ivmax(4)) then
+---
+>       IF (aux2 (ii, 1) .gt.cvmax (5) .and.ii.ne.ivmax (1)               &
+>       .and.ii.ne.ivmax (2) .and.ii.ne.ivmax (3) .and.ii.ne.ivmax (4) )  &
+>       then                                                              
+329c314
+< c Seleccion del sexto mayor para el ocupado y para el virtual en un mismo lazo        
+---
+> ! Seleccion del sexto mayor para el ocupado y para el virtual en un mism
+331,336c316,318
+<             if (aux1(ii,1).gt.comax(6) .and.
+<      &          ii.ne.iomax(1) .and.
+<      &          ii.ne.iomax(2) .and.
+<      &          ii.ne.iomax(3) .and.
+<      &          ii.ne.iomax(4) .and.
+<      &          ii.ne.iomax(5)) then
+---
+>       IF (aux1 (ii, 1) .gt.comax (6) .and.ii.ne.iomax (1)               &
+>       .and.ii.ne.iomax (2) .and.ii.ne.iomax (3) .and.ii.ne.iomax (4)    &
+>       .and.ii.ne.iomax (5) ) then                                       
+340,345c322,324
+<             if (aux2(ii,1).gt.cvmax(6) .and.
+<      &          ii.ne.ivmax(1) .and.
+<      &          ii.ne.ivmax(2) .and.
+<      &          ii.ne.ivmax(3) .and.
+<      &          ii.ne.ivmax(4) .and.
+<      &          ii.ne.ivmax(5)) then
+---
+>       IF (aux2 (ii, 1) .gt.cvmax (6) .and.ii.ne.ivmax (1)               &
+>       .and.ii.ne.ivmax (2) .and.ii.ne.ivmax (3) .and.ii.ne.ivmax (4)    &
+>       .and.ii.ne.ivmax (5) ) then                                       
+350,351c329,330
+< c Impresion sobre el arreglo de caracteres mocomp(j,i,2) (1 para ocupados,
+< c 2 para virtuales)
+---
+> ! Impresion sobre el arreglo de caracteres mocomp(j,i,2) (1 para ocupado
+> ! 2 para virtuales)                                                     
+353,362c332,337
+<             write (mocomp(j,i,1),112)
+<      &        ia(iomax(j)),
+<      &        iatom(nat(ia(iomax(j)))),
+<      &        torb(m(iomax(j))),
+<      &        comax(j),aux1(iomax(j),2)
+<             write (mocomp(j,i,2),112)
+<      &        ia(ivmax(j)),
+<      &        iatom(nat(ia(ivmax(j)))),
+<      &        torb(m(ivmax(j))),
+<      &        cvmax(j),aux2(ivmax(j),2)
+---
+>       WRITE (mocomp (j, i, 1), 112) ia (iomax (j) ), iatom (nat (ia (   &
+>       iomax (j) ) ) ), torb (m (iomax (j) ) ), comax (j), aux1 (iomax ( &
+>       j), 2)                                                            
+>       WRITE (mocomp (j, i, 2), 112) ia (ivmax (j) ), iatom (nat (ia (   &
+>       ivmax (j) ) ) ), torb (m (ivmax (j) ) ), cvmax (j), aux2 (ivmax ( &
+>       j), 2)                                                            
+366,367c341,343
+< * IMPRESION DE LAS TRANSICIONES SCF Y CALCULO DE LOS TERMINOS DE 
+< * COULOMB DE LOS EXCITONES
+---
+> ! IMPRESION DE LAS TRANSICIONES SCF ESS y ETS 
+> ! EES y EET seran los terminos diagonales de la matriz bielectronica
+> ! para TDHF como terminos de Coulomb - intercambio
+395c371
+<   241          CONTINUE
+---
+>   241                END DO 
+402,403c378,380
+<   250    CONTINUE
+<          FOSC = EFOSC*FREQS*(SUMX*SUMX + SUMY*SUMY + SUMZ*SUMZ)
+---
+>   250      END DO 
+>            FOSC = EFOSC * FREQS * (SUMX * SUMX + SUMY * SUMY + SUMZ *   &
+>            SUMZ)                                                        
+405,418c382,394
+<          WRITE (IW,107)
+<      &   IL,K1,KV,ES,EES(IL)*AUEVI,SMMU,FOSC,SUMX,SUMY,SUMZ,ET,TMMU,
+<      &   ISYMT(NST)
+<   600 CONTINUE
+< 
+<    99 FORMAT (/T24,'*** SCF ELECTRON EXCITATIONS ***'
+<      &/T18,I6,' CONFIGURATIONS ARE TAKEN INTO ACCOUNT'
+<      &//T10,' E is the transition energy, EC is the Coulomb-exchange ene
+<      &rgy,'
+<      &/T25,' and WL is the wave length'
+<      &//33X,'SINGLETS',20X,'|  TRIPLETS   | SYM.'
+<      &/'    TRANSITION',6X,'E    EC     WL     OSC.',5X,'COMPONENTS',3X,
+<      &'|  E      WL  |'/
+<      &18X,'(EV)  (EV)   (NM)',4X,'STR.',3X,'X',5X,'Y',5X,'Z',2X,
+---
+>            WRITE (IW, 107) IL, K1, KV, ES, EES (IL) * AUEVI, SMMU, FOSC,&
+>            SUMX, SUMY, SUMZ, ET, TMMU, ISYMT (NST)                      
+>   600 END DO 
+>                                                                         
+>    99 FORMAT (/T24,'*** SCF ELECTRON EXCITATIONS ***'                   &
+>      &/T18,I6,' CONFIGURATIONS ARE TAKEN INTO ACCOUNT'                  &
+>      &//T10,' E is the transition energy, EC is the Coulomb-exchange ene&
+>      &rgy,'                                                             &
+>      &/T25,' and WL is the wave length'                                 &
+>      &//33X,'SINGLETS',20X,'|  TRIPLETS   | SYM.'                       &
+>      &/'    TRANSITION',6X,'E    EC     WL     OSC.',5X,'COMPONENTS',3X,&
+>      &'|  E      WL  |'/                                                &
+>      &18X,'(EV)  (EV)   (NM)',4X,'STR.',3X,'X',5X,'Y',5X,'Z',2X,        &
+420c396
+<   107 FORMAT (1X,I5,1X,I4.4,'>',I4.4,F7.3,F6.3,F7.1,F7.4,3F6.2,F7.3,
+---
+>   107 FORMAT (1X,I5,1X,I4.4,'>',I4.4,F7.3,F6.3,F7.1,F7.4,3F6.2,F7.3,    &
+424,425c400
+<       END
+< 
+---
+>       END SUBROUTINE EXCITE                         

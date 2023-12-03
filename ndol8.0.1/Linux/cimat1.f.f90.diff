@@ -1,0 +1,113 @@
+1c1,3
+<       SUBROUTINE CIMAT1 (N,C,GAMO,A,ESS,ETS,INDI,JNDI)
+---
+>       SUBROUTINE CIMAT1 (N, E0, C, GAMO, A, B, ESS, ETS, EES, EET,       &
+>                          INDI, JNDI) 
+>       USE general 
+4,5c6,7
+< * CONSTRUCCION DE LA MATRIZ DE INTERACCION DE CONFIGURACIONES
+< * OBSERVAR QUE SE CONSTRUYE EN H(J,I) PARA COMPATIBILIDAD CON QRDIAG
+---
+> ! CONSTRUCCION DE LA MATRIZ DE INTERACCION DE CONFIGURACIONES           
+> ! OBSERVAR QUE SE CONSTRUYE EN H(J,I) PARA COMPATIBILIDAD CON QRDIAG    
+9,17c11,17
+<       COMMON /CI/ NUM(8),
+<      &            ICS(3),IC2(3),IC2V(10),ID2H(36)
+<       COMMON IR,IW,IC,JOB,IERR,NEX,NOCC,ICHGE,NR,KORD,INSP,IDUMB,
+<      &       AUI,AUII,AUEV,AUEVI,NO1(NATMAX)
+< 
+<       PARAMETER (CERO=0.D0, DOS=2.D0)
+<       DIMENSION C(N,N),GAMO(N,N),A(KORD,KORD),ESS(*),ETS(*),
+<      &          CIJ(N),CKL(N),CIK(N),CJL(N),
+<      &          INDI(*),JNDI(*)
+---
+>       COMMON / CI / NUM (8), ICS (3), IC2 (3), IC2V (10), ID2H (36) 
+>       COMMON IR, IW, IC, JOB, IERR, NEX, NOCC, ICHGE, NR, KORD, INSP,   &
+>       IDUMB, AUI, AUII, AUEV, AUEVI, NO1 (NATMAX)                       
+>                                                                         
+>       DIMENSION C (N, N), GAMO (N, N), A (KORD, KORD), ESS ( * ),       &
+>       ETS ( * ), CIJ (N), CKL (N), CIK (N), CJL (N), INDI ( * ),        &
+>       JNDI ( * ), B (KORD, KORD), EES(*), EET(*)                         
+22a23,24
+> !           B (1, 1) = EES (1) 
+>            B (1, 1) = CERO
+25a28,29
+> !           B (1, 1) = EET (1)
+>            B (1, 1) = CERO
+30a35,37
+>                      B (I, J) = CERO 
+>                      B (J, I) = CERO
+>                      A (J, I) = CERO
+50a57,58
+> !                     B (I, I) = EES (I)
+>                      B (I, I) = CERO 
+52a61,62
+> !                     B (I, I) = EET (I) 
+>                      B (I, I) = CERO
+57a68
+>                      HIJB = CERO 
+61c72
+< * CALCULO DE LOS ELEMENTOS DE MATRIZ
+---
+> ! CALCULO DE LOS ELEMENTOS DE MATRIZ                                    
+73,75c84,90
+<                 HIJ = HIJ + CIJ(MU)*CKL(MU)*GAMO(MU,MU)
+<               ELSE
+<                 HIJ = HIJ - CIJ(MU)*CKL(MU)*GAMO(MU,MU)
+---
+>                                HIJ = HIJ + CIJ (MU) * CKL (MU) * GAMO ( &
+>                                MU, MU)
+>                                HIJB = HIJ
+>                           ELSE 
+>                                HIJ = HIJ - CIJ (MU) * CKL (MU) * GAMO ( &
+>                                MU, MU)
+>                                HIJB = HIJ
+81,91c96,113
+<                   HIJ = HIJ - CKL(MU)*CIJ(NU)*GMUNU
+<      &                      - CKL(NU)*CIJ(MU)*GMUNU
+<      &                      + DOS*CIK(MU)*CJL(NU)*GMUNU
+<      &                      + DOS*CIK(NU)*CJL(MU)*GMUNU
+<                 ELSE
+<                   HIJ = HIJ - CKL(MU)*CIJ(NU)*GMUNU
+<      &                      - CKL(NU)*CIJ(MU)*GMUNU
+<                 ENDIF
+< 2               CONTINUE
+< 3             CONTINUE
+<             IF (ABS(HIJ).LT.1.D-9) HIJ = CERO
+---
+>                                     HIJ = HIJ - CKL (MU) * CIJ (NU)     &
+>                                     * GMUNU - CKL (NU) * CIJ (MU)       &
+>                                     * GMUNU + DOS * CIK (MU) * CJL (NU) &
+>                                     * GMUNU + DOS * CIK (NU) * CJL (MU) &
+>                                     * GMUNU
+>                                     HIJB = HIJ                             
+>                                ELSE 
+>                                     HIJ = HIJ - CKL (MU) * CIJ (NU)     &
+>                                     * GMUNU - CKL (NU) * CIJ (MU)       &
+>                                     * GMUNU
+>                                     HIJB = HIJ                             
+>                                ENDIF 
+>     2                     END DO 
+>     3                END DO 
+>                      IF (ABS (HIJ) .LT.1.D-9) THEN 
+>                               HIJ = CERO 
+>                               HIJB = CERO
+>                      ENDIF
+92a115,117
+>                      A (J, I) = HIJ
+> !                     B (I, J) = HIJB
+> !                     B (J, I) = HIJB
+94c119,124
+< 10      CONTINUE
+---
+>    10 END DO
+>       IF (IOPT(23).NE.0) THEN
+>          A = (A + B)
+>          B = (A - B) - B 
+>          A = MATMUL (A, B)
+>       ENDIF 
+96,97c126
+<       END
+< 
+---
+>       END SUBROUTINE CIMAT1                         

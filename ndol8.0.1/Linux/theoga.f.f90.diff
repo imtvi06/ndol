@@ -1,0 +1,157 @@
+1a2
+>               USE general
+4,10c5,11
+< * CALCULO DE LAS INTEGRALES BICENTRICAS BIELECTRONICAS TEORICAMENTE PA-
+< * RA EL CASO nS-nS. ESTA RUTINA SE UTILIZA SOLO EN LOS CASOS NDO DE PO-
+< * PLE
+< 
+<       COMMON /A1/ ZNS(107),ZNP(107),ZND(107),ZND2(107),VAR(10),
+<      &            ANS(107),ANP(107),ANV(107),F2(17),G1(17),EA(107)
+<      &       /A3/ GE(107,3),UM(107,2)
+---
+> ! CALCULO DE LAS INTEGRALES BICENTRICAS BIELECTRONICAS TEORICAMENTE PA- 
+> ! RA EL CASO nS-nS. ESTA RUTINA SE UTILIZA SOLO EN LOS CASOS NDO DE PO- 
+> ! PLE                                                                   
+>                                                                         
+>       COMMON / A1 / ZNS (107), ZNP (107), ZND (107), ZND2 (107),        &
+>       VAR (10), ANS (107), ANP (107), ANV (107), F2 (17), G1 (17),      &
+>       EA (107) / A3 / GE (107, 3), UM (107, 2)                          
+13,15c14,16
+<       COMMON IR,IW,IC,JOB,IERR,NEX,NOCC,ICHGE,NR,KORD,INSP,IDUMB,
+<      &       AUI,AUII,AUEV,AUEVI,NO1(NATMAX)
+< *
+---
+>       COMMON IR, IW, IC, JOB, IERR, NEX, NOCC, ICHGE, NR, KORD, INSP,   &
+>       IDUMB, AUI, AUII, AUEV, AUEVI, NO1 (NATMAX)                       
+> !                                                                       
+17,22c18,24
+< *
+<        FGAM12(SN,PC) = ((.0416667D0*TK*PC - SN*(.25D0*TK - SN*.3125D0)
+<      &*TK + SN*.0625D0)*PC + ((.625D0*TK - SN*1.375D0)*TK + .59375D0)*TK
+<      & + SN*.34375D0)*PC - SN*(((.625D0*TK - SN*1.875D0)*TK + 1.6875D0)*
+<      &TK - SN*.0625D0)*TK + SN*.5D0
+< *
+---
+> !                                                                       
+>       FGAM12 (SN, PC) = ( (.0416667D0 * TK * PC - SN * (.25D0 * TK - SN &
+>       * .3125D0) * TK + SN * .0625D0) * PC + ( (.625D0 * TK - SN *      &
+>       1.375D0) * TK + .59375D0) * TK + SN * .34375D0) * PC - SN *       &
+>       ( ( (.625D0 * TK - SN * 1.875D0) * TK + 1.6875D0) * TK - SN *     &
+>       .0625D0) * TK + SN * .5D0                                         
+> !                                                                       
+28c30
+< *
+---
+> !                                                                       
+39c41
+< * TERMINOS MONOCENTRICOS NO DIAGONALES
+---
+> ! TERMINOS MONOCENTRICOS NO DIAGONALES                                  
+66c68
+< * CASOS A-A, H-H
+---
+> ! CASOS A-A, H-H                                                        
+69,73c71,73
+< * CASO H-H
+<            GGSS = RABIN * (1.D0 - (((.166667D0*PAB + .75D0)
+<      &            *PAB + 1.375D0)*PAB + 1.D0)*DEXP(-PAB-PAB))
+<            if (iopt(23).ne.0)
+<      &	    write (32,1000) li,lj,0,0,r(i,j),ggss*auevi
+---
+> ! CASO H-H                                                              
+>                 GGSS = RABIN * (1.D0 - ( ( (.166667D0 * PAB + .75D0)    &
+>                 * PAB + 1.375D0) * PAB + 1.D0) * DEXP ( - PAB - PAB) )  
+78,84c78,82
+< * CASO A-A
+< 42         GG  = RABIN *
+<      &           (1.D0 - (((((((.000793651D0*PAB + .00833333D0)*PAB
+<      &           + .05D0)*PAB + .208333D0)*PAB + .619792D0)*PAB +
+<      &           1.27344D0)*PAB + 1.63672D0)*PAB + 1.D0)*DEXP(-PAB-PAB))
+<            if (iopt(23).ne.0)
+<      &	    write (32,1000) li,lj,0,0,r(i,j),gg*auevi
+---
+> ! CASO A-A                                                              
+>    42           GG = RABIN * (1.D0 - ( ( ( ( ( ( (.000793651D0 * PAB +  &
+>                 .00833333D0) * PAB + .05D0) * PAB + .208333D0) * PAB +  &
+>                 .619792D0) * PAB + 1.27344D0) * PAB + 1.63672D0)        &
+>                 * PAB + 1.D0) * DEXP ( - PAB - PAB) )                   
+87c85
+< * CASOS A-H, H-A, A-B
+---
+> ! CASOS A-H, H-A, A-B                                                   
+98c96
+< * CASO H-A
+---
+> ! CASO H-A                                                              
+100,101d97
+<            if (iopt(23).ne.0)
+<      &	    write (32,1000) li,lj,0,0,r(i,j),gg*auevi
+114c110
+< * CASO A-H
+---
+> ! CASO A-H                                                              
+119,120d114
+<            if (iopt(23).ne.0)
+<      &	    write (32,1000) li,lj,0,0,r(i,j),gg*auevi
+130c124
+< * CASO A-B
+---
+> ! CASO A-B                                                              
+133,137c127,129
+<            GG = RABIN *
+<      &          (1.D0 + OMTK*OMTK*OMTK*GAM1*DEXP(-PA-PA) - OPTK*
+<      &           OPTK*OPTK*GAM2*DEXP(-PB-PB))
+<            if (iopt(23).ne.0)
+<      &	    write (32,1000) li,lj,0,0,r(i,j),gg*auevi
+---
+>                 GG = RABIN * (1.D0 + OMTK * OMTK * OMTK * GAM1 * DEXP ( &
+>                 - PA - PA) - OPTK * OPTK * OPTK * GAM2 * DEXP ( - PB -  &
+>                 PB) )                                                   
+139c131
+< * s-s
+---
+> ! s-s                                                                   
+142c134
+< * p-s
+---
+> ! p-s                                                                   
+152c144
+< * s-p
+---
+> ! s-p                                                                   
+159c151
+< * p-p
+---
+> ! p-p                                                                   
+178,179c170,171
+< 41        CONTINUE
+< 30      CONTINUE
+---
+>    41      END DO 
+>    30 END DO 
+181,184c173,176
+< 1000	format (4(i3,','),f8.5,',',f8.4)
+<       END
+< *
+<       REAL*8 FUNCTION FGAM (PH,PC,TK,RABIN,OPTK,OMTK)
+---
+>       END SUBROUTINE THEOGA                         
+> !                                                                       
+>       REAL(8) FUNCTION FGAM (PH, PC, TK, RABIN, OPTK, OMTK) 
+>               USE general
+187,191c179,183
+<       GAM2 = ((.0833333D0*PC + .25D0*(2.D0 - TK))*PC + .375D0*((TK -
+<      &3.D0)*TK + 3.D0))*PC - ((.25D0*TK - .9375D0)*TK + 1.375D0)*TK
+<      &+ .9375D0
+<       FGAM = RABIN * (1.D0 + OMTK*OMTK*OMTK*GAM1*DEXP(-PH-PH) - OPTK
+<      &*OPTK*GAM2*DEXP(-PC-PC))
+---
+>       GAM2 = ( (.0833333D0 * PC + .25D0 * (2.D0 - TK) ) * PC + .375D0 * &
+>       ( (TK - 3.D0) * TK + 3.D0) ) * PC - ( (.25D0 * TK - .9375D0)      &
+>       * TK + 1.375D0) * TK + .9375D0                                    
+>       FGAM = RABIN * (1.D0 + OMTK * OMTK * OMTK * GAM1 * DEXP ( - PH -  &
+>       PH) - OPTK * OPTK * GAM2 * DEXP ( - PC - PC) )                    
+193c185
+<       END
+---
+>       END FUNCTION FGAM                             
