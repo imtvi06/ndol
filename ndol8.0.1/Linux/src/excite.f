@@ -1,4 +1,4 @@
-      SUBROUTINE EXCITE (N,NA,NFCI,
+      SUBROUTINE EXCITE (N,NA,
      &                   C,GAMO,EST,ETT,EES,EET,AII,XC,YC,ZC,ESS,ETS,
      &                   INDX,JNDX,NSYM,INDI,JNDI,ISTATE,IA,M,MOCOMP)
       include 'ndoldim.inc'
@@ -19,7 +19,7 @@
      &       AUI,AUII,AUEV,AUEVI,NO1(NATMAX)
       common /cidesc/ doom(4*999),kdoom(999)
       COMMON /IPP/ EIP
-      common /nallconfig/ NALL
+      common /nallconfig/ NALL, NFCI
       character*24 mocomp(6,N,2)
       dimension comax(6), cvmax(6), iomax(6), ivmax(6)
       PARAMETER (CERO=0.D0, DOS=2.D0, EVN=.8065817D0, EINV=1.D+03,

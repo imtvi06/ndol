@@ -1,4 +1,4 @@
-      SUBROUTINE EXMAT (N,NA,NFCI,P,PE,C,PO,PEII,DEX,XC,YC,ZC,
+      SUBROUTINE EXMAT (N,NA,P,PE,C,PO,PEII,DEX,XC,YC,ZC,
      &                  INDI,JNDI)
       include 'ndoldim.inc'
 
@@ -23,7 +23,7 @@
      &                slam(999), ksym(999)
       common /elements/ elemnt(107)
       COMMON /QEX/ QQMAP, QCIPRINT
-      common /nallconfig/ NALL
+      common /nallconfig/ NALL, NFCI
       INTEGER*8 NFCI
       character*2 elemnt
       CHARACTER*80 jfile, qfile, dqfile

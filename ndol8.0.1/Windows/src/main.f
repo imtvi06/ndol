@@ -107,7 +107,7 @@
       COMMON /CHRG/AQ(NATMAX,3)
       COMMON /IPP/ EIP
       COMMON /QEX/ QQMAP, QCIPRINT
-      common /nallconfig/ NALL
+      common /nallconfig/ NALL, NFCI
       common
      ./ttime/ ttt,tjcseg,me,id,ian,ih,mi,is,icss,iff,jt,nci4
 
@@ -134,7 +134,7 @@ C Dimensionado para la memoria dinamica
       CHARACTER*24, POINTER, DIMENSION(:) :: MOCOMP
 *
       integer itime
-      integer*8 LKSIZE,LNSIZE,LMSIZE,LISIZE,LOSIZE,NFCI,
+      integer*8 LKSIZE,LNSIZE,LMSIZE,LISIZE,LOSIZE,NFCI,NALL,
      & K1,K2,K3,K4,K5,K6,L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12,L13,
      & L14,LN2,LN3,LNA2,LNAO,L31,L32,L33,L15,L16
 
@@ -183,7 +183,7 @@ C Dimensionado para la memoria dinamica
          elseif (IOPT(2).eq.0) then
             NFCI = N
          else
-            NFCI = IOPT(2)*N
+            NFCI = ABS(IOPT(2)*N)
          endif
          LKSIZE = NFCI*NFCI
          LOSIZE = 12*N
@@ -364,13 +364,13 @@ C Dimensionado para la memoria dinamica
          IF (ICIS.eq.0) THEN
 
 * CALCULO DE LAS EXCITACIONES SCF
-*              EXCITE (N,NA,NFCI,C,GAMO,EST,ETT,EES,EET,
+*              EXCITE (N,NA,C,GAMO,EST,ETT,EES,EET,
 *                      AII,XC,YC,ZC,ESS,ETS,
 *                      INDX,JNDX,NSYM,INDI,JNDI,ISTATE,
 *                      IA,M,MOCOMP)
 
 8          call cpu_time (tiexcite)
-           CALL EXCITE (N,NA,NFCI,A(L1),A(L2),A(L3),A(L31),A(L32),
+           CALL EXCITE (N,NA,A(L1),A(L2),A(L3),A(L31),A(L32),
      &               A(L33),A(L8),A(L11),A(L12),A(L13),A(L9),A(L10),
      &               IB(L14),IB(L15),IJK(K1),IJK(K4),IJK(K5),IJK(K6),
      &               IJK(K2),IJK(K3),MOCOMP)
@@ -412,13 +412,13 @@ C Dimensionado para la memoria dinamica
      &              IJK(K1),IJK(K4),IJK(K5),IJK(K6),MOCOMP)
 
 * Salida eventual de las densidades de carga de los estados excitados
-*             EXMAT (N,NA,NFCI,
+*             EXMAT (N,NA,
 *                    P,PE,C,A,PEII,DEX,
 *                    XC,YC,ZC,INDI,JNDI)
 
              if (iopt(3).ne.0) 
      &         call EXMAT
-     &              (N,NA,NFCI,
+     &              (N,NA,
      &              A(L5),A(L6),A(L1),ACIS,A(L7),A(L16),
      &              A(L11),A(L12),A(L13),IJK(K4),IJK(K5))
 
