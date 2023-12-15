@@ -8,7 +8,7 @@
       CHARACTER*3 ISYMT,DH,C2V,C22,CS,STAR
       CHARACTER*2 IATOM,TORB
       CHARACTER*9 MODES
-      INTEGER*8 NFCI
+      INTEGER*8 NFCI, NALL
       COMMON /CHA/ IATOM(107),TORB(4),ISYMT(8),MODES(15)
       COMMON /OPT/ IOPT(30)
       COMMON /N11/ NAT(NATMAX)
@@ -19,6 +19,7 @@
      &       AUI,AUII,AUEV,AUEVI,NO1(NATMAX)
       common /cidesc/ doom(4*999),kdoom(999)
       COMMON /IPP/ EIP
+      COMMON /QEX/ QQMAP, QCIPRINT, QLCI
       common /nallconfig/ NALL, NFCI
       character*24 mocomp(6,N,2)
       dimension comax(6), cvmax(6), iomax(6), ivmax(6)
@@ -32,7 +33,7 @@
      .          AUX1(N,2),AUX2(N,2),CKV(N)
       REAL*8 SUMJ,SUMK,SUMX,SUMY,SUMZ
       integer*8 NLIM, NLIMH, NCMAX
-      EQUIVALENCE (IOPT(24),ISUB),(IOPT(2),LCI)
+      EQUIVALENCE (IOPT(24),ISUB)
 *
       NOCC1 = NOCC + 1
       EIP = ABS(AII(NOCC))
@@ -365,7 +366,7 @@ c 2 para virtuales)
 
 * IMPRESION DE LAS TRANSICIONES SCF Y CALCULO DE LOS TERMINOS DE 
 * COULOMB DE LOS EXCITONES
-      IF (IOPT(2).EQ.1) KORD = KORDIP
+      IF (QLCI) KORD = KORDIP 
       WRITE (IW,99) KORD
       DO 600 IL=1,KORD
          ES = ESS(IL)*AUEVI

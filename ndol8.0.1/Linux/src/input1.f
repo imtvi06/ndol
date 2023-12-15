@@ -39,7 +39,7 @@
       real*8 lambda
       common /gamcon/ c1, c2, c3
       COMMON /FIL/ FILE5
-      COMMON /QEX/ QQMAP, QCIPRINT
+      COMMON /QEX/ QQMAP, QCIPRINT, QLCI
       COMMON IR,IW,IC,JOB,IERR,NEX,NOCC,ICHGE,NR,KORD,ICIS,IDUMB,
      &       AUI,AUII,AUEV,AUEVI
 
@@ -628,14 +628,18 @@ c CASOS INDO. Lectura de los parametros monoentricos especiales.
 
 C CASO DE CALCULO DE EXCITACIONES ELECTRONICAS
 
-        IF (IOPT(2).lt.0) THEN
-           WRITE (IW,1103)
-           goto 25
-        ENDIF
+        QLCI = .FALSE.
+*        IF (IOPT(2).eq.1) THEN
+*           QLCI = .TRUE.
+*           IOPT(2) = IABS(IOPT(2))
+*           WRITE (IW,1103)
+*           goto 25
+*        ENDIF
         IF (IOPT(2).EQ.0) THEN
            WRITE (IW,1104)
         ENDIF
         IF (IOPT(2).eq.1) THEN
+           QLCI = .TRUE.
            WRITE (IW,1107)
         ENDIF
         IF (IOPT(2).GE.2) WRITE (IW,1105) IOPT(2)

@@ -106,7 +106,7 @@
       COMMON /SYG/ DH(8),C2V(4),C22(2),CS(2),STAR
       COMMON /CHRG/AQ(NATMAX,3)
       COMMON /IPP/ EIP
-      COMMON /QEX/ QQMAP, QCIPRINT
+      COMMON /QEX/ QQMAP, QCIPRINT, QLCI
       common /nallconfig/ NALL, NFCI
       common
      ./ttime/ ttt,tjcseg,me,id,ian,ih,mi,is,icss,iff,jt,nci4
@@ -178,12 +178,12 @@ C Dimensionado para la memoria dinamica
            CLOSE (16)
            GOTO 103
          ENDIF
-         if (IOPT(3).lt.0) then
+         if (IOPT(2).lt.0) then
             NFCI = (N*N)/4
          elseif (IOPT(2).eq.0) then
             NFCI = N
          else
-            NFCI = ABS(IOPT(2)*N)
+            NFCI = IOPT(2)*N
          endif
          LKSIZE = NFCI*NFCI
          LOSIZE = 12*N

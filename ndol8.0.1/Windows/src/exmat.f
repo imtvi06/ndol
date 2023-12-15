@@ -22,9 +22,9 @@
       common /cidesc/ fr(999), fo(999), eee(999),
      &                slam(999), ksym(999)
       common /elements/ elemnt(107)
-      COMMON /QEX/ QQMAP, QCIPRINT
+      COMMON /QEX/ QQMAP, QCIPRINT, QLCI
       common /nallconfig/ NALL, NFCI
-      INTEGER*8 NFCI
+      INTEGER*8 NFCI, NALL
       character*2 elemnt
       CHARACTER*80 jfile, qfile, dqfile
       CHARACTER*4 ext/'.xyz'/, qs0/'_QS0'/, dqs/'_dQS'/, dqt/'_dQT'/,
@@ -38,7 +38,7 @@
       CHARACTER*150 dqjmol/'jmolscript:isosurface resolution 5 molecular
      &  0.0 map MEP translucent; background white; color isosurface rang
      & e -0.02 0.02'/
-      DIMENSION C(N,N),PO(N,N),PEII(N),DEX(999,NFCI),
+      DIMENSION C(N,N),PO(NFCI,NFCI),PEII(N),DEX(999,NFCI),
      &          P(NA,2),PE(NA,2),XC(NA),YC(NA),ZC(NA),
      &          INDI(*),JNDI(*)
       PARAMETER (CERO=0.D0, DOS=2.D0, EVN=.8065817D0, EINV=1.D+03,      
@@ -63,11 +63,6 @@
 * ESTE ES EL LAZO PRINCIPAL SOBRE CADA ESTADO "k" DE CI
 
       do k=1,nconf
-        if (iopt(2).eq.1 .and. k.gt.1) then
-            write (IW,'(/a/)') ' ONLY THE CHARGE MATRIX OF THE FIRST EXC
-     &ITED STATE IS PRINTED IF LCI WAS SELECTED'
-            exit
-        endif
         write (iw,120) k,eee(k),fr(k),slam(k),fo(k),isymt(ksym(k))
 
 * Anulacion inicial total de la matriz PO

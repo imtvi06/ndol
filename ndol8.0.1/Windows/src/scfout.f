@@ -17,7 +17,7 @@
      .              NRXY,ICEN1(NATMAX),NRYZ,ICEN2(NATMAX)
       COMMON /SYG/ DH(8),C2V(4),C2(2),CS(2),STAR
       COMMON /CHRG/AQ(NATMAX,3)
-      COMMON /QEX/ QQMAP, QCIPRINT
+      COMMON /QEX/ QQMAP, QCIPRINT, QLCI
       common /elements/ elemnt(107)
       COMMON /FIL/ jfile
       CHARACTER*80 jfile, qfile

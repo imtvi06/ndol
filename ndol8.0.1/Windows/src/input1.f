@@ -39,7 +39,7 @@
       real*8 lambda
       common /gamcon/ c1, c2, c3
       COMMON /FIL/ FILE5
-      COMMON /QEX/ QQMAP, QCIPRINT
+      COMMON /QEX/ QQMAP, QCIPRINT, QLCI
       COMMON IR,IW,IC,JOB,IERR,NEX,NOCC,ICHGE,NR,KORD,ICIS,IDUMB,
      &       AUI,AUII,AUEV,AUEVI
 
@@ -445,9 +445,21 @@
         QNDOL = (ICHGE.GE.4.AND.ICHGE.LE.7) .OR.
      &          (ICHGE.GE.11.AND.ICHGE.LE.14)
         if (ICHGE.GT.14) THEN
-          WRITE (IW,'(/a)') ' HYBRID NDOL HAMILTONIAN'
+*          WRITE (IW,'(/a)') ' HYBRID NDOL HAMILTONIAN'
           QH = .TRUE.
           QNDOL = .TRUE.
+          if (ICHGE.eq.64) MODE = MODES(4)
+          if (ICHGE.eq.75) MODE = MODES(5)
+          if (ICHGE.eq.46) MODE = MODES(6)
+          if (ICHGE.eq.57) MODE = MODES(7)
+          if (ICHGE.eq.45 .or. ICHGE.eq.65) MODE = MODESH(1)
+          if (ICHGE.eq.47 .or. ICHGE.eq.67) MODE = MODESH(2)
+          if (ICHGE.eq.54 .or. ICHGE.eq.74) MODE = MODESH(3)
+          if (ICHGE.eq.56 .or. ICHGE.eq.76) MODE = MODESH(4)
+*          if (ICHGE.eq.xx .or. ICHGE.eq.xx) MODE = MODESH(5)
+*          if (ICHGE.eq.xx .or. ICHGE.eq.xx) MODE = MODESH(6)
+*          if (ICHGE.eq.xx .or. ICHGE.eq.xx) MODE = MODESH(7)
+*          if (ICHGE.eq.xx .or. ICHGE.eq.xx) MODE = MODESH(8)
           IF (ICHGE.EQ.45) THEN
             ICHGE = 4
             ICHGE1 = 5
@@ -544,21 +556,12 @@
 *            ICHGE = 14
 *            ICHGE1 = 6
 *          ENDIF
+        else
+          MODE = MODES(ICHGE)
+          ICHGE1 = ICHGE
         endif
-        MODE = MODES(ICHGE)
       endif
-      if (QH) then
-        if (IOPT(1).eq.45 .or. IOPT(1).eq.65) WRITE (IW,1097) MODESH(1)
-        if (IOPT(1).eq.47 .or. IOPT(1).eq.67) WRITE (IW,1097) MODESH(2)
-        if (IOPT(1).eq.54 .or. IOPT(1).eq.74) WRITE (IW,1097) MODESH(3)        
-        if (IOPT(1).eq.56 .or. IOPT(1).eq.76) WRITE (IW,1097) MODESH(4)
-*        if (IOPT(1).eq.xx .or. IOPT(1).eq.xx) WRITE (IW,1097) MODESH(5)
-*        if (IOPT(1).eq.xx .or. IOPT(1).eq.xx) WRITE (IW,1097) MODESH(6)
-*        if (IOPT(1).eq.xx .or. IOPT(1).eq.xx) WRITE (IW,1097) MODESH(7)
-*        if (IOPT(1).eq.xx .or. IOPT(1).eq.xx) WRITE (IW,1097) MODESH(8)
-      else
-        WRITE (IW,1097) MODE
-      endif
+      WRITE (IW,1097) MODE
       WRITE (IW,'(a/1X,25I3)')
      &        ' OPTION''S INPUT AFTER INCLUDING DEFAULTS:',
      &        IOPT(:25)
@@ -625,14 +628,18 @@ c CASOS INDO. Lectura de los parametros monoentricos especiales.
 
 C CASO DE CALCULO DE EXCITACIONES ELECTRONICAS
 
-        IF (IOPT(2).lt.0) THEN
-           WRITE (IW,1103)
-           goto 25
-        ENDIF
+        QLCI = .FALSE.
+*        IF (IOPT(2).eq.1) THEN
+*           QLCI = .TRUE.
+*           IOPT(2) = IABS(IOPT(2))
+*           WRITE (IW,1103)
+*           goto 25
+*        ENDIF
         IF (IOPT(2).EQ.0) THEN
            WRITE (IW,1104)
         ENDIF
         IF (IOPT(2).eq.1) THEN
+           QLCI = .TRUE.
            WRITE (IW,1107)
         ENDIF
         IF (IOPT(2).GE.2) WRITE (IW,1105) IOPT(2)
@@ -976,7 +983,7 @@ C LECTURA DE LOS PARAMETROS ESPECIALES DE CADA TIPO DE ATOMO
        UM(L,2) = -.5D0*U2(L,2) - ANV(L)*GE(L,2) + .5D0*GE(L,2)
        GO TO 130
 
-* CASOS CNDOL/11,INDOL/11
+* CASOS CNDOL/1SS, INDOL/1SS
 
 13     UM(L,1) = -U1(L,1) - ANS(L)*GE(L,1) + GE(L,1) - ANP(L)*GE(L,3)
        UM(L,2) = -U1(L,2) - ANP(L)*GE(L,2) + GE(L,2) - ANS(L)*GE(L,3)
@@ -1171,8 +1178,8 @@ C
      &FORMULA'/'   WITH C1 =',F6.3,', C2 =',F6.3,' and C3 =',F6.3)
 1131  FORMAT (' - TWO ELECTRON BICENTRIC INTEGRALS BY A MODIFIED MATAGA-
      &NISHIMOTO''S FORMULA'/' WITH C1 =',F6.3)
-1097  FORMAT (/' MODE ',A10//)
-1098  FORMAT (/' *** THE NDO MODE ',A8,' IS NOT ALLOWED ***'/)
+1097  FORMAT (/' MODE ',a9//)
+1098  FORMAT (/' *** THE NDO MODE ',A9,' IS NOT ALLOWED ***'/)
 1103  FORMAT (' - FULL SINGLY EXCITED CONFIGURATION INTERACTION IS ASKED
      &')
 1104  FORMAT (' - THE NUMBER OF CIS DETERMINANTS IS LESS OR EQUAL TO THE

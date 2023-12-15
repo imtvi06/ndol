@@ -1,0 +1,26 @@
+Setting the name of  0x1f37c70  to  "org.kde.ActivityManager.ActivityTemplates"
+Setting the name of  0x1f3def0  to  "org.kde.ActivityManager.RunApplication"
+Setting the name of  0x1f4aea0  to  "org.kde.ActivityManager.Resources.Scoring"
+Creating directory:  "/home/lmc/.local/share/kactivitymanagerd/resources/"
+KActivities: Database connection:  "kactivities_db_resources_140523805608128_readwrite" 
+    query_only:          QVariant(qlonglong, 0) 
+    journal_mode:        QVariant(QString, "wal") 
+    wal_autocheckpoint:  QVariant(qlonglong, 100) 
+    synchronous:         QVariant(qlonglong, 1)
+Service started, version: 6.2.0
+Creating the cache for:  "/mnt/c/Users/lmc.CACHITA17/Documents/qt/Programas/ndol/ndol2022/ndol/8.0/Linux/main.f"
+Already in database?  false
+      First update :  QDateTime(2022-10-29 12:42:54.000 CEST Qt::TimeSpec(LocalTime))
+       Last update :  QDateTime(2022-10-29 12:42:54.000 CEST Qt::TimeSpec(LocalTime))
+After the adjustment
+     Current score :  0
+      First update :  QDateTime(2022-10-29 12:42:54.197 CEST Qt::TimeSpec(LocalTime))
+       Last update :  QDateTime(2022-10-29 12:42:54.000 CEST Qt::TimeSpec(LocalTime))
+         New score :  0
+kactivitymanagerd: Fatal IO error 11 (Resource temporarily unavailable) on X server localhost:0.0.
+QThread: Destroyed while thread is still running
+Closing SQL connection:  "kactivities_db_resources_140523805608128_readwrite"
+QXcbConnection: Could not connect to display 
+QXcbConnection: Could not connect to display 
+QXcbConnection: Could not connect to display 
+QXcbConnection: Could not connect to display localhost:0.0
