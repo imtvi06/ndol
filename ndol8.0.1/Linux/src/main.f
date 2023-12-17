@@ -115,7 +115,7 @@
       character*30 date1
 
 * LA DIMENSION DE "A" Y EL VALOR DE "LNSIZE" SE CALCULAN CON LA FORMULA:
-*                   3*N**2 + 5*(N*N)/4 + NA**2 + 7*NA + 999*(N*N)/4
+*                   3*N**2 + 5*(N*N)/4 + NA**2 + 7*NA + NFCI*(N*N)/4
 * DONDE "N" ES EL NUMERO MAXIMO DE ORBITALES PERMITIDO Y "NA" EL NUMERO
 * MAXIMO DE ATOMOS. (N*N)/4 ES EL NUMERO MAXIMO DE TRANSICIONES MONOELEC-
 * TRONICAS CALCULABLE. EN EL FICHERO ndoldim.inc SE EVALUA NATMAX PARA 
@@ -230,7 +230,9 @@ C Dimensionado para la memoria dinamica
 *   R(NA,NA)       L4            8
 *   P(NA,2)        L5            8
 *   PZG(NA,2)      L6            8
+*   PE(NA,2)       L6            8
 *   HMUMU(N)       L7            8
+*   PEII((N*N)/4)  L7            8
 *   AII(N)         L8            8
 *   AIII(KORD)     L8            8
 *   TC(N)          L9            8
@@ -243,7 +245,8 @@ C Dimensionado para la memoria dinamica
 *   ZC(NA)         L13           8
 *   INDX(LN3)      L14           4
 *   JNDX(LN3)      L15           4
-*   DEX(999,NFCI)  L16           8
+*   DEX(NFCI,NFCI)  L16           8
+*   PO(NFCI,NFCI)  ACIS          8
 
          L1 = 1
          L2 = L1 + LN2
@@ -262,7 +265,7 @@ C Dimensionado para la memoria dinamica
          L12 = L11 + NA
          L13 = L12 + NA
          L16 = L13 + NA
-         LNSIZE = L16 + 999*NFCI
+         LNSIZE = L16 + NFCI*NFCI
          WRITE (IW,'(A,T50,I15)') ' Total memory required for 8 B words:
      &',LNSIZE + LKSIZE
          L14 = 1

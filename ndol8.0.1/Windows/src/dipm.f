@@ -8,10 +8,11 @@
       COMMON IR,IW,IC,JOB,IERR,NEX,NOCC,ICHGE,NR,KORD,INSP,IDUMB,
      &       AUI,AUII,AUEV,AUEVI,NO1(NATMAX)
       COMMON /N11/ NAT(NATMAX)
+      common /nallconfig/ NALL, NFCI
       common /hybrid/ HYF(107),DIP0(4,3)
       PARAMETER (CERO=0.D0,UNO=1.D0,DOS=2.D0,TRES=3.D0,
      &           CUATRO=4.D0,CMEDIA=0.5D0,CONST=4.80302D0)
-      DIMENSION PB(N,N),P(NA,2),XC(NA),YC(NA),ZC(NA)
+      DIMENSION PB(N,*),P(NA,2),XC(NA),YC(NA),ZC(NA)
 c NSPQN es la fila a la que pertenecen los elementos en la tabla
 c       periodica
 *      integer NSPQN(107)/2*1,8*2,8*3,18*4,18*5,32*6,21*0/

@@ -38,7 +38,7 @@
       CHARACTER*150 dqjmol/'jmolscript:isosurface resolution 5 molecular
      &  0.0 map MEP translucent; background white; color isosurface rang
      & e -0.02 0.02'/
-      DIMENSION C(N,N),PO(NFCI,*),PEII(*),DEX(999,*),
+      DIMENSION C(N,N),PO(NFCI,*),PEII(*),DEX(NFCI,*),
      &          P(NA,2),PE(NA,2),XC(NA),YC(NA),ZC(NA),
      &          INDI(*),JNDI(*)
       PARAMETER (CERO=0.D0, DOS=2.D0, EVN=.8065817D0, EINV=1.D+03,      
@@ -54,11 +54,13 @@
         nconf = iabs(iopt(3))
       endif        
       do k=1,nconf
+*      do k=1,kord
         do l=1,kord
           akl = po(k,l)
           dex(k,l) = akl*akl
         enddo
       enddo
+
 
 * ESTE ES EL LAZO PRINCIPAL SOBRE CADA ESTADO "k" DE CI
 
@@ -84,14 +86,14 @@
 * Se guarda sobre la mitad mu.gt.nu de po. La diagonal se guarda en el
 * vector peii. 
 
-          do mu=1,n
+          do mu=1,N
             do nu=1,mu
               sum = CERO
-              do i=1,indil-1
+              do i=1,INDIL-1
                 sum = sum + DOS*c(mu,i)*c(nu,i)
               enddo
               sum = sum + c(mu,indil)*c(nu,indil)
-              do i=indil+1,nocc
+              do i=INDIL+1,NOCC
                 sum = sum + DOS*c(mu,i)*c(nu,i)
               enddo
               sum = sum + c(mu,jndil)*c(nu,jndil)
@@ -107,12 +109,12 @@
 * En este lazo se crea e incrementa para cada configuracion "l" segun
 * su peso en "k" dado por dex.
  
-          do mu=2,n
+          do mu=2,N
             do nu=1,mu-1
               po(nu,mu) = po(nu,mu) + dex(k,l)*po(mu,nu)
             enddo
           enddo  
-          do mu=1,n
+          do mu=1,N
             po(mu,mu) = po(mu,mu) + dex(k,l)*peii(mu)
 *      write (*,'(a,i3,a,i3,a,i3,a,3f10.5)')
 *     &' estado CI k,SCF l, orbital mu, dex(k,l), peii(mu), po(mu,mu)',
@@ -144,14 +146,15 @@
 * IMPRESION DE LAS DENSIDADES DE CARGA ATOMICA DEL ESTADO k
 
         WRITE (IW,1111) k
-        DO 334 I=1,NA
+        DO I=1,NA
           LI = NAT(I)
-334       WRITE (IW,1112) I,iatom(LI),PE(I,1),PE(I,2),PE(I,1)+PE(I,2),
+          WRITE (IW,1112) I,iatom(LI),PE(I,1),PE(I,2),PE(I,1)+PE(I,2),
      &                   ANS(LI)-PE(I,1), ANP(LI)-PE(I,2),
      &                   ANV(LI)-(PE(I,1)+PE(I,2)),
      &                   P(I,1)-PE(I,1),P(I,2)-PE(I,2),
      &                   (P(I,1)+P(I,2))-(PE(I,1)+PE(I,2))
-
+        ENDDO
+        
 * SALIDA DE FICHEROS PARA EL MAPA DE LAS DENSIDADES DE CARGA CON JMOL
 
        if (QQMAP) then
