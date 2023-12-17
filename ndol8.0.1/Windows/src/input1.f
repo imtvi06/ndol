@@ -628,13 +628,10 @@ c CASOS INDO. Lectura de los parametros monoentricos especiales.
 
 C CASO DE CALCULO DE EXCITACIONES ELECTRONICAS
 
+        IF (IOPT(2).lt.0) THEN
+          WRITE (IW,1103)
+        ENDIF
         QLCI = .FALSE.
-*        IF (IOPT(2).eq.1) THEN
-*           QLCI = .TRUE.
-*           IOPT(2) = IABS(IOPT(2))
-*           WRITE (IW,1103)
-*           goto 25
-*        ENDIF
         IF (IOPT(2).EQ.0) THEN
            WRITE (IW,1104)
         ENDIF

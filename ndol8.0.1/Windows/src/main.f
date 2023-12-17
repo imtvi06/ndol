@@ -180,7 +180,8 @@ C Dimensionado para la memoria dinamica
          ENDIF
          if (IOPT(2).lt.0) then
             NFCI = (N*N)/4
-         elseif (IOPT(2).eq.0) then
+*            NFCI = (N*N)/2
+         elseif (IOPT(2).eq.0) then  
             NFCI = N
          else
             NFCI = IOPT(2)*N
@@ -190,6 +191,7 @@ C Dimensionado para la memoria dinamica
 *
          LN2 = N*N
          LN3 = (N*N)/4
+*         LN3 = (N*N)/2
          LNA2 = NA*NA
          LNAO = NA*2
 

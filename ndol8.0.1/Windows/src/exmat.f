@@ -38,7 +38,7 @@
       CHARACTER*150 dqjmol/'jmolscript:isosurface resolution 5 molecular
      &  0.0 map MEP translucent; background white; color isosurface rang
      & e -0.02 0.02'/
-      DIMENSION C(N,N),PO(NFCI,NFCI),PEII(N),DEX(999,NFCI),
+      DIMENSION C(N,N),PO(NFCI,*),PEII(*),DEX(999,*),
      &          P(NA,2),PE(NA,2),XC(NA),YC(NA),ZC(NA),
      &          INDI(*),JNDI(*)
       PARAMETER (CERO=0.D0, DOS=2.D0, EVN=.8065817D0, EINV=1.D+03,      
@@ -48,10 +48,10 @@
 * Se salvan los vectores de coeficientes cuadráticos CI de los iopt(3)
 * primeros estados en DEX. "k" es el estado CI y "l" la configuracion
 * SCF
-      if (abs(iopt(3)).gt.iopt(8)) then
+      if (iabs(iopt(3)).gt.iopt(8)) then
         nconf = iopt(8)
       else
-        nconf = abs(iopt(3))
+        nconf = iabs(iopt(3))
       endif        
       do k=1,nconf
         do l=1,kord
@@ -67,9 +67,9 @@
 
 * Anulacion inicial total de la matriz PO
 
-        do i=1,n
+        do i=1,N
           PEII(i) = CERO
-          do j=1,n
+          do j=1,N
             po(i,j) = CERO
           enddo
         enddo
