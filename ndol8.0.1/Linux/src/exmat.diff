@@ -1,0 +1,110 @@
+35,41c35,41
+<       CHARACTER*150 qjmol/'jmolscript:isosurface resolution 10 molecular
+<      & 0.0 map MEP; background white; color isosurface range -0.1 0.1;
+<      & isosurface translucent'/,
+<      & dqjmol/'jmolscript:isosurface resolution 10 molecular
+<      & 0.0 map MEP; background white; color isosurface range -0.05 0.05;
+<      & isosurface translucent'/
+<       DIMENSION C(N,N),PO(KORD,KORD),PEII(*),DEX(999,(N*N)/4),
+---
+>       CHARACTER*150 qjmol/'jmolscript:isosurface resolution 5 molecular
+>      & 0.0 map MEP translucent; background white; color isosurface range
+>      & -0.1 0.1'/
+>       CHARACTER*150 dqjmol/'jmolscript:isosurface resolution 5 molecular
+>      &  0.0 map MEP translucent; background white; color isosurface rang
+>      & e -0.02 0.02'/
+>       DIMENSION C(N,N),PO(NFCI,*),PEII(*),DEX(NFCI,*),
+51c51
+<       if (abs(iopt(3)).gt.iopt(8)) then
+---
+>       if (iabs(iopt(3)).gt.iopt(8)) then
+54c54
+<         nconf = abs(iopt(3))
+---
+>         nconf = iabs(iopt(3))
+56a57
+> *      do k=1,kord
+63c64,65
+< * ESTE ES EL LAZO PRINCIPAL SOBRE CADA ESTADO "k"
+---
+> 
+> * ESTE ES EL LAZO PRINCIPAL SOBRE CADA ESTADO "k" DE CI
+70,71c72,74
+<         do i=1,n
+<           do j=1,n
+---
+>         do i=1,N
+>           PEII(i) = CERO
+>           do j=1,N
+76c79
+< * Calculo del estado CI "k" iterando sobre cada estado "l"
+---
+> * Calculo del estado CI "k" iterando sobre cada estado SCF "l"
+78c81
+<         do l=1,kord
+---
+>         do l=1,KORD
+86,87c89,90
+<           do 10 mu=1,n
+<             do 10 nu=1,mu
+---
+>           do mu=1,N
+>             do nu=1,mu
+89c92
+<               do i=1,indil-1
+---
+>               do i=1,INDIL-1
+93c96
+<               do i=indil+1,nocc
+---
+>               do i=INDIL+1,NOCC
+102c105,106
+< 10        continue
+---
+>             enddo
+>           enddo
+108,112c112,122
+<           do 20 mu=2,n
+<             do 20 nu=1,mu-1
+< 20        po(nu,mu) = po(nu,mu) + dex(k,l)*po(mu,nu)
+<           do 30 mu=1,n
+< 30           po(mu,mu) = po(mu,mu) + dex(k,l)*peii(mu)
+---
+>           do mu=2,N
+>             do nu=1,mu-1
+>               po(nu,mu) = po(nu,mu) + dex(k,l)*po(mu,nu)
+>             enddo
+>           enddo  
+>           do mu=1,N
+>             po(mu,mu) = po(mu,mu) + dex(k,l)*peii(mu)
+> *      write (*,'(a,i3,a,i3,a,i3,a,3f10.5)')
+> *     &' estado CI k,SCF l, orbital mu, dex(k,l), peii(mu), po(mu,mu)',
+> *     &k,',',l,',',mu,',',dex(k,l), peii(mu),po(mu,mu)
+>           enddo
+123c133
+<         DO 100 I=1,NA
+---
+>         DO I=1,NA
+134c144
+< 100     CONTINUE
+---
+>         enddo
+139c149
+<         DO 334 I=1,NA
+---
+>         DO I=1,NA
+141c151
+< 334       WRITE (IW,1112) I,iatom(LI),PE(I,1),PE(I,2),PE(I,1)+PE(I,2),
+---
+>           WRITE (IW,1112) I,iatom(LI),PE(I,1),PE(I,2),PE(I,1)+PE(I,2),
+146c156,157
+< 
+---
+>         ENDDO
+>         
+183c194
+<       endif     
+---
+>         endif     
+198d208
+< 
