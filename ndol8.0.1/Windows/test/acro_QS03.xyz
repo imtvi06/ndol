@@ -1,10 +1,10 @@
      8
-jmolscript:isosurface resolution 10 molecular 0.0 map MEP; background white; color isosurface range -0.1 0.1;   isosurface translucent                
- C     1.2122    1.2839    0.0000    0.0259
- C     0.0000    0.7199    0.0000    0.1248
- C    -0.1444   -0.7426    0.0000    0.6220
- O    -1.2204   -1.3246    0.0000   -0.6303
- H     1.3498    2.3542    0.0000   -0.0395
- H     2.1062    0.6744    0.0000   -0.0040
- H    -0.9108    1.3027    0.0000    0.0087
- H     0.8110   -1.3014    0.0000   -0.1075
+jmolscript:isosurface resolution 5 molecular  0.0 map MEP translucent; background white; color isosurface range -0.1 0.1                              
+ C     1.2122    1.2839    0.0000   -0.1229
+ C     0.0000    0.7199    0.0000   -0.0260
+ C    -0.1444   -0.7426    0.0000    0.0051
+ O    -1.2204   -1.3246    0.0000   -0.2285
+ H     1.3498    2.3542    0.0000    0.0789
+ H     2.1062    0.6744    0.0000    0.1115
+ H    -0.9108    1.3027    0.0000    0.1158
+ H     0.8110   -1.3014    0.0000    0.0660
