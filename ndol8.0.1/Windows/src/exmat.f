@@ -38,7 +38,7 @@
       CHARACTER*150 dqjmol/'jmolscript:isosurface resolution 5 molecular
      &  0.0 map MEP translucent; background white; color isosurface rang
      & e -0.02 0.02'/
-      DIMENSION C(N,N),PO(NFCI,*),PEII(*),DEX(NFCI,*),
+      DIMENSION C(N,N),PO(KORD,*),PEII(*),DEX(NFCI,*),
      &          P(NA,2),PE(NA,2),XC(NA),YC(NA),ZC(NA),
      &          INDI(*),JNDI(*)
       PARAMETER (CERO=0.D0, DOS=2.D0, EVN=.8065817D0, EINV=1.D+03,      
