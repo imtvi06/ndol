@@ -1,0 +1,50 @@
+5c5
+<       CHARACTER*8 MODES
+---
+>       CHARACTER*9 MODES, MODESH
+6a7
+>       COMMON /CHB/ MODESH(8)
+20a22
+>       COMMON /DAHJ/ PISHJ(107),EASHJ(107)
+64c66
+< * WARNING: D ORBITALS ARE NEGLECTED IN THE PRESENT VERSION
+---
+> * WARNING: D ORBITALS ARE NEGLECTED IN THE CURRENT VERSION
+195,197c197,201
+<       DATA MODES /'CNDO/1','CNDO/2','CNDO/S','CNDOL/11','CNDOL/12',
+<      &            'CNDOL/21','CNDOL/22','INDO/1','INDO/2','INDO/CI',
+<      &            'INDOL/11','INDOL/12','INDOL/21','INDOL/22','%'/
+---
+>       DATA MODES /'CNDO/1','CNDO/2','CNDO/S','CNDOL/1SS','CNDOL/1CC',
+>      &            'CNDOL/2SS','CNDOL/2CC','INDO/1','INDO/2','INDO/CI',
+>      &            'INDOL/1SS','INDOL/1CC','INDOL/2SS','INDOL/2CC','%'/
+>       DATA MODESH /'CNDOL/1CS','CNDOL/2CS','CNDOL/1SC','CNDOL/2SC',
+>      &            'INDOL/1CS','INDOL/2CS','INDOL/1SC','INDOL/2SC'/
+202a207,209
+> 
+> C VALENCE STATE IONIZATION POTENTIALS AND ELECTRON AFFINITIES
+> C CNDO/2
+210a218
+> C CNDO/S
+218a227
+> C INDO/S
+222a232,235
+> C TRADITIONAL CNDOL 
+> C Hinze, J.; Jaffe, H. H., Electronegativity. I. Orbital electronegativity
+> C of neutral atoms. J. Am. Chem. Soc. 1962, 84, 540-6, with special
+> C parameters for I(s) and A(s) of N and O
+234a248,258
+> C Hinze, J.; Jaffe, H. H., Electronegativity. I. Orbital electronegativity
+> C of neutral atoms. J. Am. Chem. Soc. 1962, 84, 540-6.
+>       DATA PISHJ /13.6D0,0.D0,5.39D0,9.92D0,14.91D0,21.01D0,26.92D0,
+>      &          36.07D0,38.24D0,0.D0,5.14D0,8.95D0,12.27D0,17.31D0,
+>      &          20.20D0,20.08D0,24.02D0,90*0.D0/,
+>      &     EASHJ /.75D0,0.D0,.82D0,3.18D0,5.7D0,8.91D0,14.05D0,18.44D0,
+>      &          24.37D0,0.D0,.47D0,2.80D0,4.92D0,6.94D0,8.48D0,11.54D0,
+>      &          14.45D0,90*0.D0/
+> 
+> C  SLATER EXPONENTS (ZN)
+> 
+246a271,272
+> C Clementi, E.; Raimondi, D. L., Atomic screening constants from S.C.F.
+> c functions. J. Chem. Phys. 1963, 38, 2686-9.

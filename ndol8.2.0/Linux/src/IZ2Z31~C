@@ -1,0 +1,173 @@
+10,11c10,11
+<       CHARACTER*8  MODES
+<       CHARACTER*80 FILE5
+---
+>       CHARACTER*9  MODES, MODESH
+>       CHARACTER*32 FILE5
+12a13
+>       COMMON /CHB/ MODESH(8)
+23a25
+>       COMMON /DAHJ/PISHJ(107),EASHJ(107)
+39a42
+>       COMMON /QEX/ QQMAP, QCIPRINT, QLCI
+45c48
+<       CHARACTER*8 MODE
+---
+>       CHARACTER*9 MODE
+52a56,57
+>       QQMAP = .FALSE.
+>       QCIPRINT = .FALSE.
+83c88,89
+< 24          GE(I,J) = CERO
+---
+>             GE(I,J) = CERO
+> 24      CONTINUE
+158,160c164,170
+< * NOTA: SI IOPT(3) ES NEGATIVO, SE IMPRIMEN ADEMAS LAS MATRICES DE DEN-
+< *       SIDAD ORBITAL DE CADA UNO DE LOS n ESTADOS. IOPT(3) NO PUEDE
+< *       SER MAYOR QUE 999.
+---
+> *        =100+n SE IMPRIMEN ADEMAS LAS MATRICES DE DENSIDAD ORBITAL DE
+> *               CADA UNO DE LOS n ESTADOS. 
+> * NOTA: - n NO PUEDE SER MAYOR QUE 99
+> *       - SI n ES NEGATIVO SE CREAN ADEMÁS FICHEROS ESPECIALES DEL TIPO 
+> *         .xyz QUE PERMITEN GRÁFICOS MOLECULARES DEL MAPA DE CARGAS EN
+> *         EL SISTEMA Y DE SUS VARIACIONES EN CADA ESTADO EXCITADO INCLUYENDO
+> *         LAS MOLECULAS DE SOLVENTES.
+324a335,342
+> *      .GE.3    LA MATRIZ DE DENSIDAD SE OPTIMIZA ANTES DE LAS
+> *               ITERACIONES SCF MEDIANTE UNA CONSIDERACION PROGRESIVA DE
+> *               LA REPULSION ELECTRONICA DADA POR EL TERMINO FFF.
+> *               SE PROCEDE EN I=1,(IOPT(19)*10) PASOS SEGUN:
+> *                          F(I) = H + FFF(I)*G
+> *               DONDE FFF(I) = ((LOG(I))/(LOG(IOPT(19)*10)))
+> *               LA PRIMERA MATRIZ DE DENSIDAD DE ESTE PROCESO ES LA DEL
+> *               HAMILTONIANO MONOELECTRONICO
+411c428
+<         IOPT(3) = 1
+---
+>         IOPT(3) = -1
+431c448
+<           WRITE (IW,'(/a)') ' HYBRID NDOL HAMILTONIAN'
+---
+> *          WRITE (IW,'(/a)') ' HYBRID NDOL HAMILTONIAN'
+433a451,462
+>           if (ICHGE.eq.64) MODE = MODES(4)
+>           if (ICHGE.eq.75) MODE = MODES(5)
+>           if (ICHGE.eq.46) MODE = MODES(6)
+>           if (ICHGE.eq.57) MODE = MODES(7)
+>           if (ICHGE.eq.45 .or. ICHGE.eq.65) MODE = MODESH(1)
+>           if (ICHGE.eq.47 .or. ICHGE.eq.67) MODE = MODESH(2)
+>           if (ICHGE.eq.54 .or. ICHGE.eq.74) MODE = MODESH(3)
+>           if (ICHGE.eq.56 .or. ICHGE.eq.76) MODE = MODESH(4)
+> *          if (ICHGE.eq.xx .or. ICHGE.eq.xx) MODE = MODESH(5)
+> *          if (ICHGE.eq.xx .or. ICHGE.eq.xx) MODE = MODESH(6)
+> *          if (ICHGE.eq.xx .or. ICHGE.eq.xx) MODE = MODESH(7)
+> *          if (ICHGE.eq.xx .or. ICHGE.eq.xx) MODE = MODESH(8)
+530c559
+<         endif
+---
+>         else
+531a561,562
+>           ICHGE1 = ICHGE
+>         endif
+534,535d564
+<       if (QH) write (IW,'(/a,a)') ' ATOMIC ORBITAL TERM FOR KINETIC ENER
+<      &GY IS EVALUATED ACCORDING ',MODES(ICHGE1)
+538a568
+>       IF (QNDOL) WRITE (IW,1012)
+603d632
+< 	     goto 25
+604a634
+>         QLCI = .FALSE.
+608a639
+>            QLCI = .TRUE.
+641c672
+< 	  ELSEIF (IOPT(19).GE.2) THEN
+---
+>         ELSEIF (IOPT(19).EQ.2) THEN
+642a674,675
+>         ELSEIF (IOPT(19).GE.3) THEN
+>         WRITE (IW,1123) IOPT(19)*10
+700a734,745
+> C INDICACION DE CREACION DE FICHEROS PARA EL MAPA DE DISTRIBUCIONES
+> C DE CARGA Y DE IMPRESION DETALLADA DE LAS MATRICES DE DENSIDAD DE 
+> C LOS ESTADOS EXCITADOS
+>       IF (IOPT(3).LT.0) THEN
+>         QQMAP = .TRUE.
+>         IOPT(3) = IABS(IOPT(3))
+>       ENDIF
+>       IF (IOPT(3)-100.GT.0) THEN
+>         IOPT(3) = IOPT(3) - 100
+>         QCIPRINT = .TRUE.
+>       ENDIF
+> 
+724d768
+< 	nheavy = 0
+725a770
+> 	nheavy = 0
+730c775
+<      &   ' ARE CHANGED RESPECT TO PROGRAM DEFAULTS'
+---
+>      &' ARE CHANGED RESPECT TO PROGRAM DEFAULTS'
+884,889c929,934
+<         BU(L,1,5) = -PIS(L)
+<         BU(L,2,5) = -PIP(L)
+<         BE(L,1) = -PIS(L)*AUEV
+<         BE(L,2) = -PIP(L)*AUEV
+<         GE(L,1) = (PIS(L) - EAS(L))*AUEV
+<         GE(L,2) = (PIP(L) - EAP(L))*AUEV
+---
+>         BU(L,1,5) = -BU(L,1,3)
+>         BU(L,2,5) = -BU(L,2,3)
+>         BE(L,1) = -BU(L,1,3)*AUEV
+>         BE(L,2) = -BU(L,2,3)*AUEV
+>         GE(L,1) = (BU(L,1,3) - BU(L,1,4))*AUEV
+>         GE(L,2) = (BU(L,2,3) - BU(L,2,4))*AUEV
+893,894c938,939
+<         U2(L,1) = (PIS(L) + EAS(L))*AUEV
+<         U2(L,2) = (PIP(L) + EAP(L))*AUEV
+---
+>         U2(L,1) = (BU(L,1,3) + BU(L,1,4))*AUEV
+>         U2(L,2) = (BU(L,2,3) + BU(L,2,4))*AUEV
+938c983
+< * CASOS CNDOL/11,INDOL/11
+---
+> * CASOS CNDOL/1SS, INDOL/1SS
+1089c1134
+<      &F6.3,' ON DENSITY MATRICES')
+---
+>      &F5.3,' ON DENSITY MATRICES')
+1091c1136,1141
+<      &F6.3,' ON THE FOCK''S MATRIX')
+---
+>      &F5.3,' ON THE FOCK''S MATRIX')
+> 1012  FORMAT (' - DEFAULT ALL VALENCE STATE IONIZATION POTENTIALS AND EL
+>      &ECTRON AFFINITIES FROM:'/
+>      &'   Hinze, J.; Jaffe, H. H., Electronegativity. I. Orbital electro
+>      &negativity of'/
+>      &'   neutral atoms. J. Am. Chem. Soc. 1962, 84, 540-6')
+1128,1129c1178,1179
+< 1097  FORMAT (/' MODE ',A8//)
+< 1098  FORMAT (/' *** THE NDO MODE ',A8,' IS NOT ALLOWED ***'/)
+---
+> 1097  FORMAT (/' MODE ',a9//)
+> 1098  FORMAT (/' *** THE NDO MODE ',A9,' IS NOT ALLOWED ***'/)
+1133c1183
+<      & NUMBER OF BASIS ORBITALS')
+---
+>      & NUMBER OF BASIS'/'   ORBITALS')
+1147c1197
+<      &ATRIX AND DIAGONAL'
+---
+>      &ATRIX AND DIAGONAL'/
+1161a1212,1220
+> 1123  FORMAT (' - FIRST SCF ITERATION FROM A DENSITY MATRIX OBTAINED DIA
+>      &GONALIZING'/
+>      &        '   THE ONE ELECTRON HAMILTONIAN AND PROCEEDING TO A PROGR
+>      &ESSIVE INCREMENT'/
+>      &        '   OF THE ELECTRON INTERACTION TERM IN I=1,NAUX STEPS ACC  
+>      &ORDING:'/
+>      &        '                    F(I) = H + FFF(I)*G'/
+>      &        '   WHERE:           NAUX = 10*IOPT(19) =',I3/
+>      &        '                    FFF(I) = ((LOG(I)/(LOG(NAUX)))')

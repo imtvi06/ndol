@@ -1,0 +1,2153 @@
+ *******************************************************************************
+ *                                                                             *
+ *                              *** NDOL ***                                   *
+ *                  Molecular Orbitals by SCF-NDO Methods                      *
+ *                Version 8.2.0 for Windows and Linux, 2024                    *
+ *                (C) Copyright Luis A. Montero, 1985-2024                     *
+ *       Universidad de La Habana and Universidad Autonoma de Madrid           *
+ *                        This is a freeware program                           *
+ *                                                                             *
+ *******************************************************************************
+
+ Cite this program as:
+
+         NDOL v. 8.0.1,
+         Luis A. Montero-Cabrera, Ana L. Montero-Alejo, Carlos Bunge-Molina,
+         María E. Fuentes, Rachel Crespo-Otero, Nelaine Mora-Díez
+         Universidad de La Habana, Facultad de Química,
+         Laboratorio de Química Computacional y Teórica,
+         La Habana 10400, Cuba, 2024
+
+
+ Job beginning at: Fri Nov  8 10:07:07 2024      
+
+ MODE CNDOL/2CC
+
+
+ OPTION'S INPUT AFTER INCLUDING DEFAULTS:
+   0  0 -1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  4  0  0  0  0
+ - DEFAULT ALL VALENCE STATE IONIZATION POTENTIALS AND ELECTRON AFFINITIES FROM:
+   Hinze, J.; Jaffe, H. H., Electronegativity. I. Orbital electronegativity of
+   neutral atoms. J. Am. Chem. Soc. 1962, 84, 540-6
+ - ATOMIC ORBITAL OCCUPATION ACCORDING THE AUFBAU PRINCIPLE
+ - SCF CONVERGENCE ONLY CHECKED OVER OCCUPIED ORBITAL EIGENVALUES
+ - THE NUMBER OF CIS DETERMINANTS IS LESS OR EQUAL TO THE NUMBER OF BASIS
+   ORBITALS
+ - BOTH CI SINGLET AND TRIPLET STATES ARE CALCULATED
+ - FIRST SCF ITERATION FROM A NULL OFF DIAGONAL DENSITY MATRIX AND DIAGONAL
+   DENSITIES FROM:
+     CONST*CORE - (1/2)(MOLECULAR CHARGE)/N
+   WHERE CONST = 0.125 FOR HYDROGEN AND CONST = 0.5 FOR OTHER ATOMS
+ - TWO ELECTRON BICENTRIC INTEGRALS BY A MODIFIED OHNO'S FORMULA
+   WITH C1 = 1.0, C2 = 1.0 AND C3 = 1.0
+   [L.A.Montero-Cabrera, U.Rohrig, J.A.Padron-Garcia, R.Crespo-Otero,
+    A.L.Montero-Alejo, J.M.Garcia de la Vega, M.Chergui,
+    U.Rothlisberger, J.Chem.Phys. 127(14),145102(2007)]
+ - RESONANCE INTEGRALS BY WOLFBERG-HELMHOLZ FORMULA
+   BETA(mu,nu) = S(mu,nu)*(I(mu)+I(nu))/2
+   [J.Chem.Phys. 20,(5),837-843(1952)]
+ - SLATER EXPONENTS FOR OVERLAP INTEGRALS BY CLEMENTI AND RAIMONDI
+   [J.Chem.Phys. 38,2686(1963)]
+ - THE MAXIMAL NUMBER OF ALLOWED SCF ITERATIONS IS 2000
+ - THE CONVERGENCE CRITERIA FOR THE SCF ITERATIONS IS  0.00001000 EV ON THE
+   ORBITAL EIGENVALUES
+ - ALL ENERGIES ARE GIVEN IN EV
+
+                     PARAMETERS OF VALENCE ATOMIC ORBITALS
+
+ AT ORB     ENERGY     EXPONENT  IONIZ.POT.   ELEC.AFN.    BETAS        UM
+
+ H   s                  1.000      13.600       0.750     -13.600     -13.600
+     p                  0.000       0.000       0.000      -0.000       0.000
+         -13.6000
+ He  s                  1.688       0.000       0.000      -0.000       0.000
+     p                  0.000       0.000       0.000      -0.000       0.000
+           0.0000
+ Li  s                  0.640       5.390       0.820      -5.390      -5.390
+     p                  0.377       3.540       0.560      -3.540      -3.540
+          -5.3900
+ Be  s                  0.956       9.920       3.180      -9.920     -16.660
+     p                  0.877       5.960       0.110      -5.960     -11.810
+         -26.5799
+ B   s                  1.288      14.910       5.700     -14.910     -33.330
+     p                  1.211       8.420       0.320      -8.420     -24.620
+         -64.7598
+ C   s                  1.608      21.010       8.910     -21.010     -57.310
+     p                  1.568      11.270       0.340     -11.270     -44.060
+        -133.6497
+ N   s                  1.924      25.583      11.098     -25.583     -83.523
+     p                  1.917      13.940       0.840     -13.940     -66.340
+        -229.5254
+ O   s                  2.246      32.301      15.462     -32.301    -116.496
+     p                  2.227      17.280       2.010     -17.280     -93.630
+        -370.6161
+ F   s                  2.564      38.240      24.370     -38.240    -121.460
+     p                  2.550      20.860       3.500     -20.860    -125.020
+        -524.3987
+ Ne  s                  2.879       0.000       0.000      -0.000       0.000
+     p                  2.879       0.000       0.000      -0.000       0.000
+           0.0000
+ Na  s                  0.836       5.140       0.470      -5.140      -5.140
+     p                  0.682       3.040       0.090      -3.040      -3.040
+          -5.1400
+ Mg  s                  1.103       8.950       2.800      -8.950     -15.100
+     p                  1.015       4.520       0.060      -4.520      -8.980
+         -24.0499
+ Al  s                  1.372      12.270       4.920     -12.270     -26.970
+     p                  1.355       6.470       1.370      -6.470     -16.670
+         -50.8099
+ Si  s                  1.634      17.310       6.940     -17.310     -48.420
+     p                  1.428       9.190       2.820      -9.190     -28.300
+        -103.2197
+ P   s                  1.881      20.200       8.480     -20.200     -67.080
+     p                  1.629      12.490       1.980     -12.490     -54.530
+        -187.8095
+ S   s                  2.122      20.080      11.540     -20.080     -62.780
+     p                  1.827      13.320       3.500     -13.320     -62.420
+        -234.3394
+ Cl  s                  2.356      24.020      14.450     -24.020     -81.440
+     p                  2.039      15.030       3.730     -15.030     -82.830
+        -350.1091
+
+                            CNDOL/2CC SCF-MO CALCULATIONS
+
+
+
+
+ 	Energy: -225566.5336402                                                        
+
+
+                     INPUT ATOMIC CARTESIAN COORDINATES (A)
+                     ATOM      X         Y         Z      NAT
+
+                    C   1    0.0000    0.5948    0.0000    6
+                    C   2    1.3291    0.1791    0.0000    6
+                    C   3   -1.0523   -0.3215    0.0000    6
+                    C   4   -0.7554   -1.6777    0.0000    6
+                    C   5    0.5748   -2.1080    0.0000    6
+                    C   6    1.6170   -1.1824    0.0000    6
+                    N   7   -0.1870    2.0250    0.0000    7
+                    O   8   -1.3615    2.3800    0.0000    8
+                    H   9    2.1067    0.9307    0.0000    1
+                    H  10   -2.0694    0.0430    0.0000    1
+                    H  11   -1.5551   -2.4056    0.0000    1
+                    H  12    0.7956   -3.1668    0.0000    1
+                    H  13    2.6433   -1.5219    0.0000    1
+
+                           THE MOLECULAR CHARGE IS  0
+
+     THIS SYSTEM HAS  0037 VALENCE MOLECULAR ORBITALS,   0020 OF THEM OCCUPIED
+ Total memory required for 8 B words:                       8474
+ Total memory required for 4 B words:                       1352
+
+ START THE DIAGONALIZATION OF THE INITIAL MONOELECTRONIC  MATRIX
+
+ *** Elapsed time :      0.0001 s ***
+ It.   1: max. div. in root   3 by  8.995     ev. Elap.time:0.13E-03 s
+ It.   2: max. div. in root   1 by  19.38     ev. Elap.time:0.13E-03 s
+ It.   3: max. div. in root   1 by  8.573     ev. Elap.time:0.12E-03 s
+ It.   4: max. div. in root   1 by  64.53     ev. Elap.time:0.13E-03 s
+ It.   5: max. div. in root   1 by  47.89     ev. Elap.time:0.14E-03 s
+ It.   6: max. div. in root   4 by  63.16     ev. Elap.time:0.12E-03 s
+ It.   7: max. div. in root   4 by  62.63     ev. Elap.time:0.96E-04 s
+ It.   8: max. div. in root   4 by  63.87     ev. Elap.time:0.97E-04 s
+ It.   9: max. div. in root   4 by  63.99     ev. Elap.time:0.96E-04 s
+ It.  10: max. div. in root   4 by  64.14     ev. Elap.time:0.94E-04 s
+ It.  11: max. div. in root   4 by  64.16     ev. Elap.time:0.96E-04 s
+ It.  12: max. div. in root   4 by  64.18     ev. Elap.time:0.98E-04 s
+ It.  13: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.  14: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.  15: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.  16: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.  17: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.  18: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.  19: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.  20: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.  21: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.  22: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.  23: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.  24: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.  25: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.  26: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.  27: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.  28: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.  29: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.  30: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.  31: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.  32: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.  33: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.  34: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.  35: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.  36: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.  37: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.  38: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.  39: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.  40: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.  41: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.  42: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.  43: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.  44: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.  45: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.  46: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.  47: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.  48: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.  49: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.  50: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.  51: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.  52: max. div. in root   4 by  64.19     ev. Elap.time:0.92E-04 s
+ It.  53: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.  54: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.  55: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.  56: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.  57: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.  58: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.  59: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.  60: max. div. in root   4 by  64.19     ev. Elap.time:0.93E-04 s
+ It.  61: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.  62: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.  63: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.  64: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.  65: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.  66: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.  67: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.  68: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.  69: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.  70: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.  71: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.  72: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.  73: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.  74: max. div. in root   4 by  64.19     ev. Elap.time:0.15E-03 s
+ It.  75: max. div. in root   4 by  64.19     ev. Elap.time:0.15E-03 s
+ It.  76: max. div. in root   4 by  64.19     ev. Elap.time:0.15E-03 s
+ It.  77: max. div. in root   4 by  64.19     ev. Elap.time:0.14E-03 s
+ It.  78: max. div. in root   4 by  64.19     ev. Elap.time:0.14E-03 s
+ It.  79: max. div. in root   4 by  64.19     ev. Elap.time:0.14E-03 s
+ It.  80: max. div. in root   4 by  64.19     ev. Elap.time:0.19E-03 s
+ It.  81: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.  82: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.  83: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.  84: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.  85: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.  86: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.  87: max. div. in root   4 by  64.19     ev. Elap.time:0.93E-04 s
+ It.  88: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.  89: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.  90: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.  91: max. div. in root   4 by  64.19     ev. Elap.time:0.15E-03 s
+ It.  92: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.  93: max. div. in root   4 by  64.19     ev. Elap.time:0.93E-04 s
+ It.  94: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.  95: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.  96: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.  97: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.  98: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.  99: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 100: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 101: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 102: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 103: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 104: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It. 105: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 106: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 107: max. div. in root   4 by  64.19     ev. Elap.time:0.93E-04 s
+ It. 108: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 109: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 110: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 111: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 112: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 113: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It. 114: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 115: max. div. in root   4 by  64.19     ev. Elap.time:0.92E-04 s
+ It. 116: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 117: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 118: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 119: max. div. in root   4 by  64.19     ev. Elap.time:0.92E-04 s
+ It. 120: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 121: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 122: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 123: max. div. in root   4 by  64.19     ev. Elap.time:0.92E-04 s
+ It. 124: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 125: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 126: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 127: max. div. in root   4 by  64.19     ev. Elap.time:0.93E-04 s
+ It. 128: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 129: max. div. in root   4 by  64.19     ev. Elap.time:0.92E-04 s
+ It. 130: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 131: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 132: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 133: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 134: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 135: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 136: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 137: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 138: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 139: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 140: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 141: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 142: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 143: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 144: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 145: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 146: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 147: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 148: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 149: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 150: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 151: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 152: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 153: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 154: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 155: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 156: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 157: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 158: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 159: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 160: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 161: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 162: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 163: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 164: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 165: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 166: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 167: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 168: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 169: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 170: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 171: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 172: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It. 173: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 174: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 175: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 176: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 177: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 178: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 179: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 180: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 181: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 182: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 183: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 184: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 185: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 186: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 187: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 188: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 189: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 190: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It. 191: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It. 192: max. div. in root   4 by  64.19     ev. Elap.time:0.12E-03 s
+ It. 193: max. div. in root   4 by  64.19     ev. Elap.time:0.12E-03 s
+ It. 194: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It. 195: max. div. in root   4 by  64.19     ev. Elap.time:0.12E-03 s
+ It. 196: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It. 197: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 198: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 199: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 200: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 201: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 202: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 203: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 204: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 205: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 206: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 207: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 208: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 209: max. div. in root   4 by  64.19     ev. Elap.time:0.93E-04 s
+ It. 210: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 211: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 212: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 213: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 214: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 215: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 216: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 217: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 218: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 219: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 220: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 221: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 222: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 223: max. div. in root   4 by  64.19     ev. Elap.time:0.92E-04 s
+ It. 224: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 225: max. div. in root   4 by  64.19     ev. Elap.time:0.12E-03 s
+ It. 226: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 227: max. div. in root   4 by  64.19     ev. Elap.time:0.93E-04 s
+ It. 228: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 229: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 230: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 231: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 232: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 233: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 234: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 235: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 236: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 237: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 238: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 239: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 240: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 241: max. div. in root   4 by  64.19     ev. Elap.time:0.93E-04 s
+ It. 242: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 243: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 244: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 245: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 246: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 247: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 248: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It. 249: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It. 250: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It. 251: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It. 252: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It. 253: max. div. in root   4 by  64.19     ev. Elap.time:0.12E-03 s
+ It. 254: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 255: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 256: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 257: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It. 258: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 259: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 260: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 261: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 262: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 263: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 264: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 265: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 266: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 267: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 268: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 269: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 270: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 271: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 272: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 273: max. div. in root   4 by  64.19     ev. Elap.time:0.93E-04 s
+ It. 274: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 275: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 276: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 277: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 278: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 279: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 280: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 281: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 282: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 283: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It. 284: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 285: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 286: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 287: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 288: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 289: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 290: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 291: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 292: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 293: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 294: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 295: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 296: max. div. in root   4 by  64.19     ev. Elap.time:0.93E-04 s
+ It. 297: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 298: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 299: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 300: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 301: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 302: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 303: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 304: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 305: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 306: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 307: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 308: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 309: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 310: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It. 311: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 312: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 313: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 314: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 315: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 316: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 317: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 318: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 319: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 320: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 321: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 322: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 323: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 324: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 325: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 326: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 327: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 328: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 329: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 330: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 331: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 332: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 333: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 334: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 335: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 336: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 337: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 338: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 339: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 340: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 341: max. div. in root   4 by  64.19     ev. Elap.time:0.93E-04 s
+ It. 342: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 343: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 344: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 345: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 346: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 347: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 348: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 349: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 350: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 351: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 352: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 353: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 354: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 355: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 356: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 357: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 358: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 359: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 360: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 361: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 362: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 363: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 364: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It. 365: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It. 366: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 367: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 368: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 369: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 370: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 371: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 372: max. div. in root   4 by  64.19     ev. Elap.time:0.12E-03 s
+ It. 373: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 374: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 375: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 376: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 377: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 378: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 379: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 380: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 381: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 382: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 383: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 384: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 385: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 386: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 387: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 388: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 389: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 390: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 391: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 392: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 393: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 394: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 395: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 396: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 397: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 398: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 399: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 400: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 401: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 402: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 403: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 404: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 405: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 406: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 407: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 408: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 409: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 410: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 411: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 412: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 413: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 414: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 415: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 416: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 417: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 418: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 419: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 420: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 421: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 422: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It. 423: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 424: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 425: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 426: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 427: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 428: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 429: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 430: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 431: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 432: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 433: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 434: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It. 435: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 436: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 437: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 438: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 439: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 440: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 441: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 442: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 443: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 444: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 445: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 446: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 447: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 448: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 449: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 450: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 451: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 452: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 453: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 454: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 455: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 456: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 457: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 458: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 459: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 460: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 461: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 462: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 463: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 464: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 465: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 466: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 467: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 468: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 469: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 470: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 471: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 472: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 473: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 474: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 475: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 476: max. div. in root   4 by  64.19     ev. Elap.time:0.12E-03 s
+ It. 477: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 478: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 479: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 480: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It. 481: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 482: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 483: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 484: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 485: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 486: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 487: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 488: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 489: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 490: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 491: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 492: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It. 493: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 494: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 495: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 496: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 497: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 498: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 499: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 500: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 501: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 502: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 503: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 504: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 505: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 506: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 507: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 508: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 509: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 510: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 511: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 512: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 513: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It. 514: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 515: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 516: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 517: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 518: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 519: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 520: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 521: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 522: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 523: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 524: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It. 525: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 526: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 527: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 528: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 529: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 530: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 531: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 532: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 533: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 534: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 535: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 536: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 537: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 538: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 539: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 540: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 541: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 542: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 543: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 544: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 545: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 546: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 547: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 548: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 549: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 550: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 551: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 552: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 553: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 554: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 555: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 556: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 557: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 558: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 559: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 560: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 561: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 562: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 563: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 564: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 565: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 566: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 567: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 568: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 569: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 570: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 571: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 572: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It. 573: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 574: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 575: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 576: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 577: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 578: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 579: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 580: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 581: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 582: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 583: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 584: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 585: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 586: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 587: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 588: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 589: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 590: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 591: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 592: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 593: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 594: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 595: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 596: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 597: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 598: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 599: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 600: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 601: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 602: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 603: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 604: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 605: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 606: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 607: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 608: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 609: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 610: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 611: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 612: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 613: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 614: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 615: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 616: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 617: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 618: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 619: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 620: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 621: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 622: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 623: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 624: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 625: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 626: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 627: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 628: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 629: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 630: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 631: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 632: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 633: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 634: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 635: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 636: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 637: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 638: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 639: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 640: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 641: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 642: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 643: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 644: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 645: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 646: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 647: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 648: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It. 649: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 650: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 651: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 652: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 653: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 654: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 655: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 656: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 657: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 658: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 659: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 660: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It. 661: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 662: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 663: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 664: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 665: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 666: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 667: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 668: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 669: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 670: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It. 671: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 672: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 673: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 674: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 675: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 676: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 677: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 678: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 679: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 680: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 681: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 682: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 683: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 684: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 685: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 686: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 687: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 688: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 689: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 690: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 691: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 692: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 693: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 694: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 695: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 696: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 697: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 698: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 699: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 700: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 701: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 702: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 703: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 704: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 705: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 706: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 707: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 708: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 709: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 710: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 711: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 712: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 713: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 714: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 715: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 716: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 717: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 718: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 719: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 720: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 721: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 722: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 723: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 724: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 725: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 726: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 727: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 728: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 729: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 730: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 731: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 732: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 733: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 734: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 735: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 736: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 737: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 738: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 739: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 740: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 741: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 742: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 743: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 744: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 745: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 746: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 747: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 748: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 749: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 750: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 751: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 752: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 753: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 754: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 755: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 756: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 757: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 758: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 759: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 760: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 761: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 762: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 763: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 764: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 765: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 766: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 767: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 768: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 769: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 770: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 771: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 772: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 773: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 774: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 775: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 776: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 777: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 778: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 779: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 780: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 781: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 782: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 783: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 784: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 785: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 786: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 787: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 788: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 789: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 790: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 791: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 792: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 793: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 794: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 795: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 796: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 797: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 798: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 799: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 800: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 801: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 802: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 803: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 804: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 805: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 806: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 807: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 808: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 809: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 810: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 811: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 812: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It. 813: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 814: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 815: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 816: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 817: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 818: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 819: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 820: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 821: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 822: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 823: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 824: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 825: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 826: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 827: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 828: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 829: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 830: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 831: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 832: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 833: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 834: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 835: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 836: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 837: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 838: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 839: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 840: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 841: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 842: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 843: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 844: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 845: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 846: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 847: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 848: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 849: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 850: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 851: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 852: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 853: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 854: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 855: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 856: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 857: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 858: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 859: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 860: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 861: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 862: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 863: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 864: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 865: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 866: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 867: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 868: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 869: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 870: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 871: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 872: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 873: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 874: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 875: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 876: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 877: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 878: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 879: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 880: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 881: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 882: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 883: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 884: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 885: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 886: max. div. in root   4 by  64.19     ev. Elap.time:0.14E-03 s
+ It. 887: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It. 888: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It. 889: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It. 890: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It. 891: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It. 892: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It. 893: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It. 894: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It. 895: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 896: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 897: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 898: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 899: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 900: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 901: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 902: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 903: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 904: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 905: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 906: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 907: max. div. in root   4 by  64.19     ev. Elap.time:0.93E-04 s
+ It. 908: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 909: max. div. in root   4 by  64.19     ev. Elap.time:0.93E-04 s
+ It. 910: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It. 911: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 912: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 913: max. div. in root   4 by  64.19     ev. Elap.time:0.91E-04 s
+ It. 914: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 915: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It. 916: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 917: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 918: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 919: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 920: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 921: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 922: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 923: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 924: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 925: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 926: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 927: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 928: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 929: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 930: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 931: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 932: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 933: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 934: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 935: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 936: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 937: max. div. in root   4 by  64.19     ev. Elap.time:0.12E-03 s
+ It. 938: max. div. in root   4 by  64.19     ev. Elap.time:0.12E-03 s
+ It. 939: max. div. in root   4 by  64.19     ev. Elap.time:0.12E-03 s
+ It. 940: max. div. in root   4 by  64.19     ev. Elap.time:0.12E-03 s
+ It. 941: max. div. in root   4 by  64.19     ev. Elap.time:0.12E-03 s
+ It. 942: max. div. in root   4 by  64.19     ev. Elap.time:0.12E-03 s
+ It. 943: max. div. in root   4 by  64.19     ev. Elap.time:0.12E-03 s
+ It. 944: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 945: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 946: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 947: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 948: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 949: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 950: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 951: max. div. in root   4 by  64.19     ev. Elap.time:0.12E-03 s
+ It. 952: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 953: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 954: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 955: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 956: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 957: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 958: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It. 959: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 960: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 961: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 962: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 963: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 964: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 965: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 966: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 967: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 968: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 969: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 970: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 971: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 972: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 973: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 974: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 975: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 976: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 977: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 978: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 979: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 980: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 981: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 982: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 983: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It. 984: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It. 985: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 986: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 987: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 988: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 989: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 990: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 991: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 992: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 993: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 994: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It. 995: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It. 996: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It. 997: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 998: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It. 999: max. div. in root   4 by  64.19     ev. Elap.time:0.93E-04 s
+ It.1000: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1001: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1002: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.1003: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.1004: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1005: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1006: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1007: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1008: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1009: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1010: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1011: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1012: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1013: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1014: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1015: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1016: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1017: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1018: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1019: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1020: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1021: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1022: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1023: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1024: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1025: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1026: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1027: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1028: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1029: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1030: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1031: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1032: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1033: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1034: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1035: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1036: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1037: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1038: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1039: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1040: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1041: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1042: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1043: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1044: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1045: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.1046: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1047: max. div. in root   4 by  64.19     ev. Elap.time:0.93E-04 s
+ It.1048: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1049: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1050: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1051: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1052: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1053: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1054: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1055: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1056: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1057: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.1058: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1059: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1060: max. div. in root   4 by  64.19     ev. Elap.time:0.27E-03 s
+ It.1061: max. div. in root   4 by  64.19     ev. Elap.time:0.27E-03 s
+ It.1062: max. div. in root   4 by  64.19     ev. Elap.time:0.26E-03 s
+ It.1063: max. div. in root   4 by  64.19     ev. Elap.time:0.19E-03 s
+ It.1064: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It.1065: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It.1066: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It.1067: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It.1068: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It.1069: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It.1070: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It.1071: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1072: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1073: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1074: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1075: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1076: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1077: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1078: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1079: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1080: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1081: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1082: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1083: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1084: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1085: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1086: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1087: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1088: max. div. in root   4 by  64.19     ev. Elap.time:0.12E-03 s
+ It.1089: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1090: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1091: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1092: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1093: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1094: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1095: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1096: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1097: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1098: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1099: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1100: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1101: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1102: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1103: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1104: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.1105: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1106: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1107: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1108: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1109: max. div. in root   4 by  64.19     ev. Elap.time:0.93E-04 s
+ It.1110: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1111: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1112: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1113: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1114: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1115: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1116: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1117: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1118: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1119: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1120: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1121: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1122: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1123: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1124: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1125: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1126: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1127: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1128: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1129: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1130: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1131: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1132: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1133: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1134: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1135: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1136: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1137: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1138: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1139: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1140: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1141: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1142: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1143: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1144: max. div. in root   4 by  64.19     ev. Elap.time:0.12E-03 s
+ It.1145: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1146: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1147: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1148: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1149: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1150: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1151: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1152: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1153: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1154: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1155: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1156: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1157: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1158: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1159: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1160: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1161: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1162: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1163: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1164: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1165: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1166: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1167: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1168: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1169: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1170: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1171: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1172: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1173: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1174: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1175: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1176: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1177: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1178: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1179: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1180: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1181: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1182: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1183: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1184: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.1185: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1186: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1187: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1188: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1189: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1190: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1191: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1192: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1193: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1194: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1195: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1196: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1197: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1198: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1199: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1200: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1201: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1202: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1203: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1204: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1205: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1206: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1207: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1208: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1209: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1210: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1211: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1212: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1213: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1214: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1215: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1216: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1217: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1218: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1219: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1220: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1221: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1222: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1223: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1224: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1225: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1226: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1227: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1228: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1229: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1230: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1231: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1232: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1233: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1234: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1235: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1236: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1237: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1238: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1239: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1240: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1241: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1242: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1243: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1244: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1245: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1246: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1247: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1248: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1249: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1250: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1251: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1252: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1253: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1254: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1255: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1256: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1257: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1258: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1259: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1260: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1261: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1262: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1263: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1264: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1265: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1266: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1267: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1268: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1269: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1270: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1271: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1272: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1273: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1274: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1275: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1276: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1277: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1278: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1279: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1280: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1281: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1282: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1283: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1284: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1285: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1286: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1287: max. div. in root   4 by  64.19     ev. Elap.time:0.93E-04 s
+ It.1288: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1289: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1290: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1291: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1292: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1293: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1294: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1295: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1296: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1297: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1298: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1299: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1300: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1301: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1302: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1303: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1304: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1305: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1306: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1307: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1308: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1309: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1310: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1311: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1312: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1313: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1314: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1315: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1316: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1317: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1318: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1319: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1320: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1321: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1322: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1323: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1324: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1325: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1326: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1327: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1328: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1329: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1330: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1331: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1332: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1333: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1334: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1335: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1336: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1337: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1338: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1339: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1340: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1341: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1342: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1343: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1344: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1345: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1346: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1347: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1348: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1349: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1350: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.1351: max. div. in root   4 by  64.19     ev. Elap.time:0.23E-03 s
+ It.1352: max. div. in root   4 by  64.19     ev. Elap.time:0.23E-03 s
+ It.1353: max. div. in root   4 by  64.19     ev. Elap.time:0.23E-03 s
+ It.1354: max. div. in root   4 by  64.19     ev. Elap.time:0.23E-03 s
+ It.1355: max. div. in root   4 by  64.19     ev. Elap.time:0.23E-03 s
+ It.1356: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It.1357: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1358: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1359: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1360: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1361: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1362: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1363: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1364: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1365: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1366: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1367: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1368: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1369: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1370: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1371: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1372: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1373: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1374: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1375: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1376: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1377: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.1378: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1379: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1380: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1381: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1382: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1383: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1384: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1385: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1386: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1387: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.1388: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1389: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1390: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1391: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1392: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1393: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1394: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1395: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1396: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1397: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1398: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1399: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1400: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1401: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1402: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1403: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1404: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1405: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1406: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1407: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1408: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1409: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1410: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1411: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1412: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1413: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1414: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1415: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1416: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1417: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1418: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1419: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1420: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1421: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1422: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1423: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1424: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1425: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1426: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1427: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1428: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1429: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1430: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.1431: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1432: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1433: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1434: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1435: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1436: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1437: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1438: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1439: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1440: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1441: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1442: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1443: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1444: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1445: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1446: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1447: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1448: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1449: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1450: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1451: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1452: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1453: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1454: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1455: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1456: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1457: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1458: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1459: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1460: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1461: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1462: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1463: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1464: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1465: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1466: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1467: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1468: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1469: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1470: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1471: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1472: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1473: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1474: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1475: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1476: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1477: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1478: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1479: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1480: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1481: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1482: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1483: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1484: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1485: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1486: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1487: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1488: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1489: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1490: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1491: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1492: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1493: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1494: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1495: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1496: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1497: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1498: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1499: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1500: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1501: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1502: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1503: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1504: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1505: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1506: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1507: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1508: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1509: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1510: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1511: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1512: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1513: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1514: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1515: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1516: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1517: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1518: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1519: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1520: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1521: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1522: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1523: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1524: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1525: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1526: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1527: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1528: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1529: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1530: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1531: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1532: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1533: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1534: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1535: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1536: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1537: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1538: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1539: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1540: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1541: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1542: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1543: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1544: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1545: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1546: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1547: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1548: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1549: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1550: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1551: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1552: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1553: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1554: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1555: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1556: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1557: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1558: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1559: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1560: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1561: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1562: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.1563: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1564: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1565: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1566: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1567: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1568: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1569: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1570: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1571: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1572: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1573: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1574: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1575: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1576: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1577: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1578: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1579: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1580: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1581: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1582: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1583: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1584: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1585: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1586: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1587: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1588: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1589: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1590: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1591: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1592: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1593: max. div. in root   4 by  64.19     ev. Elap.time:0.92E-04 s
+ It.1594: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1595: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1596: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1597: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1598: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1599: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1600: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1601: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1602: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1603: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1604: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1605: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1606: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1607: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1608: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1609: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1610: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1611: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1612: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1613: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1614: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1615: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1616: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1617: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1618: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1619: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1620: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1621: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1622: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1623: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1624: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1625: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.1626: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1627: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1628: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1629: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1630: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1631: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1632: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1633: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1634: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1635: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1636: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1637: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1638: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1639: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1640: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1641: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1642: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1643: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1644: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1645: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1646: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1647: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1648: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1649: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1650: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1651: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1652: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1653: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1654: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1655: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1656: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1657: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1658: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1659: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1660: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1661: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1662: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1663: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1664: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1665: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1666: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1667: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1668: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1669: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1670: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1671: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1672: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1673: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1674: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1675: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.1676: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1677: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1678: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1679: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1680: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1681: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1682: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1683: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1684: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1685: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1686: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1687: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1688: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1689: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1690: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1691: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1692: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1693: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1694: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1695: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1696: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1697: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1698: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.1699: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1700: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1701: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1702: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1703: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1704: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1705: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1706: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1707: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1708: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1709: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1710: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1711: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1712: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1713: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1714: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1715: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1716: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1717: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1718: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1719: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1720: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1721: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1722: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1723: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.1724: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1725: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1726: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1727: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1728: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1729: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1730: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1731: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1732: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1733: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1734: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1735: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1736: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1737: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1738: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1739: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1740: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1741: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1742: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1743: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.1744: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1745: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1746: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1747: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1748: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1749: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1750: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1751: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1752: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1753: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1754: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1755: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1756: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1757: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1758: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1759: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1760: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1761: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1762: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1763: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1764: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1765: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1766: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1767: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1768: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1769: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1770: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1771: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1772: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1773: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1774: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1775: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1776: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1777: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1778: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1779: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1780: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1781: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1782: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1783: max. div. in root   4 by  64.19     ev. Elap.time:0.93E-04 s
+ It.1784: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1785: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1786: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1787: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1788: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1789: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1790: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1791: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1792: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1793: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1794: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1795: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1796: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1797: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1798: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1799: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1800: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1801: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1802: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1803: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1804: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1805: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1806: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1807: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1808: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1809: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1810: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1811: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1812: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1813: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1814: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1815: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1816: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.1817: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1818: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1819: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.1820: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1821: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1822: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1823: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1824: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1825: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1826: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1827: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1828: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1829: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.1830: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1831: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1832: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1833: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1834: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1835: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1836: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1837: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1838: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1839: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1840: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1841: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1842: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1843: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1844: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1845: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1846: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1847: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1848: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1849: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1850: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1851: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1852: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1853: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1854: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1855: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1856: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1857: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1858: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1859: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1860: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1861: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1862: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1863: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1864: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1865: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1866: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1867: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1868: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1869: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1870: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1871: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1872: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.1873: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1874: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1875: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1876: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1877: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1878: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1879: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1880: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1881: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1882: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1883: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1884: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1885: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1886: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1887: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1888: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1889: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1890: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1891: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1892: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1893: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1894: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1895: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1896: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1897: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1898: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1899: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1900: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1901: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1902: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1903: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1904: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1905: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1906: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1907: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1908: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1909: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1910: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1911: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1912: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1913: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1914: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1915: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1916: max. div. in root   4 by  64.19     ev. Elap.time:0.11E-03 s
+ It.1917: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1918: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1919: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1920: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1921: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1922: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1923: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1924: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1925: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1926: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1927: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1928: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1929: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1930: max. div. in root   4 by  64.19     ev. Elap.time:0.15E-03 s
+ It.1931: max. div. in root   4 by  64.19     ev. Elap.time:0.15E-03 s
+ It.1932: max. div. in root   4 by  64.19     ev. Elap.time:0.14E-03 s
+ It.1933: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It.1934: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It.1935: max. div. in root   4 by  64.19     ev. Elap.time:0.14E-03 s
+ It.1936: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It.1937: max. div. in root   4 by  64.19     ev. Elap.time:0.12E-03 s
+ It.1938: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1939: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1940: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1941: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1942: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1943: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1944: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1945: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1946: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1947: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1948: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1949: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1950: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1951: max. div. in root   4 by  64.19     ev. Elap.time:0.93E-04 s
+ It.1952: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1953: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1954: max. div. in root   4 by  64.19     ev. Elap.time:0.12E-03 s
+ It.1955: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1956: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1957: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1958: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1959: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1960: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1961: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1962: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1963: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1964: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1965: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1966: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1967: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1968: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1969: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1970: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1971: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1972: max. div. in root   4 by  64.19     ev. Elap.time:0.95E-04 s
+ It.1973: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1974: max. div. in root   4 by  64.19     ev. Elap.time:0.98E-04 s
+ It.1975: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1976: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1977: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1978: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1979: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1980: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1981: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+ It.1982: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1983: max. div. in root   4 by  64.19     ev. Elap.time:0.97E-04 s
+ It.1984: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1985: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1986: max. div. in root   4 by  64.19     ev. Elap.time:0.94E-04 s
+ It.1987: max. div. in root   4 by  64.19     ev. Elap.time:0.93E-04 s
+ It.1988: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It.1989: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It.1990: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It.1991: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It.1992: max. div. in root   4 by  64.19     ev. Elap.time:0.13E-03 s
+ It.1993: max. div. in root   4 by  64.19     ev. Elap.time:0.12E-03 s
+ It.1994: max. div. in root   4 by  64.19     ev. Elap.time:0.12E-03 s
+ It.1995: max. div. in root   4 by  64.19     ev. Elap.time:0.99E-04 s
+ It.1996: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1997: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1998: max. div. in root   4 by  64.19     ev. Elap.time:0.10E-03 s
+ It.1999: max. div. in root   4 by  64.19     ev. Elap.time:0.96E-04 s
+
+ *** THE ALLOWED NUMBER OF SCF ITERATIONS HAS BEEN EXCE EDED ***
+
+               CONVERGENCE NOT ATTAINED AFTER*** SCF ITERATIONS
+
+ *** EXCITED STATE CALCULATIONS HAVE BEEN CANCELED ***
+
+
+ CPU time elapsed by the run :.0000000E+00 s

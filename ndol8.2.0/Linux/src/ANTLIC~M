@@ -1,0 +1,4 @@
+10c10
+<       integer ifile, iapp4, iff
+---
+>       integer*4 ifile, iapp4

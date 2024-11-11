@@ -1,0 +1,6 @@
+10a11
+>       common /nallconfig/ NALL, NFCI
+14c15
+<       DIMENSION PB(N,N),P(NA,2),XC(NA),YC(NA),ZC(NA)
+---
+>       DIMENSION PB(N,*),P(NA,2),XC(NA),YC(NA),ZC(NA)

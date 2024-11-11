@@ -1,0 +1,16 @@
+6c6
+<       CHARACTER*8 MODES
+---
+>       CHARACTER*9 MODES
+9c9
+<       COMMON /CHA  / IATOM(107),TORB(4),ISYMT(8),MODES(15,2)
+---
+>       COMMON /CHA  / IATOM(107),TORB(4),ISYMT(8),MODES(15)
+46c46
+<           call ucase(-1,elem,2)
+---
+>           call ucase(-1,elem)
+65c65
+<           NOCC = NOCC + NINT(ANV(L) )
+---
+>           NOCC = NOCC + ANV(L)

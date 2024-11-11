@@ -1,0 +1,4 @@
+5c5
+<       DIMENSION AII(N),TC(N)
+---
+>       REAL*8 AII(N),TC(N)

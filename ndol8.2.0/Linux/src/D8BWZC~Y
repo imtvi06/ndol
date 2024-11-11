@@ -1,0 +1,13 @@
+1c1
+<       SUBROUTINE DEGEN (N,I0,J,MU,NU,C,AII)
+---
+>       SUBROUTINE DEGEN (N,I,J,MU,NU,C,AII)
+14d13
+<       PARAMETER ( DIFFE=0.1D-8 )
+16,18c15,16
+<       I=I0
+<       IF ( DABS(C(MU,I) - C(NU,I)).LT.DIFFE) GO TO 10
+<       IF ( DABS(C(MU,I) + C(NU,I)).LT.DIFFE) GO TO 10
+---
+>       IF ((C(MU,I) - C(NU,I)).EQ.CEROS) GO TO 10
+>       IF ((C(MU,I) + C(NU,I)).EQ.CEROS) GO TO 10

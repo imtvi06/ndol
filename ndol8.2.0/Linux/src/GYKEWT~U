@@ -1,0 +1,32 @@
+2c2
+<      &  (GEO, NA, NB, NC, NATOMS, QINT)
+---
+>      &  (GEO, NA, NB, NC, NATOMS, INT)
+7c7
+<       LOGICAL QINT
+---
+>       LOGICAL*2 INT
+103c103
+<          LABEL=NINT(READA(STRING,1))
+---
+>          LABEL=READA(STRING,1)
+159,161c159,161
+<       NA(NATOMS)       =NINT(READA(LINE,ISTART(8)))
+<       NB(NATOMS)       =NINT(READA(LINE,ISTART(9)))
+<       NC(NATOMS)       =NINT(READA(LINE,ISTART(10)))
+---
+>       NA(NATOMS)       =READA(LINE,ISTART(8))
+>       NB(NATOMS)       =READA(LINE,ISTART(9))
+>       NC(NATOMS)       =READA(LINE,ISTART(10))
+182c182
+<          QINT=(NA(4).NE.0)
+---
+>          INT=(NA(4).NE.0)
+187c187
+<          QINT=.TRUE.
+---
+>          INT=.TRUE.
+189c189
+<       IF(QINT) GEO(2,2)=0
+---
+>       IF(INT)GEO(2,2)=0

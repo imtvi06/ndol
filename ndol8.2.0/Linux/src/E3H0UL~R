@@ -1,0 +1,239 @@
+1c1
+<       SUBROUTINE EXCITE (N,NA,NFCI,
+---
+>       SUBROUTINE EXCITE (N,NA,
+10,11c10,11
+<       CHARACTER*8 MODES
+<       INTEGER*8 NFCI
+---
+>       CHARACTER*9 MODES
+>       INTEGER*8 NFCI, NALL
+20c20
+< C      common /cidesc/ doom(4*999),kdoom(999)
+---
+>       common /cidesc/ doom(4*999),kdoom(999)
+21a22,23
+>       COMMON /QEX/ QQMAP, QCIPRINT, QLCI
+>       common /nallconfig/ NALL, NFCI
+34c36
+<       EQUIVALENCE (IOPT(24),ISUB),(IOPT(2),LCI)
+---
+>       EQUIVALENCE (IOPT(24),ISUB)
+61c63
+<       DO 300 K1=1,NOCC
+---
+>       DO K1=1,NOCC
+63c65
+<         DO 300 KV=NOCC1,N
+---
+>         DO KV=NOCC1,N
+78,81d79
+< C            CKV(MU) = C(MU,K)*C(MU,KV)
+<             CKV(MU) = AUX1(MU,2)*AUX2(MU,2)
+< C          END DO
+< C          DO MU=1,N
+85,91c83,86
+<           END DO
+< !$OMP PARALLEL DEFAULT(NONE) PRIVATE(MU,DELTAJ,NU,GAM,NUMAX) 
+< !$OMP& SHARED(AUX1,AUX2,K,KV,CKV,N,C,SUMK,SUMJ,GAMO)
+< !$OMP DO  REDUCTION(+:SUMJ,SUMK) SCHEDULE(DYNAMIC,1)
+<            DO MU=2,N      
+<             NUMAX = MU-1
+<             DO  NU=1,MU-1
+---
+>             CKV(MU) = C(MU,K)*C(MU,KV)
+>             IF (MU.EQ.1) GO TO 12
+>             NUMAX = MU - 1
+>             DO NU=1,NUMAX
+96,101c91,93
+<             END DO
+<            END DO
+< !$OMP END DO
+< !$OMP END PARALLEL 
+< 
+< 
+---
+>             ENDDO
+> 12          CONTINUE
+>           ENDDO
+103,104d94
+< *  As above defined, SUMJ=<IK|IK>=Int I(1)K(2)(1/R12)I(1)K(2) d1 d2, with J=KV
+< *  and SUMK=<IK|KI>=Int I(1)K(2)(1/R12)K(1)I(2) d1 d2
+114,115c104,105
+<           ETT(KORD) = AII(KV) - AII(K) - SUMJ   ! Triplet diagonal matrix element
+<           EST(KORD) = ETT(KORD) + DOS*SUMK      ! Singlet diagonal matris element
+---
+>           ETT(KORD) = AII(KV) - AII(K) - SUMJ
+>           EST(KORD) = ETT(KORD) + DOS*SUMK
+123,128d112
+<           ECUTOFF=13.2/AUEVI
+<           IF (EST(KORD).le.ECUTOFF) KORDIP = KORDIP + 1
+<           IF (EST(KORD).le.E200) KORD200 = KORD200 + 1
+< 300      CONTINUE
+< 
+<        write(IW,*) 'Parallel sections ended'
+129a114,117
+>           IF (EST(KORD).le.EIP) KORDIP = KORDIP + 1
+>           IF (EST(KORD).le.E200) KORD200 = KORD200 + 1
+>         ENDDO
+>       ENDDO
+138,141d125
+< * Nota Eduardo. Yo cambiaria el criterio de corte de un numero a  una energia
+< * y lo haria segun las energias AII(KV) - AII(K) sin considerar la interaccion
+< * si se usa un numero y el corte parte un manifold degenerado, la base queda desbalanceada
+< 
+151,152c135,136
+<       DO 500 I=1,KORD
+<          FMAX = DBLE(.1E+37)
+---
+>       DO I=1,KORD
+>          FMAX = .1D+37
+163,191c147
+<          EST(NOB) = DBLE(.1E+37)
+<   500 CONTINUE
+< 
+< * ABOVE, EST is changed and discarded, ESS have the sorted Singlet energies, ETS the triplet
+< *    Reduction of the active space for SEC less energetic than the ionization potential
+<       IF((IOPT(2).GE.-100).AND.(IOPT(2).LT.0).AND.(KORDIP.LT.KORD)) THEN
+< *      Check for states with SEC with same GAP than KORDIP       
+<        K1 = INDI(KORDIP)
+<        KV = JNDI(KORDIP)
+<        GAPCUT = AII(KV) - AII(K1)
+<        KMAX=KORDIP
+<        KEXTRA=0
+< !       write(*,*) 'GAPCUT= ',GAPCUT
+<        DO I=KORDIP+1,KORD
+<          K1 = INDI(I)
+<          KV = JNDI(I)
+<          GAP = AII(KV) - AII(K1)
+< !         write(*,*) I,K1,KV,GAP
+<          if(GAP.LE.GAPCUT) then
+<             KMAX=KMAX+1
+<             KEXTRA=KEXTRA+1
+< !            write(*,*) 'Adding extra',KORDIP,KMAX,KEXTRA,GAP
+<             if(KMAX.LT.I) then 
+<              ESS(KMAX)=ESS(I)
+<              ETS(KMAX)=ETS(I)
+<              INDI(KMAX)=INDI(I)
+<              JNDI(KMAX)=JNDI(I)
+<             endif
+<          endif
+---
+>          EST(NOB) = .1D+37
+193,201d148
+<        KORDIP=KMAX
+<        KORD=KORDIP
+<        WRITE (IW,'(T15,A,I8/T15,A,I6,A/T15,I6,A/T15,I6,A)')
+<      &     'The number of possible SCF excitations is',NCMAX,
+<      &     'but is limited to', KORD,'  below Koopmans IP',
+<      &     KORD-KEXTRA,' are strictly below Koopmans IP and ',
+<      &     KEXTRA, ' were added to complete a degenerate shell' 
+<       ENDIF       
+< 
+209,210c156,157
+<       DO 5000 I=1,NR
+<          DO 5000 J=1,I
+---
+>       DO I=1,NR
+>          DO J=1,I
+224a172,173
+>         ENDDO
+>       ENDDO
+230,231c179,181
+<       DO 4002 I=1,KORD
+<  4002    ISTATE(I) = 1
+---
+>       DO I=1,KORD
+>         ISTATE(I) = 1
+>       ENDDO
+238c188
+<       DO 6011 I=1,KORD
+---
+>       DO I=1,KORD
+243c193,194
+<  6011    ISTATE(I) = ITYPE(NS3,NS4)
+---
+>          ISTATE(I) = ITYPE(NS3,NS4)
+>       ENDDO
+249c200
+<       DO 5050 I=1,NR
+---
+>       DO I=1,NR
+251c202
+<          DO 5060 J=1,KORD
+---
+>          DO J=1,KORD
+265c216,217
+<  5050 CONTINUE
+---
+>          ENDDO
+>       ENDDO
+267c219
+<       DO 6000 I=1,KORD
+---
+>       DO I=1,KORD
+272c224,225
+<  6000    ESS(I) = AUX2(I,1)
+---
+>          ESS(I) = AUX2(I,1)
+>       ENDDO
+425c378,386
+< 
+---
+>       IF (QLCI) then
+>         KORD = KORDIP
+>         IF (KORD.LT.N) THEN
+>         KORD = N
+>         WRITE (IW,'(T15,A,I8/T15,A,I6,A/)')
+>      &     'The number of LCI SCF excitations is',KORDIP,
+>      &     'but it is augmented to', N,' to achieve better results'
+>         ENDIF
+>       ENDIF
+427c388
+<       DO 600 IL=1,KORD
+---
+>       DO IL=1,KORD
+442c403
+<          DO 250 I=1,NA
+---
+>          DO I=1,NA
+459c420
+<   250    CONTINUE
+---
+>          ENDDO
+462,463d422
+< !      Eduardo's fingers have commented these lines 
+< #if !defined (__NEWOUT)
+467,476c426
+< #else
+<          WRITE (IW,107)
+<      &   IL,K1,KV,GAP*AUEVI,ES,SMMU,FOSC,SUMX,SUMY,SUMZ,
+<      &   ET,TMMU,
+<      &   ISYMT(NST),EES(IL)*AUEVI,EET(IL)*AUEVI
+< #endif
+<   600 CONTINUE
+< !       write(IW,*) 'INDI: ', (INDI(I),I=1,KORD)
+< !       write(IW,*) 'JNDI: ', (JNDI(I),I=1,KORD)
+<        write(IW,*) 'Excite routin ended'
+---
+>       ENDDO
+478,479d427
+< !      Eduardo likes a different output. Activate with DFLAGS = -D__NEWOUT
+< #if !defined (__NEWOUT) 
+492,507d439
+< #else
+<    99 FORMAT (/T24,'*** SCF ELECTRON EXCITATIONS ***'
+<      &/T18,I6,' CONFIGURATIONS ARE TAKEN INTO ACCOUNT'
+<      &//T10,'ESP is the single-particle transition energy,',
+<      & 'ES adds the diagonal term Coulomb-exchange energy (EXC),'
+<      &/T25,' ET adds the diagonal interaction Coulomb energy (EC), ' 
+<      &  'and WL is the wave length'
+<      &//25X,'|',1X,'SINGLETS',31X,'|  TRIPLETS     | SYM.| Diag. corr.'
+<      &/'     TRANSITION',6X,'ESP   ES       WL      OSC.',5X,
+<      &'COMPONENTS',3X,
+<      &'|   ET      WL  |       EXC     EC '/
+<      &20X,'(EV)  (EV)     (NM)',5X,'STR.',3X,'X',5X,'Y',5X,'Z',2X,
+<      &'|  (EV)    (NM) |       (eV)    (EV)'/)
+<   107 FORMAT (1X,I5,1X,I4.4,' > ',I4.4,F7.3,F7.3,F8.1,F8.4,3F6.2,F8.3,
+<      &F8.1,1X,A3,1X,F7.3,1X,F7.3)
+< #endif

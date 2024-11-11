@@ -1,0 +1,153 @@
+7,8c7
+<       CHARACTER*80 FILE2
+< 
+---
+>       CHARACTER*1 FILE2
+14c13
+<       COMMON /FIL/ FILE2
+---
+>       COMMON /FIL/ FILE2(32)
+33,34d31
+<       DIMENSION ctp(N,N)  ! Alain's
+<       DIMENSION FOCKMAT(N,N)  ! Eduardo's
+38,39c35
+<       CHARACTER*80 FILE5
+< 
+---
+>       CHARACTER*32 FILE5
+44c40
+<       write(*,*) 'scfq:1'
+---
+> 
+49c45
+< C INICIO DEL PROCESO SCF
+---
+> C INICIO DEL PROCESO SCF CON UNA MATRIZ DE DENSIDAD ACEPTABLE
+71c67
+< 	write(*,*) 'scfq: antes de guessp'
+---
+> 
+73c69
+<       ELSEIF (IOPT(19).GE.1) THEN
+---
+>       ELSEIF (IOPT(19).EQ.1 .OR. IOPT(19).EQ.2) THEN
+81,82d76
+< C       PB(I,J) con I.LT.J son las overlap 
+< C	PB(I,J) fue calculado en movlap y es entrada de esta subrutina
+87d80
+<         ctp = TRANSPOSE(B)    ! Eduardo's
+92,93c85
+< C              SUM = SUM + B(MU,I)*B(NU,I)
+<               SUM = SUM + ctp(I,MU)*ctp(I,NU)   !Eduardo's
+---
+>               SUM = SUM + B(MU,I)*B(NU,I)
+97d88
+<         ENDDO
+98a90,92
+>         ENDDO
+>       ELSEIF (IOPT(19).GE.3) THEN
+>         CALL GUESSALAN (N,NA,QOCC,B,C,GAMMA,PB,AII,HMUMU,TC,E)
+99a94,96
+> 
+> C ESTAMPA DE TIEMPO PARA COMIENZO DE SCF
+> 
+108c105
+< * LAZO SCF
+---
+> * LAZOS SCF
+119,120c116
+< C      IF (NI.EQ.1 .AND. IOPT(19).NE.0 .AND. IOPT(14).GT.3) THEN
+<       IF (NI.EQ.0 .AND. IOPT(19).NE.0 .AND. IOPT(14).GT.3) THEN
+---
+>       IF (NI.EQ.1 .AND. IOPT(19).NE.0 .AND. IOPT(14).GT.3) THEN
+127,130d122
+< 
+< !      ti_conf_mat = TIME( )
+< !      write(IW,*)'conforming the Fock matrix', NI
+< 
+132,139d123
+< !     SCFMAT pone en C(I,J), I>=J, la matriz de Fock, input para QRDIAG 
+< 
+< !      tf_conf_mat = TIME( )
+< !       write(IW,*)'dimension=>', N,'time for
+< !     &            conforming the Fock matrix',
+< !     &            tf_conf_mat - ti_conf_mat, NI
+< 
+< 
+141,144c125,126
+< !	    DO MU=1,N
+< !		  DO NU=1,MU
+<           DO NU=1,N
+<             DO MU=NU,N
+---
+>         DO MU=1,N
+>           DO NU=1,MU
+146,149d127
+< C    Revisar aqui, me parece raro. En est punto puede ocurrir que B(:,:)=0 o 
+< C    que este indefinido o que sea la matriz de autovectores de los orbitales
+< C    naturales, lo que parece malo para mezclar con C(MU,NU). Lo mas seguro es
+< C    no utilizar esas opciones de IOPT(14)
+155,158c133,134
+< !	    DO MU=1,N
+< !		  DO NU=1,MU
+<        DO NU=1,N
+<          DO MU=NU,N
+---
+>         DO MU=1,N
+>           DO NU=1,MU
+163,170c139
+< !	Eduardo's
+<       DO NU=1,N-1
+<         DO MU=NU+1,N
+< 	  FOCKMAT(MU,NU)=C(MU,NU)*AUEVI
+< 	  FOCKMAT(NU,MU)=C(MU,NU)*AUEVI
+< 	ENDDO
+< 	FOCKMAT(NU,NU)=C(NU,NU)*AUEVI
+<       ENDDO
+---
+>       CALL QRDIAG (N,C,AII,E)
+172,175d140
+< !     C es input de QRDIAG como matriz de Fock y es output como matriz de autovectores.
+< !      write(IW,*) 'Diagonalizing'
+<       CALL QRDIAG(N,C,AII,E)
+< !      write(IW,*) 'Diagonalized'
+178d142
+<       ctp = TRANSPOSE(C)
+183,184c147
+< !            SUM = SUM + C(MU,I)*C(NU,I)
+<             SUM = SUM + ctp(I,MU)*ctp(I,NU)
+---
+>             SUM = SUM + C(MU,I)*C(NU,I)
+186c149,150
+<           IF ((IOPT(14).EQ.1 .OR. IOPT(14).EQ.2) .AND. NI.GT.0) THEN
+---
+>           IF (((IOPT(14).EQ.1 .OR. IOPT(14).EQ.2) .AND. NI.GT.0)
+>      &    .OR.(IOPT(19).GE.3)) THEN
+202a167,169
+> *        print 1024, ET1
+> *        print *, ' HOMO =', AUEVI*AII(NOCC)
+> *        print *, ' Gap HOMO - LUMO =', AUEVI*(AII(NOCC+1)-AII(NOCC)) 
+203a171
+>         GOTO 1
+222c189
+<        IF ((DIFM.LT.VAR(3)).AND.(NI.GT.4)) QCONV = .TRUE.
+---
+>       IF (DIFM.LT.VAR(3)) QCONV = .TRUE.
+229a196,198
+> *        print 1010, NI,IM,DIFEV,et1
+> *        print *, ' HOMO =', AUEVI*AII(NOCC)
+> *        print *, ' Gap HOMO - LUMO =', AUEVI*(AII(NOCC+1)-AII(NOCC))
+238c207
+<        GO TO 1
+---
+>        GOTO 1
+247,249d215
+< !	Eduardo's
+< !      WRITE(IW,'(A20)') 'Final Fock matrix'
+< !      CALL PEGLEG (N,FOCKMAT)
+271,272c237,238
+< 1010   FORMAT (' It.',I4,': max. div. in root ',I3,' by ',G11.4,' ev.'
+<      &,' Elap.time:',G9.2,' s')
+---
+> 1010  FORMAT (' It.',I4,': max. div. in root ',I3,' by ',G10.4,' ev.'
+>      &,' Elap.time:',G8.2,' s')
