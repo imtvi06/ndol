@@ -1,0 +1,245 @@
+4c4
+< *         cartesianas en ls salida MOPAC. Se incluye la descripción de 
+---
+> *         cartesianas en la salida MOPAC. Se incluye la descripción de 
+37,39c37,54
+< * Versión 2010 6.7.1 corrige un error en las dimensiones para el cálculo de 
+< *         energías dispersivas de elementos con número atómico mayor que 17
+< * (C) Copyright Luis A. Montero, Rachel Crespo and Ana L. Montero, 1985-2010
+---
+> * Version 2014 6.8 incluye la opción de construcción de la matriz de densidad
+> *         inicial de forma prograsiva para los casos de dificil convergencia.
+> * Version 2014 6.81 incluye la evaluacion de los parametros s del N y el O de
+> *         acuerdo con los valores originales de Hinze y Jaffe
+> * Version 2014 7.0 deja como implícitos los valores de VSIP y VSEA de Hinze
+> *         y Jaffé para todos los átomos y permite la creación de ficheros
+> *         para los gráficos de los mapas de cargas del estado excitado y
+> *         el estado base.
+> * Version 2015 7.0.1 es esencialmente la versión 7.0 con información actua-
+> *         lizada
+> * Version 2015 7.0.2 es esencialmente la versión 7.0.1 cambiando el script de
+> *         jmol para graficos de superficies de potencial electrostático que
+> *         incluye a todas las moléculas y los solventes.
+> * Version 2015 7.0.3 es la versión 7.0.2 corrigiendo un error en la parametri-
+> *         zacion NDOL cuando se introducen parametros especiales para un atomo.
+> * Version 2015 7.0.4 es la anterior corrigiendo la denominación de los 
+> *         Hamiltonianos CNDOL en la salida
+> * Version 8.0 incluye UHF
+41c56,58
+< *                   VERSION 6.7.1, 2011
+---
+> * (C) Copyright Luis A. Montero and Ana L. Montero, 1985-2023
+> 
+> *                   VERSION 8.0 2023
+57,60d73
+< #ifdef __IFORT
+<       USE IFPORT
+< #endif
+< 
+65,67c78,80
+<       CHARACTER*8 MODES
+< C      CHARACTER*80 FILE5
+< C      COMMON /FIL/ FILE5
+---
+>       CHARACTER*9 MODES
+>       CHARACTER*80 FILE5
+>       COMMON /FIL/ FILE5
+95a109,110
+>       COMMON /QEX/ QQMAP, QCIPRINT, QLCI
+>       common /nallconfig/ NALL, NFCI
+99c114
+<       CHARACTER*8 MODE
+---
+>       CHARACTER*9 MODE
+103c118
+< *                   3*N**2 + 5*(N*N)/4 + NA**2 + 7*NA + 999*(N*N)/4
+---
+> *                   3*N**2 + 5*(N*N)/4 + NA**2 + 7*NA + NFCI*(N*N)/4
+118d132
+<       REAL*8, POINTER, DIMENSION(:,:) :: ZVECS 
+122,123c136,137
+<       integer*8 mitime
+<       integer*8 LKSIZE,LNSIZE,LMSIZE,LISIZE,LOSIZE,NFCI,
+---
+>       integer itime
+>       integer*8 LKSIZE,LNSIZE,LMSIZE,LISIZE,LOSIZE,NFCI,NALL,
+127,129d140
+<       integer ret,real_finish,real_start,real_ticidiag,real_tfcidiag,
+<      & real_tfcimat,real_ticimat,rtfexcite,rtiexcite
+< 
+143,156d153
+< * SE IMPRIME EL TIEMPO DE PARTIDA
+< * EN IFORT NO EXISTE TIME8, AQUI USO LAS FUNCIONES DE PORTATIBILIDAD TIME Y CTIME, 
+< * QUE REQUIEREN PREVIEMENTE LA CLAUSULA "USE IFPORT" (VER ARRIBA).
+< * SI NO SE USA "USE IFPORT" IFORT ENTIENDE OTRA COSA (INTRINSIC TIME, VER DOCUMENTACION)
+< * TIME() DA UN INTEGER(4) , CTIME DA UN CHARACTER(24) O CHARACTER*24
+< #if defined __IFORT
+<       write(*,*) 'timing ifort'
+<       date1 = CTIME (TIME( ))
+<       write(*,*) 'after timing ifort'
+< #else
+<       write(*,*) 'timing gnu'
+<       mitime = time8()
+<       call ctime(mitime,date1)
+< #endif
+158c155,157
+<       write(*,*) 'before init'
+---
+> 
+> 40    itime = time8()
+>       call ctime(itime,date1)
+160d158
+<        write(*,*) 'after  init'
+162d159
+<       write(*,*) 'before input1'
+164d160
+<       write(*,*) 'after  input1'
+186a183
+> *            NFCI = (N*N)/2
+196a194
+> *         LN3 = (N*N)/2
+234a233
+> *   PE(NA,2)       L6            8
+235a235
+> *   PEII((N*N)/4)  L7            8
+248c248,249
+< *   DEX(999,NFCI)  L16           8
+---
+> *   DEX(NFCI,NFCI)  L16           8
+> *   PO(NFCI,NFCI)  ACIS          8
+267c268
+<          LNSIZE = L16 + 999*NFCI
+---
+>          LNSIZE = L16 + NFCI*NFCI
+278,279d278
+<          NVECS=2*N  ! Number of eigenvectors
+<          ALLOCATE (ZVECS(NFCI,NVECS)) 
+282d280
+<          real_start=TIME( )
+288d285
+<          write(*,*) 'before muorb'
+290d286
+<          write(*,*) 'after muorb'
+295d290
+<          write(*,*) 'before input6'
+297d291
+<          write(*,*) 'after  input6'
+319d312
+<          write(*,*) 'before matnis'
+321d313
+<          write(*,*) 'after  matnis'
+343c335
+<          write(*,*) 'before scfq  '
+---
+> 
+346d337
+<          write(*,*) 'after  scfq  '
+359c350,351
+< *                  SCFOUT (N,NA,C,BETAO/PB,P,AII,HMUMU,NSYM)
+---
+> *                  SCFOUT (N,NA,
+> *                          C,BETAO/PB,P,AII,HMUMU,XC,YC,ZC,NSYM)
+361,363c353,355
+<          write(*,*) 'before scfout  '
+<          CALL SCFOUT (N,NA,A(L1),A(L3),A(L5),A(L8),A(L7),IJK(K1))
+<          write(*,*) 'after  scfout  '
+---
+> 30       CALL SCFOUT 
+>      &   (N,NA,A(L1),A(L3),A(L5),A(L8),A(L7),
+>      &    A(L11),A(L12),A(L13),IJK(K1))
+368d359
+<          write(*,*) 'before energy  '
+371d361
+<          write(*,*) 'after  energy  '
+377d366
+<          write(*,*) 'before dipm  '
+379d367
+<          write(*,*) 'after  dipm  '
+384c372
+< *              EXCITE (N,NA,NFCI,C,GAMO,EST,ETT,EES,EET,
+---
+> *              EXCITE (N,NA,C,GAMO,EST,ETT,EES,EET,
+389,393c377,378
+<         call cpu_time (tiexcite)
+<         rtiexcite= time( )
+<          write(*,*) 'before excite'
+< !         PAUSE 'De enter'
+<            CALL EXCITE (N,NA,NFCI,A(L1),A(L2),A(L3),A(L31),A(L32),
+---
+> 8          call cpu_time (tiexcite)
+>            CALL EXCITE (N,NA,A(L1),A(L2),A(L3),A(L31),A(L32),
+397d381
+<          write(*,*) 'after  excite'
+399d382
+<         rtfexcite= time( )
+402,403d384
+<       WRITE (IW,*) 'Real time for SCF single excitations:',
+<      & rtfexcite-rtiexcite,' s'
+414d394
+<         real_ticimat=time( )
+416d395
+<          write(*,*) 'before cimat1'
+418,419d396
+<          write(*,*) 'after  cimat1'
+<         real_tfcimat=time( )
+423,424d399
+<         WRITE (IW,*) ' Real time for building CI matrix:',
+<      &real_tfcimat-real_ticimat,' s'
+428,429d402
+< !        write(IW,*) 'CIS MATRIX'
+< !        call pegleg(KORD,ACIS)
+431d403
+<         real_ticidiag=time( )
+433,435d404
+<          write(*,*) 'before qrdiag'
+<          if (KORD.NE.NFCI) STOP 'KORD.NE.NFCI, ABORT'
+<          if (KORD.LE.NVECS) then
+437,441d405
+<          else
+<           CALL CISDIAG (KORD,ACIS,A(L8),ZVECS,NVECS) 
+<          endif
+<          write(*,*) 'after  qrdiag'
+<         real_tfcidiag=time( )
+445,446d408
+<       WRITE (IW,*) 'Real time for diagonalizing CI matrix:'
+<      &, real_tfcidiag-real_ticidiag,' s'
+453d414
+<          if (KORD.LE.NVECS) then
+457,462d417
+<          else
+<         CALL CIOUT2 (N,NA,A(L1),ZVECS,A(L8),A(L32),A(L33),
+<      &              A(L11),A(L12),A(L13),
+<      &              IJK(K1),IJK(K4),IJK(K5),IJK(K6),MOCOMP,
+<      &              NVECS)
+<          endif
+465c420,422
+< *             EXMAT (N,NA,P,PE,C,A,PEII,DEX,X,Y,INDI,JNDI)
+---
+> *             EXMAT (N,NA,
+> *                    P,PE,C,A,PEII,DEX,
+> *                    XC,YC,ZC,INDI,JNDI)
+469c426,427
+<      &	            (N,NA,A(L5),A(L6),A(L1),ACIS,A(L7),A(L16),
+---
+>      &              (N,NA,
+>      &              A(L5),A(L6),A(L1),ACIS,A(L7),A(L16),
+485,491c443,444
+<          real_finish=time( )
+< #if defined __IFORT
+<          date1 = CTIME (TIME( ))
+< #else
+<          mitime = time8()
+<          call ctime(mitime,date1)
+< #endif
+---
+>          itime = time8()
+>          call ctime(itime,date1)
+494d446
+<          ret=real_finish-real_start
+502,503d453
+<       write (iw,*) 'Real time elapsed by the run : ',ret,' s'
+< 
+510c460
+< 1012  FORMAT (//' CPU time elapsed by the run :',E14.7,' s')
+---
+> 1012  FORMAT (//' CPU time elapsed by the run :',E12.7,' s')

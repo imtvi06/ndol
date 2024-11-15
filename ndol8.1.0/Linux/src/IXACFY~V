@@ -1,0 +1,50 @@
+19d18
+<       COMMON /OUTDIR/ savedir
+23d21
+<       character*80 savedir,savedot
+32c30
+<       write(*,*) '1'
+---
+> 
+38c36
+<         call ucase (-1,extinp,4)
+---
+>         call ucase (-1,extinp)
+42,44d39
+<         savedir=jfile
+<         call FILEN1 (1,savedir,'.sav')
+<         savedir= TRIM(savedir) // 'e'
+46,50d40
+<         savedot=TRIM(savedir)//'/.'
+<         INQUIRE (FILE=TRIM(savedot),EXIST=QFILE)
+< !        if (.NOT.QFILE) then 
+<              istatus=SYSTEM( 'mkdir -p ' // savedir )
+< !         endif
+61d50
+<       write(*,*) '2'
+70c59
+<           READ (IRS,'(i3,i5,38i3)',ERR=1000) IOPT
+---
+>           READ (IRS,'(40i3)',ERR=1000) IOPT
+89d77
+<       write(*,*) '3'
+103d90
+<       write(*,*) '4'
+112,113c99,100
+<      &/' *',T24,'Version 6.7.1-OpenMP for Linux, 2011',T80,'*'
+<      &/' *',T19,'(C) Copyright Luis A. Montero, 1985-2011',T80,
+---
+>      &/' *',T19,'Version 8.0.1 for Windows and Linux, 2023',T80,'*'
+>      &/' *',T19,'(C) Copyright Luis A. Montero, 1985-2023',T80,
+121c108
+<      &t10,'NDOL2010 v. 6.7.1,'/
+---
+>      &t10,'NDOL v. 8.0.1,'/
+124c111
+<      &t10,'Rachel Crespo-Otero, Nelaine Mora-Díez,'/
+---
+>      &t10,'María E. Fuentes, Rachel Crespo-Otero, Nelaine Mora-Díez'/
+127c114
+<      &t10,'La Habana 10400, Cuba, 2011')
+---
+>      &t10,'La Habana 10400, Cuba, 2023')

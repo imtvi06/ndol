@@ -1,0 +1,53 @@
+15,16d14
+<       REAL*8 JINT,KINT
+<       INTEGER*8 ICOUNT
+20d17
+<       DIMENSION AM(N),V(N)
+23,27d19
+<       write(IW,*) 'entering cimat1.f'
+< C    Esta linea determina si se calcula la matriz para estado excitado singlete o triplete
+< C    Hay in lazo en main.f, que cambia dinamicamene IOPT(6) para que entre el valor apropiado en 
+< C    cimat1. Se puede optimizar si se calcula primeto la matriz del triplete y posteriormente se 
+< C    le agrega la parte de exchange, osea, Hsinglete=Htriplete+Exchange
+56,57d47
+<         ICOUNT=0
+< ! posible punto de parelalizacion
+64c54
+<           II = INDI(I)
+---
+> 8         II = INDI(I)
+66d55
+< ! posible punto de parelalizacion
+74,76c63
+< ! posible punto de parelalizacion
+< ! separar parte diagonal de no diagonal, para evitar dependenciasde CIJ(NU) y demas.
+<             DO  MU=1,N
+---
+>             DO 3 MU=1,N
+90,96c77,78
+<             ENDDO
+< 
+< !$OMP PARALLEL DEFAULT(NONE) PRIVATE(MU,NU,GMUNU) 
+< !$OMP& SHARED(QSNG,HIJ,CKL,CIJ,CIK,CJL,GAMO,N)
+< !$OMP DO REDUCTION(+:HIJ) SCHEDULE(DYNAMIC,1)
+<             DO MU=2,N
+<               DO NU=1,MU-1
+---
+> 15            IF (MU.EQ.1) GO TO 3
+>               DO 2 NU=1,MU-1
+107,110c89
+<               ENDDO
+<             ENDDO
+< !$OMP END DO
+< !$OMP END PARALLEL
+---
+> 2               CONTINUE
+114,121d92
+<             A(J,I) = HIJ
+<             ICOUNT=ICOUNT+1
+<             if (mod(ICOUNT,50000).EQ.0) then 
+<                open(30,FILE='.cisprogress',STATUS='REPLACE')
+<                write(30,*) ICOUNT,I,J,HIJ
+<                close(30)
+<             endif
+< 

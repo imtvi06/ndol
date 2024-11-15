@@ -1,0 +1,13 @@
+10c10
+<       CHARACTER*8 MODES
+---
+>       CHARACTER*9 MODES
+99c99
+<          IF (FOSC.GE.0.1D-3) THEN
+---
+>          IF (FOSC.GE.0.0001D0) THEN
+157c157,158
+<      &/' EB is the additional energy need for a Koopman''s ionization,'
+---
+>      &/' EB is the additional energy needed for a Koopman''s ionization,i
+>      &'

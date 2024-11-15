@@ -1,0 +1,68 @@
+1c1
+<       SUBROUTINE SCFOUT (N,NA,C,PB,P,AII,HMUMU,NSYM)
+---
+>       SUBROUTINE SCFOUT (N,NA,C,PB,P,AII,HMUMU,XC,YC,ZC,NSYM)
+8c8
+<       CHARACTER*8 MODES
+---
+>       CHARACTER*9 MODES
+20c20
+< *
+---
+>       COMMON /QEX/ QQMAP, QCIPRINT, QLCI
+21a22,28
+>       COMMON /FIL/ jfile
+>       CHARACTER*80 jfile, qfile
+>       CHARACTER*4 ext/'.xyz'/
+> 	  CHARACTER*5 qs0/'__QS0'/
+>       CHARACTER*150 qjmol/'jmolscript:isosurface resolution 5 molecular
+>      & 0.0 map MEP translucent; background white; color isosurface range
+>      & -0.1 0.1'/
+25,26c32
+<      &          NSYM(*)
+<       DIMENSION PBSYM(N,N)   ! Eduardo's
+---
+>      &          NSYM(*),XC(NA),YC(NA),ZC(NA)
+98c104
+< 334     WRITE (IW,1112) iatom(LI),I,P(I,1),P(I,2),P(I,1)+P(I,2),
+---
+> 334     WRITE (IW,1112) I,iatom(LI),P(I,1),P(I,2),P(I,1)+P(I,2),
+101,110c107,119
+< ! Eduardo's
+< * IMPRESION DE LA MATRIZ DENSIDAD
+< * Primero es necesario simetrizar la matriz, pues el arreglo PB(NU,MU)
+< * guarda otra informacion para indices NU>MU.
+<       WRITE (IW,1129)
+<       DO  MU=1,N
+<         DO  NU=1,MU
+<           PBSYM(MU,NU) = PB(NU,MU)
+<           PBSYM(NU,MU) = PB(NU,MU)
+<         ENDDO 
+---
+> * SALIDA DE FICHEROS PARA EL MAPA DE LAS DENSIDADES DE CARGA CON JMOL
+> 
+>       if (QQMAP) then
+>         qfile = jfile
+>         call filen5 (qfile,qs0)
+>         call filen1 (1,qfile,ext)
+>         open (51,file=qfile,status='UNKNOWN')
+>         write (51,'(i6)') NA
+>         write (51,'(a150)') qjmol
+>         do jj=1,NA
+>           LI = NAT(jj)
+>           write (51,'(1x,a2,4f10.4)') iatom(LI),XC(jj),YC(jj),ZC(jj),
+>      &                                 AQ(jj,3)
+112c121,122
+<       CALL PEGLEG (N,PBSYM)
+---
+>         close (51)
+>       endif
+194,195c204,206
+<      &//10X,'atom',5X,'S',8X,'P',8X,'SP',12X,'Qs',7X,'Qp',7X,'Q'//)
+< 1112  FORMAT (9X,A2,I3,3F9.4,3X,3F9.4)
+---
+>      &//9X,'atom',5X,'P(s)',5X,'P(p)',5X,'P(sp)',7X,'Q(s)',5X,'Q(p)',
+>      &5X,'Q(sp)'/)
+> 1112  FORMAT (6X,I5,1X,A2,3F9.4,3X,3F9.4)
+207d217
+< 1129  FORMAT (///T29,'SCF DENSITY MATRIX'/)

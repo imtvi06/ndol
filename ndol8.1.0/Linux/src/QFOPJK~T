@@ -1,0 +1,49 @@
+2,7d1
+< #if defined __LAPACK 
+<       USE mod_mkl
+< #endif
+< #if defined __IFORT
+<       USE IFPORT
+< #endif
+9,11d2
+< *   Subrutina modificada por E Menendez para usar las bibliotecas LAPACK
+< *   optimizadas para CPU Intel. Se activan con poniendo -D__LAPACK en la 
+< *   variable DFLAGS del Makefile
+48,77d38
+< *  Seccion para uso de LAPACK o reemplazo, ej. MKL
+< #ifdef __LAPACK
+< !    Allocatable variables entering as actual arguments to Lapack subroutine
+< !    -----------------------------------------------------------------------
+<       lwork = 2*N**2 + 6*N + 1
+<             ALLOCATE( work(lwork) )
+<        
+<        liwork = 5*N + 3
+<              ALLOCATE( iwork(liwork) )
+<        
+< !      ti_diag_mat = TIME( )
+<        
+< !      write(*,*) 'diagonalizing the Fock matrix', NI
+<             
+<        CALL dsyevd( 'V', 'L', N, C, N, AII, work, lwork, iwork,
+<      &              liwork, info )
+<             
+<        !      tf_diag_mat = TIME( )
+<         
+< !      write(*,*)'dimension=>', N,'time for 
+< !     &           diagonalizing the Fock matrix',
+< !     &           tf_diag_mat - ti_diag_mat, NI
+<         
+< !      pause      
+<       
+<        DEALLOCATE(work)
+<        DEALLOCATE(iwork)     
+< 
+< #else
+< 
+229d189
+< #endif
+234,235c194
+< 410   CONTINUE
+<       RETURN
+---
+> 410   RETURN

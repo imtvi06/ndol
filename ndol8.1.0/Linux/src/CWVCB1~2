@@ -1,0 +1,17 @@
+2d1
+<       include 'ndoldim.inc'
+33,35c32,33
+< c   aw - an array of 18 words up to 32 characters each one: aw(32,18) to
+< c        be dimensioned in the calling programs as character*32 aw(18) or
+< c                                                  character aw(18)*32
+---
+> c   aw - an array of 18 words up to 32 characters each one: aw(18,32) to
+> c        be dimensioned in the calling programs as character*32 aw(18)
+70c68
+<       REAL*4 RT
+---
+> 
+170c168
+<       SUM=SUM*TEN+FLOAT(I-1)
+---
+>       SUM=SUM*TEN+DBLE(I-1)

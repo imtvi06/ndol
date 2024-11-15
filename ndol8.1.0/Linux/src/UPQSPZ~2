@@ -1,0 +1,14 @@
+1c1
+<       subroutine ucase (ir,line,nline)
+---
+>       subroutine ucase (ir,line)
+7,8c7,8
+<       integer*4 ir,nline
+<       character line(nline)
+---
+>       character line(80)
+>       integer*4 ir
+12c12
+<       do 15 j=1,nline
+---
+>       do 15 j=1,80

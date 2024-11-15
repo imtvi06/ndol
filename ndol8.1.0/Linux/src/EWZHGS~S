@@ -1,0 +1,167 @@
+5a6
+> * Salida de ficheros para graficos de los mapas de cargas
+8c9
+<       CHARACTER*8 MODES
+---
+>       CHARACTER*9 MODES
+9a11,12
+>       COMMON /A1/ ZNS(107),ZNP(107),ZND(107),ZND2(107),VAR(10),
+>      &            ANS(107),ANP(107),ANV(107),F2(17),G1(17),EA(107)
+13a17
+>       COMMON /FIL/ jfile
+20a25,27
+>       COMMON /QEX/ QQMAP, QCIPRINT, QLCI
+>       common /nallconfig/ NALL, NFCI
+>       INTEGER*8 NFCI, NALL
+22c29,41
+<       DIMENSION C(N,N),PO(KORD,KORD),PEII(*),DEX(999,(N*N)/4),
+---
+>       CHARACTER*80 jfile, qfile, dqfile
+>       CHARACTER*4 ext/'.xyz'/, qs0/'_QS0'/, dqs/'_dQS'/, dqt/'_dQT'/,
+>      &            stdq
+>       CHARACTER*5 state5
+>       CHARACTER*6 state6
+>       CHARACTER*3 qs/'_QS'/, qt/'_QT'/, stq
+>       CHARACTER*150 qjmol/'jmolscript:isosurface resolution 5 molecular
+>      & 0.0 map MEP translucent; background white; color isosurface range
+>      & -0.1 0.1'/
+>       CHARACTER*150 dqjmol/'jmolscript:isosurface resolution 5 molecular
+>      &  0.0 map MEP translucent; background white; color isosurface rang
+>      & e -0.02 0.02'/
+>       DIMENSION C(N,N),PO(KORD,*),PEII(*),DEX(NFCI,*),
+32c51
+<       if (abs(iopt(3)).gt.iopt(8)) then
+---
+>       if (iabs(iopt(3)).gt.iopt(8)) then
+35c54
+<         nconf = abs(iopt(3))
+---
+>         nconf = iabs(iopt(3))
+37a57
+> *      do k=1,kord
+44c64,65
+< * ESTE ES EL LAZO PRINCIPAL SOBRE CADA ESTADO "k"
+---
+> 
+> * ESTE ES EL LAZO PRINCIPAL SOBRE CADA ESTADO "k" DE CI
+51a73
+>           PEII(i) = CERO
+57c79
+< * Calculo del estado CI "k" iterando sobre cada estado "l"
+---
+> * Calculo del estado CI "k" iterando sobre cada estado SCF "l"
+67,68c89,90
+<           do 10 mu=1,n
+<             do 10 nu=1,mu
+---
+>           do mu=1,N
+>             do nu=1,mu
+83c105,106
+< 10        continue
+---
+>             enddo
+>           enddo
+89,93c112,122
+<           do 20 mu=2,n
+<             do 20 nu=1,mu-1
+< 20        po(nu,mu) = po(nu,mu) + dex(k,l)*po(mu,nu)
+<           do 30 mu=1,n
+< 30           po(mu,mu) = po(mu,mu) + dex(k,l)*peii(mu)
+---
+>           do mu=2,N
+>             do nu=1,mu-1
+>               po(nu,mu) = po(nu,mu) + dex(k,l)*po(mu,nu)
+>             enddo
+>           enddo  
+>           do mu=1,N
+>             po(mu,mu) = po(mu,mu) + dex(k,l)*peii(mu)
+> *      write (*,'(a,i3,a,i3,a,i3,a,3f10.5)')
+> *     &' estado CI k,SCF l, orbital mu, dex(k,l), peii(mu), po(mu,mu)',
+> *     &k,',',l,',',mu,',',dex(k,l), peii(mu),po(mu,mu)
+>           enddo
+104,105c133
+< 	   
+<         DO 100 I=1,NA
+---
+>         DO I=1,NA
+116c144
+< 100     CONTINUE
+---
+>         enddo
+121c149
+<         DO 334 I=1,NA
+---
+>         DO I=1,NA
+123c151,153
+< 334       WRITE (IW,1112) iatom(LI),I,PE(I,1),PE(I,2),PE(I,1)+PE(I,2),
+---
+>           WRITE (IW,1112) I,iatom(LI),PE(I,1),PE(I,2),PE(I,1)+PE(I,2),
+>      &                   ANS(LI)-PE(I,1), ANP(LI)-PE(I,2),
+>      &                   ANV(LI)-(PE(I,1)+PE(I,2)),
+125a156,197
+>         ENDDO
+>         
+> * SALIDA DE FICHEROS PARA EL MAPA DE LAS DENSIDADES DE CARGA CON JMOL
+> 
+>        if (QQMAP) then
+>          qfile = jfile
+>          dqfile = jfile
+>          if (iopt(6).eq.1) then
+>            stq = qs
+>            stdq = dqs
+>          elseif (iopt(6).eq.3) then
+>            stq = qt
+>            stdq = dqt
+>          endif
+>          write (state5,'(a3,i2.2)') stq, k
+>          call filen5 (qfile,state5)
+>          call filen1 (1,qfile,ext) 
+>          open (51,file=qfile,status='UNKNOWN')
+>          write (51,'(i6)') NA
+>          write (51,'(a150)') qjmol
+>          do jj=1,NA
+>            LI = NAT(jj)
+>            write (51,'(1x,a2,4f10.4)') iatom(LI),XC(jj),YC(jj),ZC(jj),
+>      &                                 ANV(LI)-(PE(jj,1)+PE(jj,2))
+>          enddo
+>          close (51)
+>          write (state6,'(a4,i2.2)') stdq, k
+>          call filen6 (dqfile,state6)
+>          call filen1 (1,dqfile,ext)
+>          open (52,file=dqfile,status='UNKNOWN')
+>          write (52,'(i6)') NA
+>          write (52,'(a150)') dqjmol
+>          do jj=1,NA
+>            LI = NAT(jj)
+>            write (52,'(1x,a2,4f10.4)') iatom(LI),XC(jj),YC(jj),ZC(jj),
+>      &                            (P(jj,1)+P(jj,2))-(PE(jj,1)+PE(jj,2))
+>          enddo
+>          close (52)
+>         endif     
+> 
+> * IMPRESION DEL MOMENTO DIPOLO DEL ESTADO EXCITADO
+> 
+130c202
+<         if (iopt(3).lt.0) then
+---
+>         if (QCIPRINT) then
+144c215
+<      &/T39,f8.2,' nm',T54,'f=',f8.5,', Symmetry: ',a3)
+---
+>      &/T39,f8.2,' nm',T54,'f=',f7.5,', Symmetry: ',a3)
+149c220
+<      &/T14,'(dQ = -(PEQ - PQ), where PE and P are electron'
+---
+>      &/T14,'(dQ = -(PE - P), where PE and P are electron'
+151,155c222,226
+<      &/T14,'respectively, and Q expresses the S, P or inte-'
+<      &/T14,'gral SP charge)'
+<      &//10X,'atom',2X,'P(s)',5X,'P(p)',5X,'P(sp)',9X,'dQ(s)',4X,'dQ(p)',
+<      &2X,'dQ(sp)'//)
+< 1112  FORMAT (9X,A2,I3,3F9.4,3X,3F9.4)
+---
+>      &/T14,'respectively, and QE expresses the S, P and inte-'
+>      &/T14,'gral SP charge)'/
+>      &/3X,'atom',4X,'PE(s)',2X,'PE(p)',2X,'PE(sp)',3X,'QE(s)',2X,
+>      &'QE(p)',2X,'QE(sp)',3X,'dQ(s)',2X,'dQ(p)',2X,'dQ(sp)'/)
+> 1112  FORMAT (1X,I5,1X,A2,3F7.3,2X,3F7.3,2X,3F7.3)

@@ -1,0 +1,101 @@
+29d28
+<       dimension OverlapMAt(NDIM,NDIM)  ! Eduardo's
+38d36
+<       PARAMETER (DIFFE=0.1D-10)
+132c130
+< 135         T=DSQRT(RT2)
+---
+> 135         T = SQRT(RT2)
+205d202
+<  	   if (max.ne.(N1+N2)) STOP 'Error in movlap.f: MAX ill defined'
+208,210d204
+< C           Eduardo's
+< C            write(IW,*) 'A and B functions for S-S integral entre atomos
+< C     &s ',I,' y ',J,' a la distancia de ',R1
+212,214d205
+< C           Eduardo's
+< C            write(IW,'(A2,10E10.3)') 'A=',(A(NI),NI=1,10)
+< C            write(IW,'(A2,10E10.3)') 'B=',(B(NI),NI=1,10)
+216,217d206
+< C           Eduardo's
+< C            write(IW,*) 'S(s-s)=',SIGMA
+235,238d223
+< C           Eduardo's
+< C            write(IW,*) 'A and B functions for P-S integral entre atomos
+< C     &s ',I,' y ',J,' a la distancia de ',R1
+< C            write(IW,*) 'S(psigma-s)=',SIGMA
+311,313d295
+< C           Eduardo's
+< C            write(IW,*) 'A and B functions for S-P integral entre atomos
+< C     &s ',I,' y ',J,' a la distancia de ',R1
+319d300
+< C            write(IW,*) 'S(s-psigma)=',SIGMA
+324d304
+< C            write(IW,*) 'Proyeccion geometrica S(mu,nu)',FF(IA)
+384c364
+<             IF( ABS(C2(KEYJ)).LT.DIFFE) GO TO 151
+---
+>             IF(C2(KEYJ).EQ.0.) GO TO 151
+412c392
+< 178         IF(ABS(C2(KEYJ)).LT.DIFFE) GO TO 170
+---
+> 178         IF(C2(KEYJ).EQ.0.) GO TO 170
+447c427
+<             IF(ABS(C2(KEYJ)).LT.DIFFE) GO TO 208
+---
+>             IF(C2(KEYJ).EQ.0.) GO TO 208
+560,577d539
+< C           Eduardo's
+< 
+<       DO I=1,NDIM
+<        do J=1,I-1
+<         OverlapMat(i,j)=S(J,I)
+<         OverlapMat(j,i)=S(J,I)
+<        enddo
+<        OverlapMat(I,I)=1.d0
+<       enddo
+< C       open(UNIT=20,FILE='overlap_matrix',FORM='UNFORMATTED')
+< C       write(20) OverlapMat
+< C       close(20)
+< C      WRITE(20,'(A20)') 'Overlap matrix'
+< C      call pegleg(NDIM,OverlapMat)
+< C      WRITE(IW,'(A20)')
+< C      WRITE(IW,'(A80)') 'S matrix :Overlap is printed below the diagonal
+< C     &, beta matrix over the diagonal'
+< C      call pegleg(NDIM,S)      
+587,589d548
+< c     adendo      
+< C      COMMON IR,IW,IC,JOB,IERR,NEX,NOCC,ICHGE,NR,KORD,INSP,IDUMB,
+< C     &       AUI,AUII,AUEV,AUEVI,NO1(NATMAX)
+593,599d551
+< C           Eduardo's
+< 
+<       do I=1,20
+<        A(I)=CERO
+<        B(I)=CERO
+<       enddo
+< 
+603,606d554
+< C           Eduardo's
+< C      write(IW,*) 'RHO1=', RHO1,'RHO2=',RHO2,'RR=',RR,'SK1=',SK1,'SK2='
+< C     & ,SK2
+< C      write(IW,*) 'A_0 hasta A_',J-1
+642,643c590
+<       IF(IR.EQ.0) GO TO 40    ! Debugear
+< C      IF(RHO2.EQ.CERO) GO TO 40
+---
+>       IF(IR.EQ.0) GO TO 40
+703c650
+<       PARAMETER (CERO=0.d0,HALF=0.5d0)
+---
+>       PARAMETER (CERO=0.d0)
+706d652
+<       COMMON /FACTORIAL/ FACT(25)
+710c656
+< *      DIMENSION FACT(25)
+---
+>       DIMENSION FACT(25)
+727c673
+<       TERMA = HALF**(L1+L2+1) * SQRT( DBLE((L1+L1+1)*(L2+L2+1))*       
+---
+>       TERMA = .5D0**(L1+L2+1) * SQRT( DBLE((L1+L1+1)*(L2+L2+1))*       

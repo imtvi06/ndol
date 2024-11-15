@@ -1,0 +1,60 @@
+8c8
+<       CHARACTER*8 MODES
+---
+>       CHARACTER*9 MODES
+28,30c28,29
+<       CHARACTER*8 MODE
+<       CHARACTER  IDENT(162)
+<       character*162 identchar
+---
+>       CHARACTER*9 MODE
+>       CHARACTER*1 IDENT(160)
+60c59
+<         WRITE (11,'(80A1)') IDENT
+---
+>         WRITE (11,'(80A1)') IDENT(1:80)
+80c79
+<           NOCC = NOCC + NINT(ANV(L))
+---
+>           NOCC = NOCC + ANV(L)
+157c157,158
+<         call readint (NA, x, y, z, identchar, QENDMMH)
+---
+> 
+>         call readint (NA, x, y, z, ident, QENDMMH)
+159,160c160,161
+<         WRITE (IW,1007) IDENTchar
+<         IF (IOPT(18).NE.0) WRITE (9) IDENTchar
+---
+>         WRITE (IW,1007) IDENT
+>         IF (IOPT(18).NE.0) WRITE (9) IDENT
+163c164
+<           WRITE (11,'(80A1)') IDENTchar(1:80)
+---
+>           WRITE (11,'(80A1)') IDENT(1:80)
+183c184
+<           NOCC = NOCC + NINT(ANV(L))
+---
+>           NOCC = NOCC + ANV(L)
+215c216
+<         write(IW,*) 'Number of atoms ',NA
+---
+> 
+221c222
+<           nat(i) = NINT(reada(symbol,1))
+---
+>           nat(i) = reada(symbol,1)
+237c238
+<           NOCC = NOCC + NINT(ANV(L))
+---
+>           NOCC = NOCC + ANV(L)
+244d244
+<        write(IW,*) 'Total number of atoms ',NA
+349c349
+< 1115  FORMAT (20X,A2,I6,3F10.4,I5)
+---
+> 1115  FORMAT (20X,A2,I3,3F10.4,I5)
+355c355
+< 2000  FORMAT (/28X,A8,' SCF-MO CALCULATIONS'////)
+---
+> 2000  FORMAT (/28X,A9,' SCF-MO CALCULATIONS'////)

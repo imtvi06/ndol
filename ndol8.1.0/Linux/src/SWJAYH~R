@@ -1,0 +1,10 @@
+10c10
+<       A = DBLE(ITR)
+---
+>       A = FLOAT(ITR)
+12,13c12,13
+<       II(2) = INT(A/10.d0 - DBLE(II(1))*10.d0)
+<       II(3) = INT(A - INT(A/10.d0)*10.d0)
+---
+>       II(2) = INT(A/10. - FLOAT(II(1))*10.)
+>       II(3) = INT(A - INT(A/10.)*10.)
