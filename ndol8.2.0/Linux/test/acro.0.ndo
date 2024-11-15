@@ -1,0 +1,1299 @@
+ *******************************************************************************
+ *                                                                             *
+ *                              *** NDOL ***                                   *
+ *                  Molecular Orbitals by SCF-NDO Methods                      *
+ *                Version 7.0.2 for Windows and Linux, 2015                    *
+ *                (C) Copyright Luis A. Montero, 1985-2015                     *
+ *       Universidad de La Habana and Universidad Autonoma de Madrid           *
+ *                        This is a freeware program                           *
+ *                                                                             *
+ *******************************************************************************
+
+ Cite this program as:
+
+         NDOL2015 v. 7.0.2,
+         Luis A. Montero-Cabrera, Ana L. Montero-Alejo, Carlos Bunge-Molina,
+         María E. Fuentes, Rachel Crespo-Otero, Nelaine Mora-Díez
+         Universidad de La Habana, Facultad de Química,
+         Laboratorio de Química Computacional y Teórica,
+         La Habana 10400, Cuba, 2015
+
+
+ Job beginning at: Mon Jun 01 14:48:04 2015      
+
+ MODE CNDOL/22
+
+
+ OPTION'S INPUT AFTER INCLUDING DEFAULTS:
+   0  0 -1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0
+ - ALL VALENCE STATE IONIZATION POTENTIALS AND ELECTRON AFFINITIES FROM:
+   Hinze, J.; Jaffe, H. H., Electronegativity. I. Orbital electronegativity of
+   neutral atoms. J. Am. Chem. Soc. 1962, 84, 540-6
+ - ATOMIC ORBITAL OCCUPATION ACCORDING THE AUFBAU PRINCIPLE
+ - SCF CONVERGENCE ONLY CHECKED OVER OCCUPIED ORBITAL EIGENVALUES
+ - THE NUMBER OF CIS DETERMINANTS IS LESS OR EQUAL TO THE NUMBER OF BASIS
+   ORBITALS
+ - BOTH CI SINGLET AND TRIPLET STATES ARE CALCULATED
+ - FIRST SCF ITERATION FROM A NULL OFF DIAGONAL DENSITY MATRIX AND DIAGONAL
+   DENSITIES FROM:
+     CONST*CORE - (1/2)(MOLECULAR CHARGE)/N
+   WHERE CONST = 0.125 FOR HYDROGEN AND CONST = 0.5 FOR OTHER ATOMS
+ - TWO ELECTRON BICENTRIC INTEGRALS BY A MODIFIED OHNO'S FORMULA
+   WITH C1 = 1.0, C2 = 1.0 AND C3 = 1.0
+   [L.A.Montero-Cabrera, U.Rohrig, J.A.Padron-Garcia, R.Crespo-Otero,
+    A.L.Montero-Alejo, J.M.Garcia de la Vega, M.Chergui,
+    U.Rothlisberger, J.Chem.Phys. 127(14),145102(2007)]
+ - RESONANCE INTEGRALS BY WOLFBERG-HELMHOLZ FORMULA
+   BETA(mu,nu) = S(mu,nu)*(I(mu)+I(nu))/2
+   [J.Chem.Phys. 20,(5),837-843(1952)]
+ - SLATER EXPONENTS FOR OVERLAP INTEGRALS BY CLEMENTI AND RAIMONDI
+   [J.Chem.Phys. 38,2686(1963)]
+ - THE MAXIMAL NUMBER OF ALLOWED SCF ITERATIONS IS 2000
+ - THE CONVERGENCE CRITERIA FOR THE SCF ITERATIONS IS  0.00001000 EV ON THE
+   ORBITAL EIGENVALUES
+ - ALL ENERGIES ARE GIVEN IN EV
+
+                     PARAMETERS OF VALENCE ATOMIC ORBITALS
+
+ AT ORB     ENERGY     EXPONENT  IONIZ.POT.   ELEC.AFN.    BETAS        UM
+
+ H   s                  1.000      13.600       0.750     -13.600     -13.600
+     p                  0.000       0.000       0.000      -0.000       0.000
+         -13.6000
+ He  s                  1.688       0.000       0.000      -0.000       0.000
+     p                  0.000       0.000       0.000      -0.000       0.000
+           0.0000
+ Li  s                  0.640       5.390       0.820      -5.390      -5.390
+     p                  0.377       3.540       0.560      -3.540      -3.540
+          -5.3900
+ Be  s                  0.956       9.920       3.180      -9.920     -16.660
+     p                  0.877       5.960       0.110      -5.960     -11.810
+         -26.5799
+ B   s                  1.288      14.910       5.700     -14.910     -33.330
+     p                  1.211       8.420       0.320      -8.420     -24.620
+         -64.7598
+ C   s                  1.608      21.010       8.910     -21.010     -57.310
+     p                  1.568      11.270       0.340     -11.270     -44.060
+        -133.6497
+ N   s                  1.924      26.920      14.050     -26.920     -78.400
+     p                  1.917      13.940       0.840     -13.940     -66.340
+        -225.7394
+ O   s                  2.246      36.070      18.440     -36.070    -124.220
+     p                  2.227      17.280       2.010     -17.280     -93.630
+        -382.1090
+ F   s                  2.564      38.240      24.370     -38.240    -121.460
+     p                  2.550      20.860       3.500     -20.860    -125.020
+        -524.3987
+ Ne  s                  2.879       0.000       0.000      -0.000       0.000
+     p                  2.879       0.000       0.000      -0.000       0.000
+           0.0000
+ Na  s                  0.836       5.140       0.470      -5.140      -5.140
+     p                  0.682       3.040       0.090      -3.040      -3.040
+          -5.1400
+ Mg  s                  1.103       8.950       2.800      -8.950     -15.100
+     p                  1.015       4.520       0.060      -4.520      -8.980
+         -24.0499
+ Al  s                  1.372      12.270       4.920     -12.270     -26.970
+     p                  1.355       6.470       1.370      -6.470     -16.670
+         -50.8099
+ Si  s                  1.634      17.310       6.940     -17.310     -48.420
+     p                  1.428       9.190       2.820      -9.190     -28.300
+        -103.2197
+ P   s                  1.881      20.200       8.480     -20.200     -67.080
+     p                  1.629      12.490       1.980     -12.490     -54.530
+        -187.8095
+ S   s                  2.122      20.080      11.540     -20.080     -62.780
+     p                  1.827      13.320       3.500     -13.320     -62.420
+        -234.3394
+ Cl  s                  2.356      24.020      14.450     -24.020     -81.440
+     p                  2.039      15.030       3.730     -15.030     -82.830
+        -350.1091
+
+                            CNDOL/22 SCF-MO CALCULATIONS
+
+
+
+
+
+
+********************************************************************************
+   Acroleina opt. MP2|4-31G**                                                    
+                                                                               
+
+
+                     INPUT ATOMIC CARTESIAN COORDINATES (A)
+                     ATOM      X         Y         Z      NAT
+
+                    C   1    1.2122    1.2839    0.0000    6
+                    C   2    0.0000    0.7199    0.0000    6
+                    C   3   -0.1444   -0.7426    0.0000    6
+                    O   4   -1.2204   -1.3246    0.0000    8
+                    H   5    1.3498    2.3542    0.0000    1
+                    H   6    2.1062    0.6744    0.0000    1
+                    H   7   -0.9108    1.3027    0.0000    1
+                    H   8    0.8110   -1.3014    0.0000    1
+
+                           THE MOLECULAR CHARGE IS  0
+
+     THIS SYSTEM HAS  0020 VALENCE MOLECULAR ORBITALS,   0011 OF THEM OCCUPIED
+ Total memory required for 8 B words:                      22101
+ Total memory required for 4 B words:                        562
+
+ START THE DIAGONALIZATION OF THE INITIAL MONOELECTRONIC  MATRIX
+
+ *** Elapsed time :      0.0000 s ***
+ It.   1: max. div. in root   4 by  5.410     ev. Elap.time: 0.0     s
+ It.   2: max. div. in root  11 by  4.435     ev. Elap.time: 0.0     s
+ It.   3: max. div. in root   6 by  1.559     ev. Elap.time: 0.0     s
+ It.   4: max. div. in root   9 by 0.7426     ev. Elap.time: 0.0     s
+ It.   5: max. div. in root   9 by 0.3404     ev. Elap.time: 0.0     s
+ It.   6: max. div. in root   9 by 0.1338     ev. Elap.time: 0.0     s
+ It.   7: max. div. in root   9 by 0.7426E-01 ev. Elap.time: 0.0     s
+ It.   8: max. div. in root  11 by 0.2717E-01 ev. Elap.time: 0.0     s
+ It.   9: max. div. in root   9 by 0.1760E-01 ev. Elap.time:0.16E-01 s
+ It.  10: max. div. in root   7 by 0.6851E-02 ev. Elap.time: 0.0     s
+ It.  11: max. div. in root   9 by 0.4748E-02 ev. Elap.time: 0.0     s
+ It.  12: max. div. in root   7 by 0.1975E-02 ev. Elap.time: 0.0     s
+ It.  13: max. div. in root   9 by 0.1476E-02 ev. Elap.time: 0.0     s
+ It.  14: max. div. in root   7 by 0.6310E-03 ev. Elap.time: 0.0     s
+ It.  15: max. div. in root   9 by 0.5184E-03 ev. Elap.time: 0.0     s
+ It.  16: max. div. in root   7 by 0.2183E-03 ev. Elap.time: 0.0     s
+ It.  17: max. div. in root   9 by 0.1983E-03 ev. Elap.time: 0.0     s
+ It.  18: max. div. in root   7 by 0.7969E-04 ev. Elap.time: 0.0     s
+ It.  19: max. div. in root   9 by 0.7996E-04 ev. Elap.time: 0.0     s
+ It.  20: max. div. in root   7 by 0.3009E-04 ev. Elap.time: 0.0     s
+ It.  21: max. div. in root   9 by 0.3325E-04 ev. Elap.time: 0.0     s
+ It.  22: max. div. in root   9 by 0.1349E-04 ev. Elap.time: 0.0     s
+ It.  23: max. div. in root   9 by 0.1408E-04 ev. Elap.time: 0.0     s
+
+                 CONVERGENCE ATTAINED AFTER 024 SCF ITERATIONS
+
+ CPU time for SCF procedure:      0.0156 s
+
+
+
+                       *** ATOMIC ELECTRON POPULATION ***
+
+         atom     P(s)     P(p)     P(sp)       Q(s)     Q(p)     Q(sp)
+
+          1 C    1.0979   2.7720   3.8699     -0.0979   0.2280   0.1301
+          2 C    1.1516   2.7478   3.8994     -0.1516   0.2522   0.1006
+          3 C    1.1667   1.9613   3.1281     -0.1667   1.0387   0.8719
+          4 O    1.7944   4.9805   6.7749      0.2056  -0.9805  -0.7749
+          5 H    1.0606   0.0000   1.0606     -0.0606   0.0000  -0.0606
+          6 H    1.0689   0.0000   1.0689     -0.0689   0.0000  -0.0689
+          7 H    1.0669   0.0000   1.0669     -0.0669   0.0000  -0.0669
+          8 H    1.1313   0.0000   1.1313     -0.1313   0.0000  -0.1313
+
+
+
+                            SCF MOLECULAR ORBITALS
+
+
+           1       2       3       4       5       6       7       8
+
+       -50.221 -42.940 -28.688 -25.018 -16.726 -15.182 -13.142 -12.624
+
+    1 -0.28092 0.50593 0.41986-0.10000 0.02509-0.02113 0.00000 0.10533
+    2  0.06268-0.06302 0.17586-0.25481 0.07857 0.38004-0.00000-0.40319
+    3  0.05143-0.02624 0.15877 0.12801-0.53273 0.14217 0.00000 0.15828
+    4  0.00000-0.00000-0.00000-0.00000 0.00000 0.00000 0.31730-0.00000
+    5 -0.39538 0.39749-0.30398 0.33949 0.14048-0.12144 0.00000 0.03209
+    6 -0.01537 0.12820 0.16401-0.24114 0.18451-0.28338 0.00000 0.41751
+    7  0.06806 0.09085 0.20599 0.24454-0.20979-0.24476-0.00000-0.14726
+    8  0.00000-0.00000-0.00000-0.00000 0.00000 0.00000 0.41950-0.00000
+    9 -0.49909-0.07704-0.37926-0.32414-0.17573 0.17231 0.00000 0.10200
+   10  0.10133 0.19166-0.14760-0.26025-0.03586-0.30577 0.00000-0.02851
+   11  0.00407 0.18368-0.16316 0.16624 0.28219 0.22735 0.00000 0.16339
+   12  0.00000 0.00000 0.00000-0.00000 0.00000 0.00000 0.47584-0.00000
+   13 -0.60595-0.56878 0.36132 0.16820 0.14673-0.13532 0.00000 0.01429
+   14 -0.06838-0.01622-0.12093-0.16803-0.34556 0.08698-0.00000-0.16056
+   15 -0.04662 0.00750-0.10011 0.04961 0.06817 0.59501 0.00000 0.36415
+   16  0.00000-0.00000-0.00000 0.00000 0.00000 0.00000 0.70492-0.00000
+   17 -0.12221 0.25163 0.34305 0.00840-0.43532 0.17795 0.00000 0.16562
+   18 -0.14722 0.25029 0.25621-0.27639 0.30447 0.19541-0.00000-0.41360
+   19 -0.18728 0.17390-0.17133 0.41491-0.15218 0.03060-0.00000-0.44934
+   20 -0.21962 0.01588-0.21386-0.40921-0.22101-0.23320 0.00000-0.08575
+
+           9      10      11      12      13      14      15      16
+
+       -11.583 -10.255  -9.503   1.045   3.604   4.264   4.849   5.316
+
+    1 -0.11521-0.00000-0.04819 0.00000-0.40895 0.00000 0.45220 0.19628
+    2  0.16148-0.00000 0.12019 0.00000 0.02323 0.00000 0.28888-0.01602
+    3  0.22333 0.00000 0.15701 0.00000 0.01666-0.00000-0.05418 0.49283
+    4 -0.00000 0.61594-0.00000-0.65407 0.00000 0.30354 0.00000 0.00000
+    5 -0.04512 0.00000 0.12759 0.00000 0.47131-0.00000 0.03040 0.20569
+    6 -0.19707 0.00000-0.05596-0.00000-0.00773 0.00000-0.12420-0.31995
+    7 -0.13111-0.00000-0.44799-0.00000-0.10272-0.00000-0.32712 0.24651
+    8 -0.00000 0.55404-0.00000 0.47452-0.00000-0.54027 0.00000-0.00000
+    9 -0.01393 0.00000 0.09088-0.00000-0.45910 0.00000-0.37346 0.07525
+   10  0.35021-0.00000-0.02447 0.00000-0.06582 0.00000-0.08147-0.09213
+   11  0.16388 0.00000 0.34642 0.00000-0.10243 0.00000 0.01852 0.06663
+   12 -0.00000-0.07745 0.00000 0.49377 0.00000 0.72372-0.00000 0.00000
+   13  0.08581 0.00000 0.01651 0.00000 0.08172 0.00000 0.05749-0.03953
+   14 -0.74006-0.00000 0.14498 0.00000 0.18982-0.00000 0.14919-0.06382
+   15 -0.00655-0.00000-0.64060 0.00000 0.12940-0.00000 0.05996-0.05669
+   16 -0.00000-0.55467 0.00000-0.32128-0.00000-0.30365 0.00000-0.00000
+   17  0.20597 0.00000 0.20804-0.00000 0.27913-0.00000-0.20572-0.49813
+   18 -0.02258-0.00000-0.07527-0.00000 0.21610-0.00000-0.50432 0.16254
+   19  0.09721-0.00000-0.17652-0.00000-0.30386 0.00000 0.07145-0.45357
+   20  0.30909-0.00000-0.31280 0.00000 0.31179-0.00000 0.32923 0.07192
+
+          17      18      19      20
+
+         6.239   7.019   7.646   9.026
+
+    1 -0.01620-0.09068 0.17549 0.03923
+    2  0.51052 0.10720-0.42989-0.03726
+    3 -0.12493 0.53130-0.05596-0.06605
+    4  0.00000-0.00000-0.00000 0.00000
+    5  0.37854 0.08562-0.01773-0.08883
+    6  0.01456 0.46854-0.42813-0.21623
+    7  0.17407-0.28030-0.46897 0.18511
+    8 -0.00000 0.00000 0.00000 0.00000
+    9  0.18176-0.10863-0.05998-0.11086
+   10  0.23594 0.26012 0.18607 0.68355
+   11 -0.42622-0.14462-0.50361 0.36828
+   12  0.00000-0.00000-0.00000-0.00000
+   13 -0.02884 0.08707-0.01915 0.28718
+   14 -0.12230 0.10732-0.06829 0.37045
+   15  0.05681 0.11511 0.06551 0.19815
+   16  0.00000 0.00000-0.00000 0.00000
+   17  0.05160-0.31290 0.01528 0.02275
+   18 -0.30462 0.15726 0.14266-0.01417
+   19 -0.19486 0.33648-0.05149-0.09783
+   20 -0.35621-0.15490-0.23093-0.13921
+
+      CORE-VALENCE ELECTRON BICENTRIC POT. ENERGY :             -4.65384 EV
+
+
+                CORE-VALENCE ONE ELECTRON POTENTIAL ENERGIES (EV)
+                -------------------------------------------------
+
+   1  -0.2008;   2  -2.6176;   3  10.1478;   4  -9.6563;   5   0.0000;
+   6   0.0000;   7   0.0000;   8   0.0000;
+
+
+                                  ********
+                                  ENERGIES
+                                  ********
+
+      ELECTRONIC ENERGY :                                    -1970.25769 EV
+
+      CORE REPULSION ENERGY :                                 1505.03625 EV
+                Ground theory as Z(A)*Z(B)/R(A,B)                                
+
+      CORE REPULSION ENERGY :                                 1536.66175 EV
+                Effective core as [Z(A)+CHG(A)]*[Z(B)+CHG(B)]/R(A,B)             
+
+      CORE REPULSION ENERGY :                                  921.28853 EV
+                Mataga-Nishimoto of s-core as Z(A)*Z(B)*GAMMAmn(A(s),B(s))       
+
+      CORE REPULSION ENERGY :                                 1244.44750 EV
+                Ohno of s-core as Z(A)*Z(B)*GAMMAoh(A(s),B(s))                   
+
+      CORE REPULSION ENERGY :                                 1240.05519 EV
+                Dewar-Sabelli-Klopman of s-core: Z(A)*Z(B)*GAMMAdsk(A(s),B(s))   
+
+      CORE REPULSION ENERGY :                                 1046.27629 EV
+                Modified Ohno of s-core as Z(A)*Z(B)*GAMMAohm(A(s),B(s))         
+
+
+                               CORRECTION TERMS
+                               ----------------
+
+      TOTAL DISPERSIVE ENERGY :                                -38.93891 EV
+
+
+  *** SCF MOLECULAR ENERGY :                                  -465.22144 EV ***
+                Ground theory as Z(A)*Z(B)/R(A,B)                                
+
+      BINDING ENERGY [dE] :                                    238.58696 EV
+      correspond to the process : nA + mB + ... -> AnBm...         dE
+
+      Including the core-valence term       -469.87528           233.93312 EV
+      Including the dispersive Term         -504.16035           199.64805 EV
+      Including Both Terms                  -508.81419           194.99421 EV
+
+
+  *** SCF MOLECULAR ENERGY :                                  -433.59594 EV ***
+                Effective core as [Z(A)+CHG(A)]*[Z(B)+CHG(B)]/R(A,B)             
+
+      BINDING ENERGY [dE] :                                    270.21245 EV
+      correspond to the process : nA + mB + ... -> AnBm...         dE
+
+      Including the core-valence term       -438.24979           265.55861 EV
+      Including the dispersive Term         -472.53486           231.27354 EV
+      Including Both Terms                  -477.18870           226.61970 EV
+
+
+  *** SCF MOLECULAR ENERGY :                                 -1048.96916 EV ***
+                Mataga-Nishimoto of s-core as Z(A)*Z(B)*GAMMAmn(A(s),B(s))       
+
+      BINDING ENERGY [dE] :                                   -345.16076 EV
+      correspond to the process : nA + mB + ... -> AnBm...         dE
+
+      Including the core-valence term      -1053.62300          -349.81460 EV
+      Including the dispersive Term        -1087.90807          -384.09967 EV
+      Including Both Terms                 -1092.56191          -388.75351 EV
+
+
+  *** SCF MOLECULAR ENERGY :                                  -725.81020 EV ***
+                Ohno of s-core as Z(A)*Z(B)*GAMMAoh(A(s),B(s))                   
+
+      BINDING ENERGY [dE] :                                    -22.00180 EV
+      correspond to the process : nA + mB + ... -> AnBm...         dE
+
+      Including the core-valence term       -730.46404           -26.65564 EV
+      Including the dispersive Term         -764.74911           -60.94071 EV
+      Including Both Terms                  -769.40295           -65.59455 EV
+
+
+  *** SCF MOLECULAR ENERGY :                                  -730.20251 EV ***
+                Dewar-Sabelli-Klopman of s-core: Z(A)*Z(B)*GAMMAdsk(A(s),B(s))   
+
+      BINDING ENERGY [dE] :                                    -26.39411 EV
+      correspond to the process : nA + mB + ... -> AnBm...         dE
+
+      Including the core-valence term       -734.85635           -31.04795 EV
+      Including the dispersive Term         -769.14142           -65.33302 EV
+      Including Both Terms                  -773.79526           -69.98686 EV
+
+
+  *** SCF MOLECULAR ENERGY :                                  -923.98140 EV ***
+                Modified Ohno of s-core as Z(A)*Z(B)*GAMMAohm(A(s),B(s))         
+
+      BINDING ENERGY [dE] :                                   -220.17300 EV
+      correspond to the process : nA + mB + ... -> AnBm...         dE
+
+      Including the core-valence term       -928.63524          -224.82684 EV
+      Including the dispersive Term         -962.92031          -259.11191 EV
+      Including Both Terms                  -967.57415          -263.76575 EV
+
+ ENERGIES IN MATRIX FORM (ev)
+ Method          Total         Binding        Total.+      Binding +
+                 Energy        Energy        CoreVal.      CoreVal.
+Ground T.      -465.22144      238.58696     -469.87528      233.93312
+Eff.Chge.      -433.59594      270.21245     -438.24979      265.55861
+Mat-Nish      -1048.96916     -345.16076    -1053.62300     -349.81460
+Ohno           -725.81020      -22.00180     -730.46404      -26.65564
+DSK            -730.20251      -26.39411     -734.85635      -31.04795
+OHM            -923.98140     -220.17300     -928.63524     -224.82684
+
+ Method          Total +       Binding +      Total.+      Binding +
+               Dispersive     Dispersive      all Corr.    all Corr
+Ground T.      -504.16035      199.64805     -508.81419      194.99421
+Eff.Chge.      -472.53486      231.27354     -477.18870      226.61970
+Mat-Nish      -1087.90807     -384.09967    -1092.56191     -388.75351
+Ohno           -764.74911      -60.94071     -769.40295      -65.59455
+DSK            -769.14142      -65.33302     -773.79526      -69.98686
+OHM            -962.92031     -259.11191     -967.57415     -263.76575
+
+
+
+               **************************************************
+                 DIPOLE MOMENT OF THE GROUND STATE (in Debyes)
+               **************************************************
+
+          Contribution          Moment         X          Y          Z
+          --------------------------------------------------------------
+
+          ATOMIC                4.187        3.386      2.463      0.000
+          HYBRIDATION           1.156        1.000      0.580      0.000
+
+             TOTAL              5.338        4.385      3.043      0.000
+
+
+
+                  Koopman's ionization potential:   9.503 EV
+
+              The number of possible SCF excitations is      99
+              but is limited to    20 because input commands
+
+
+                       *** SCF ELECTRON EXCITATIONS ***
+                     20 CONFIGURATIONS ARE TAKEN INTO ACCOUNT
+
+          E is the transition energy, EC is the Coulomb-exchange energy,
+                         and WL is the wave length
+
+                                 SINGLETS                    |  TRIPLETS   | SYM.
+    TRANSITION      E    EC     WL     OSC.     COMPONENTS   |  E      WL  |
+                  (EV)  (EV)   (NM)    STR.   X     Y     Z  | (EV)   (NM) |
+
+     1 0011>0012  4.362 6.185  284.2 0.0000  0.00  0.00  0.00  4.362  284.2  * 
+     2 0009>0012  6.535 6.092  189.7 0.0000  0.00  0.00  0.00  6.535  189.7  * 
+     3 0011>0014  6.902 6.865  179.6 0.0000  0.00 -0.00  0.00  6.902  179.6  * 
+     4 0008>0012  7.378 6.290  168.0 0.0000  0.00  0.00  0.00  7.378  168.0  * 
+     5 0010>0013  7.487 6.371  165.6 0.0000 -0.00  0.00  0.00  7.487  165.6  * 
+     6 0010>0012  7.584 3.716  163.5 0.5159 -0.70 -0.54  0.00  4.446  278.8  * 
+     7 0011>0013  7.806 5.300  158.8 0.2140  0.02  0.56  0.00  6.965  178.0  * 
+     8 0010>0015  8.892 6.212  139.4 0.0000  0.00  0.00  0.00  8.892  139.4  * 
+     9 0009>0014  9.052 6.795  137.0 0.0000 -0.00 -0.00  0.00  9.052  137.0  * 
+    10 0010>0016  9.311 6.260  133.2 0.0000 -0.00 -0.00  0.00  9.311  133.2  * 
+    11 0011>0015  9.392 4.960  132.0 0.0337 -0.02  0.20  0.00  8.888  139.5  * 
+    12 0010>0014  9.744 4.775  127.2 0.0217  0.03 -0.16  0.00  8.055  153.9  * 
+    13 0006>0012  9.834 6.392  126.1 0.0000 -0.00 -0.00  0.00  9.834  126.1  * 
+    14 0007>0012  9.875 4.311  125.5 0.0001 -0.01  0.00  0.00  7.790  159.1  * 
+    15 0011>0016  9.975 4.844  124.3 0.0571 -0.21 -0.14  0.00  9.670  128.2  * 
+    16 0009>0013  9.985 5.201  124.2 0.1938  0.41  0.24  0.00  9.254  134.0  * 
+    17 0010>0017 10.208 6.286  121.5 0.0000  0.00  0.00  0.00 10.208  121.5  * 
+    18 0011>0017 10.312 5.429  120.2 0.0804  0.26  0.15  0.00  9.821  126.2  * 
+    19 0007>0013 10.553 6.193  117.5 0.0000 -0.00  0.00  0.00 10.553  117.5  * 
+    20 0010>0018 10.717 6.557  115.7 0.0000  0.00  0.00  0.00 10.717  115.7  * 
+
+ CPU time for SCF single excitations:      0.0156 s
+
+ CPU time for building CI matrix:      0.0000 s
+
+ CPU time for diagonalizing CI matrix:      0.0000 s
+
+
+
+                      *** CONFIGURATION INTERACTION ***
+
+
+ SINGLET - SINGLET TRANSITIONS
+ E is the transition energy, EC is the Coulomb-exchange energy,
+ EB is the additional energy needed for a Koopman's ionization,
+ and WL is the wave length
+
+
+  CI     E      EC     EB    WL    OSC.     COMPONENTS       LOG E  SYMMETRY
+ STATE  (EV)   (EV)   (EV)  (NM)   STR.     X     Y     Z
+
+    1  4.055  6.247  5.447  305.7 0.0000                                * 
+    2  5.797  6.268  3.705  213.9 0.0000                                * 
+    3  6.806  6.600  2.696  182.2 0.0000                                * 
+    4  6.898  4.144  2.604  179.7 0.1302 -0.93 -0.38  0.00   4.1146     * 
+    5  7.252  6.357  2.250  171.0 0.0000                                * 
+    6  7.339  6.420  2.164  168.9 0.0000                                * 
+    7  7.584  5.058  1.919  163.5 0.2550  0.22  0.98  0.00   4.4065     * 
+    8  8.543  6.223  0.960  145.1 0.0000                                * 
+    9  9.013  4.957  0.489  137.6 0.0247 -0.28 -0.96  0.00   3.3927     * 
+   10  9.280  6.261  0.222  133.6 0.0000                                * 
+   11  9.456  6.569  0.046  131.1 0.0000                                * 
+   12  9.700  4.666 -0.197  127.8 0.0451 -0.67 -0.74  0.00   3.6539     * 
+   13  9.968  4.844 -0.465  124.4 0.0716  1.00 -0.05  0.00   3.8547     * 
+   14 10.046  6.282 -0.543  123.4 0.0000                                * 
+   15 10.064  4.898 -0.561  123.2 0.0590 -0.94 -0.34  0.00   3.7712     * 
+   16 10.248  4.861 -0.746  121.0 0.0108 -0.70  0.72  0.00   3.0328     * 
+   17 10.610  6.517 -1.107  116.9 0.0000                                * 
+   18 10.777  6.532 -1.275  115.0 0.0000                                * 
+   19 11.198  5.107 -1.695  110.7 0.6744 -0.76 -0.65  0.00   4.8289     * 
+   20 11.268  6.225 -1.766  110.0 0.0000                                * 
+
+
+ MAJOR ATOMIC ORBITAL CONTRIBUTIONS TO THE FIRST  11 CI STATES
+
+ ====> SINGLY EXCITED CI STATE no.  1:  4.055 ev  * 
+                                    32708.9 cm**-1
+                                      305.73 nm       f= 0.00000
+
+   Single occ. MO's             11 (HOMO)  *       =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.90469 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      1C  (Pz)0.4278 -0.6541
+                           2C  (Py)0.2007 -0.4480      3C  (Pz)0.2438  0.4938
+                           3C  (Py)0.1200  0.3464      2C  (Pz)0.2252  0.4745
+                           8H  ( S)0.0978 -0.3128      4O  (Pz)0.1032 -0.3213
+                           5H  ( S)0.0433  0.2080      1C  ( S)0.0000  0.0000
+                           7H  ( S)0.0312 -0.1765      5H  ( S)0.0000 -0.0000
+
+   Single occ. MO's             11 (HOMO)  *       =>       14  * 
+   Sq. CI coeff.: 0.08194 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      3C  (Pz)0.5238  0.7237
+                           2C  (Py)0.2007 -0.4480      2C  (Pz)0.2919 -0.5403
+                           3C  (Py)0.1200  0.3464      4O  (Pz)0.0922 -0.3036
+                           8H  ( S)0.0978 -0.3128      1C  (Pz)0.0921  0.3035
+                           5H  ( S)0.0433  0.2080      7H  ( S)0.0000  0.0000
+                           7H  ( S)0.0312 -0.1765      2C  ( S)0.0000 -0.0000
+
+ ====> SINGLY EXCITED CI STATE no.  2:  5.797 ev  * 
+                                    46758.5 cm**-1
+                                      213.86 nm       f= 0.00000
+
+   Single occ. MO's              9  *              =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.73140 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Px)0.5477 -0.7401      1C  (Pz)0.4278 -0.6541
+                           3C  (Px)0.1226  0.3502      3C  (Pz)0.2438  0.4938
+                           8H  ( S)0.0955  0.3091      2C  (Pz)0.2252  0.4745
+                           1C  (Py)0.0499  0.2233      4O  (Pz)0.1032 -0.3213
+                           5H  ( S)0.0424  0.2060      1C  ( S)0.0000  0.0000
+                           2C  (Px)0.0388 -0.1971      5H  ( S)0.0000 -0.0000
+
+   Single occ. MO's             11 (HOMO)  *       =>       14  * 
+   Sq. CI coeff.: 0.12258 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      3C  (Pz)0.5238  0.7237
+                           2C  (Py)0.2007 -0.4480      2C  (Pz)0.2919 -0.5403
+                           3C  (Py)0.1200  0.3464      4O  (Pz)0.0922 -0.3036
+                           8H  ( S)0.0978 -0.3128      1C  (Pz)0.0921  0.3035
+                           5H  ( S)0.0433  0.2080      7H  ( S)0.0000  0.0000
+                           7H  ( S)0.0312 -0.1765      2C  ( S)0.0000 -0.0000
+
+   Single occ. MO's              9  *              =>       14  * 
+   Sq. CI coeff.: 0.10701 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Px)0.5477 -0.7401      3C  (Pz)0.5238  0.7237
+                           3C  (Px)0.1226  0.3502      2C  (Pz)0.2919 -0.5403
+                           8H  ( S)0.0955  0.3091      4O  (Pz)0.0922 -0.3036
+                           1C  (Py)0.0499  0.2233      1C  (Pz)0.0921  0.3035
+                           5H  ( S)0.0424  0.2060      7H  ( S)0.0000  0.0000
+                           2C  (Px)0.0388 -0.1971      2C  ( S)0.0000 -0.0000
+
+ ====> SINGLY EXCITED CI STATE no.  3:  6.806 ev  * 
+                                    54898.2 cm**-1
+                                      182.16 nm       f= 0.00000
+
+   Single occ. MO's             11 (HOMO)  *       =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.05011 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      1C  (Pz)0.4278 -0.6541
+                           2C  (Py)0.2007 -0.4480      3C  (Pz)0.2438  0.4938
+                           3C  (Py)0.1200  0.3464      2C  (Pz)0.2252  0.4745
+                           8H  ( S)0.0978 -0.3128      4O  (Pz)0.1032 -0.3213
+                           5H  ( S)0.0433  0.2080      1C  ( S)0.0000  0.0000
+                           7H  ( S)0.0312 -0.1765      5H  ( S)0.0000 -0.0000
+
+   Single occ. MO's              9  *              =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.10908 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Px)0.5477 -0.7401      1C  (Pz)0.4278 -0.6541
+                           3C  (Px)0.1226  0.3502      3C  (Pz)0.2438  0.4938
+                           8H  ( S)0.0955  0.3091      2C  (Pz)0.2252  0.4745
+                           1C  (Py)0.0499  0.2233      4O  (Pz)0.1032 -0.3213
+                           5H  ( S)0.0424  0.2060      1C  ( S)0.0000  0.0000
+                           2C  (Px)0.0388 -0.1971      5H  ( S)0.0000 -0.0000
+
+   Single occ. MO's             11 (HOMO)  *       =>       14  * 
+   Sq. CI coeff.: 0.53328 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      3C  (Pz)0.5238  0.7237
+                           2C  (Py)0.2007 -0.4480      2C  (Pz)0.2919 -0.5403
+                           3C  (Py)0.1200  0.3464      4O  (Pz)0.0922 -0.3036
+                           8H  ( S)0.0978 -0.3128      1C  (Pz)0.0921  0.3035
+                           5H  ( S)0.0433  0.2080      7H  ( S)0.0000  0.0000
+                           7H  ( S)0.0312 -0.1765      2C  ( S)0.0000 -0.0000
+
+   Single occ. MO's              8  *              =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.21331 atom  AO   c**2     c       atom  AO   c**2     c
+                           7H  ( S)0.2019 -0.4493      1C  (Pz)0.4278 -0.6541
+                           2C  (Px)0.1743  0.4175      3C  (Pz)0.2438  0.4938
+                           6H  ( S)0.1711 -0.4136      2C  (Pz)0.2252  0.4745
+                           1C  (Px)0.1626 -0.4032      4O  (Pz)0.1032 -0.3213
+                           4O  (Py)0.1326  0.3642      1C  ( S)0.0000  0.0000
+                           5H  ( S)0.0274  0.1656      5H  ( S)0.0000 -0.0000
+
+   Single occ. MO's              9  *              =>       14  * 
+   Sq. CI coeff.: 0.05148 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Px)0.5477 -0.7401      3C  (Pz)0.5238  0.7237
+                           3C  (Px)0.1226  0.3502      2C  (Pz)0.2919 -0.5403
+                           8H  ( S)0.0955  0.3091      4O  (Pz)0.0922 -0.3036
+                           1C  (Py)0.0499  0.2233      1C  (Pz)0.0921  0.3035
+                           5H  ( S)0.0424  0.2060      7H  ( S)0.0000  0.0000
+                           2C  (Px)0.0388 -0.1971      2C  ( S)0.0000 -0.0000
+
+ ====> SINGLY EXCITED CI STATE no.  4:  6.898 ev  * 
+                                    55641.9 cm**-1
+                                      179.72 nm       f= 0.13021
+
+   Single occ. MO's             10  *              =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.71559 atom  AO   c**2     c       atom  AO   c**2     c
+                           1C  (Pz)0.3794  0.6159      1C  (Pz)0.4278 -0.6541
+                           4O  (Pz)0.3077 -0.5547      3C  (Pz)0.2438  0.4938
+                           2C  (Pz)0.3070  0.5540      2C  (Pz)0.2252  0.4745
+                           3C  (Pz)0.0060 -0.0775      4O  (Pz)0.1032 -0.3213
+                           2C  (Py)0.0000 -0.0000      1C  ( S)0.0000  0.0000
+                           3C  (Py)0.0000  0.0000      5H  ( S)0.0000 -0.0000
+
+   Single occ. MO's             11 (HOMO)  *       =>       13  * 
+   Sq. CI coeff.: 0.15318 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      2C  ( S)0.2221  0.4713
+                           2C  (Py)0.2007 -0.4480      3C  ( S)0.2108 -0.4591
+                           3C  (Py)0.1200  0.3464      1C  ( S)0.1672 -0.4089
+                           8H  ( S)0.0978 -0.3128      8H  ( S)0.0972  0.3118
+                           5H  ( S)0.0433  0.2080      7H  ( S)0.0923 -0.3039
+                           7H  ( S)0.0312 -0.1765      5H  ( S)0.0779  0.2791
+
+   Single occ. MO's              9  *              =>       13  * 
+   Sq. CI coeff.: 0.08664 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Px)0.5477 -0.7401      2C  ( S)0.2221  0.4713
+                           3C  (Px)0.1226  0.3502      3C  ( S)0.2108 -0.4591
+                           8H  ( S)0.0955  0.3091      1C  ( S)0.1672 -0.4089
+                           1C  (Py)0.0499  0.2233      8H  ( S)0.0972  0.3118
+                           5H  ( S)0.0424  0.2060      7H  ( S)0.0923 -0.3039
+                           2C  (Px)0.0388 -0.1971      5H  ( S)0.0779  0.2791
+
+ ====> SINGLY EXCITED CI STATE no.  5:  7.252 ev  * 
+                                    58494.5 cm**-1
+                                      170.96 nm       f= 0.00000
+
+   Single occ. MO's             10  *              =>       13  * 
+   Sq. CI coeff.: 0.89045 atom  AO   c**2     c       atom  AO   c**2     c
+                           1C  (Pz)0.3794  0.6159      2C  ( S)0.2221  0.4713
+                           4O  (Pz)0.3077 -0.5547      3C  ( S)0.2108 -0.4591
+                           2C  (Pz)0.3070  0.5540      1C  ( S)0.1672 -0.4089
+                           3C  (Pz)0.0060 -0.0775      8H  ( S)0.0972  0.3118
+                           2C  (Py)0.0000 -0.0000      7H  ( S)0.0923 -0.3039
+                           3C  (Py)0.0000  0.0000      5H  ( S)0.0779  0.2791
+
+ ====> SINGLY EXCITED CI STATE no.  6:  7.339 ev  * 
+                                    59194.7 cm**-1
+                                      168.93 nm       f= 0.00000
+
+   Single occ. MO's             11 (HOMO)  *       =>       14  * 
+   Sq. CI coeff.: 0.13029 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      3C  (Pz)0.5238  0.7237
+                           2C  (Py)0.2007 -0.4480      2C  (Pz)0.2919 -0.5403
+                           3C  (Py)0.1200  0.3464      4O  (Pz)0.0922 -0.3036
+                           8H  ( S)0.0978 -0.3128      1C  (Pz)0.0921  0.3035
+                           5H  ( S)0.0433  0.2080      7H  ( S)0.0000  0.0000
+                           7H  ( S)0.0312 -0.1765      2C  ( S)0.0000 -0.0000
+
+   Single occ. MO's              8  *              =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.67890 atom  AO   c**2     c       atom  AO   c**2     c
+                           7H  ( S)0.2019 -0.4493      1C  (Pz)0.4278 -0.6541
+                           2C  (Px)0.1743  0.4175      3C  (Pz)0.2438  0.4938
+                           6H  ( S)0.1711 -0.4136      2C  (Pz)0.2252  0.4745
+                           1C  (Px)0.1626 -0.4032      4O  (Pz)0.1032 -0.3213
+                           4O  (Py)0.1326  0.3642      1C  ( S)0.0000  0.0000
+                           5H  ( S)0.0274  0.1656      5H  ( S)0.0000 -0.0000
+
+   Single occ. MO's              9  *              =>       14  * 
+   Sq. CI coeff.: 0.09055 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Px)0.5477 -0.7401      3C  (Pz)0.5238  0.7237
+                           3C  (Px)0.1226  0.3502      2C  (Pz)0.2919 -0.5403
+                           8H  ( S)0.0955  0.3091      4O  (Pz)0.0922 -0.3036
+                           1C  (Py)0.0499  0.2233      1C  (Pz)0.0921  0.3035
+                           5H  ( S)0.0424  0.2060      7H  ( S)0.0000  0.0000
+                           2C  (Px)0.0388 -0.1971      2C  ( S)0.0000 -0.0000
+
+   Single occ. MO's              6  *              =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.09646 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.3540  0.5950      1C  (Pz)0.4278 -0.6541
+                           1C  (Px)0.1444  0.3800      3C  (Pz)0.2438  0.4938
+                           3C  (Px)0.0935 -0.3058      2C  (Pz)0.2252  0.4745
+                           2C  (Px)0.0803 -0.2834      4O  (Pz)0.1032 -0.3213
+                           2C  (Py)0.0599 -0.2448      1C  ( S)0.0000  0.0000
+                           8H  ( S)0.0544 -0.2332      5H  ( S)0.0000 -0.0000
+
+ ====> SINGLY EXCITED CI STATE no.  7:  7.584 ev  * 
+                                    61169.6 cm**-1
+                                      163.48 nm       f= 0.25498
+
+   Single occ. MO's             10  *              =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.10969 atom  AO   c**2     c       atom  AO   c**2     c
+                           1C  (Pz)0.3794  0.6159      1C  (Pz)0.4278 -0.6541
+                           4O  (Pz)0.3077 -0.5547      3C  (Pz)0.2438  0.4938
+                           2C  (Pz)0.3070  0.5540      2C  (Pz)0.2252  0.4745
+                           3C  (Pz)0.0060 -0.0775      4O  (Pz)0.1032 -0.3213
+                           2C  (Py)0.0000 -0.0000      1C  ( S)0.0000  0.0000
+                           3C  (Py)0.0000  0.0000      5H  ( S)0.0000 -0.0000
+
+   Single occ. MO's             11 (HOMO)  *       =>       13  * 
+   Sq. CI coeff.: 0.65450 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      2C  ( S)0.2221  0.4713
+                           2C  (Py)0.2007 -0.4480      3C  ( S)0.2108 -0.4591
+                           3C  (Py)0.1200  0.3464      1C  ( S)0.1672 -0.4089
+                           8H  ( S)0.0978 -0.3128      8H  ( S)0.0972  0.3118
+                           5H  ( S)0.0433  0.2080      7H  ( S)0.0923 -0.3039
+                           7H  ( S)0.0312 -0.1765      5H  ( S)0.0779  0.2791
+
+   Single occ. MO's             11 (HOMO)  *       =>       15  * 
+   Sq. CI coeff.: 0.13071 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      6H  ( S)0.2543 -0.5043
+                           2C  (Py)0.2007 -0.4480      1C  ( S)0.2045  0.4522
+                           3C  (Py)0.1200  0.3464      3C  ( S)0.1395 -0.3735
+                           8H  ( S)0.0978 -0.3128      8H  ( S)0.1084  0.3292
+                           5H  ( S)0.0433  0.2080      2C  (Py)0.1070 -0.3271
+                           7H  ( S)0.0312 -0.1765      1C  (Px)0.0835  0.2889
+
+ ====> SINGLY EXCITED CI STATE no.  8:  8.543 ev  * 
+                                    68904.9 cm**-1
+                                      145.13 nm       f= 0.00000
+
+   Single occ. MO's             10  *              =>       13  * 
+   Sq. CI coeff.: 0.06015 atom  AO   c**2     c       atom  AO   c**2     c
+                           1C  (Pz)0.3794  0.6159      2C  ( S)0.2221  0.4713
+                           4O  (Pz)0.3077 -0.5547      3C  ( S)0.2108 -0.4591
+                           2C  (Pz)0.3070  0.5540      1C  ( S)0.1672 -0.4089
+                           3C  (Pz)0.0060 -0.0775      8H  ( S)0.0972  0.3118
+                           2C  (Py)0.0000 -0.0000      7H  ( S)0.0923 -0.3039
+                           3C  (Py)0.0000  0.0000      5H  ( S)0.0779  0.2791
+
+   Single occ. MO's             10  *              =>       15  * 
+   Sq. CI coeff.: 0.79799 atom  AO   c**2     c       atom  AO   c**2     c
+                           1C  (Pz)0.3794  0.6159      6H  ( S)0.2543 -0.5043
+                           4O  (Pz)0.3077 -0.5547      1C  ( S)0.2045  0.4522
+                           2C  (Pz)0.3070  0.5540      3C  ( S)0.1395 -0.3735
+                           3C  (Pz)0.0060 -0.0775      8H  ( S)0.1084  0.3292
+                           2C  (Py)0.0000 -0.0000      2C  (Py)0.1070 -0.3271
+                           3C  (Py)0.0000  0.0000      1C  (Px)0.0835  0.2889
+
+   Single occ. MO's              7  *              =>       13  * 
+   Sq. CI coeff.: 0.12810 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Pz)0.4969  0.7049      2C  ( S)0.2221  0.4713
+                           3C  (Pz)0.2264  0.4758      3C  ( S)0.2108 -0.4591
+                           2C  (Pz)0.1760  0.4195      1C  ( S)0.1672 -0.4089
+                           1C  (Pz)0.1007  0.3173      8H  ( S)0.0972  0.3118
+                           6H  ( S)0.0000 -0.0000      7H  ( S)0.0923 -0.3039
+                           1C  (Px)0.0000 -0.0000      5H  ( S)0.0779  0.2791
+
+ ====> SINGLY EXCITED CI STATE no.  9:  9.013 ev  * 
+                                    72699.2 cm**-1
+                                      137.55 nm       f= 0.02470
+
+   Single occ. MO's             11 (HOMO)  *       =>       13  * 
+   Sq. CI coeff.: 0.14696 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      2C  ( S)0.2221  0.4713
+                           2C  (Py)0.2007 -0.4480      3C  ( S)0.2108 -0.4591
+                           3C  (Py)0.1200  0.3464      1C  ( S)0.1672 -0.4089
+                           8H  ( S)0.0978 -0.3128      8H  ( S)0.0972  0.3118
+                           5H  ( S)0.0433  0.2080      7H  ( S)0.0923 -0.3039
+                           7H  ( S)0.0312 -0.1765      5H  ( S)0.0779  0.2791
+
+   Single occ. MO's             11 (HOMO)  *       =>       15  * 
+   Sq. CI coeff.: 0.40878 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      6H  ( S)0.2543 -0.5043
+                           2C  (Py)0.2007 -0.4480      1C  ( S)0.2045  0.4522
+                           3C  (Py)0.1200  0.3464      3C  ( S)0.1395 -0.3735
+                           8H  ( S)0.0978 -0.3128      8H  ( S)0.1084  0.3292
+                           5H  ( S)0.0433  0.2080      2C  (Py)0.1070 -0.3271
+                           7H  ( S)0.0312 -0.1765      1C  (Px)0.0835  0.2889
+
+   Single occ. MO's             10  *              =>       14  * 
+   Sq. CI coeff.: 0.11193 atom  AO   c**2     c       atom  AO   c**2     c
+                           1C  (Pz)0.3794  0.6159      3C  (Pz)0.5238  0.7237
+                           4O  (Pz)0.3077 -0.5547      2C  (Pz)0.2919 -0.5403
+                           2C  (Pz)0.3070  0.5540      4O  (Pz)0.0922 -0.3036
+                           3C  (Pz)0.0060 -0.0775      1C  (Pz)0.0921  0.3035
+                           2C  (Py)0.0000 -0.0000      7H  ( S)0.0000  0.0000
+                           3C  (Py)0.0000  0.0000      2C  ( S)0.0000 -0.0000
+
+   Single occ. MO's              7  *              =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.06177 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Pz)0.4969  0.7049      1C  (Pz)0.4278 -0.6541
+                           3C  (Pz)0.2264  0.4758      3C  (Pz)0.2438  0.4938
+                           2C  (Pz)0.1760  0.4195      2C  (Pz)0.2252  0.4745
+                           1C  (Pz)0.1007  0.3173      4O  (Pz)0.1032 -0.3213
+                           6H  ( S)0.0000 -0.0000      1C  ( S)0.0000  0.0000
+                           1C  (Px)0.0000 -0.0000      5H  ( S)0.0000 -0.0000
+
+   Single occ. MO's             11 (HOMO)  *       =>       16  * 
+   Sq. CI coeff.: 0.15203 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      5H  ( S)0.2481 -0.4981
+                           2C  (Py)0.2007 -0.4480      1C  (Py)0.2429  0.4928
+                           3C  (Py)0.1200  0.3464      7H  ( S)0.2057 -0.4536
+                           8H  ( S)0.0978 -0.3128      2C  (Px)0.1024 -0.3199
+                           5H  ( S)0.0433  0.2080      2C  (Py)0.0608  0.2465
+                           7H  ( S)0.0312 -0.1765      2C  ( S)0.0423  0.2057
+
+   Single occ. MO's             11 (HOMO)  *       =>       17  * 
+   Sq. CI coeff.: 0.09101 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      1C  (Px)0.2606  0.5105
+                           2C  (Py)0.2007 -0.4480      3C  (Py)0.1817 -0.4262
+                           3C  (Py)0.1200  0.3464      2C  ( S)0.1433  0.3785
+                           8H  ( S)0.0978 -0.3128      8H  ( S)0.1269 -0.3562
+                           5H  ( S)0.0433  0.2080      6H  ( S)0.0928 -0.3046
+                           7H  ( S)0.0312 -0.1765      3C  (Px)0.0557  0.2359
+
+ ====> SINGLY EXCITED CI STATE no. 10:  9.280 ev  * 
+                                    74854.4 cm**-1
+                                      133.59 nm       f= 0.00000
+
+   Single occ. MO's             10  *              =>       16  * 
+   Sq. CI coeff.: 0.95474 atom  AO   c**2     c       atom  AO   c**2     c
+                           1C  (Pz)0.3794  0.6159      5H  ( S)0.2481 -0.4981
+                           4O  (Pz)0.3077 -0.5547      1C  (Py)0.2429  0.4928
+                           2C  (Pz)0.3070  0.5540      7H  ( S)0.2057 -0.4536
+                           3C  (Pz)0.0060 -0.0775      2C  (Px)0.1024 -0.3199
+                           2C  (Py)0.0000 -0.0000      2C  (Py)0.0608  0.2465
+                           3C  (Py)0.0000  0.0000      2C  ( S)0.0423  0.2057
+
+ ====> SINGLY EXCITED CI STATE no. 11:  9.456 ev  * 
+                                    76274.2 cm**-1
+                                      131.11 nm       f= 0.00000
+
+   Single occ. MO's              9  *              =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.11115 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Px)0.5477 -0.7401      1C  (Pz)0.4278 -0.6541
+                           3C  (Px)0.1226  0.3502      3C  (Pz)0.2438  0.4938
+                           8H  ( S)0.0955  0.3091      2C  (Pz)0.2252  0.4745
+                           1C  (Py)0.0499  0.2233      4O  (Pz)0.1032 -0.3213
+                           5H  ( S)0.0424  0.2060      1C  ( S)0.0000  0.0000
+                           2C  (Px)0.0388 -0.1971      5H  ( S)0.0000 -0.0000
+
+   Single occ. MO's             11 (HOMO)  *       =>       14  * 
+   Sq. CI coeff.: 0.10968 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      3C  (Pz)0.5238  0.7237
+                           2C  (Py)0.2007 -0.4480      2C  (Pz)0.2919 -0.5403
+                           3C  (Py)0.1200  0.3464      4O  (Pz)0.0922 -0.3036
+                           8H  ( S)0.0978 -0.3128      1C  (Pz)0.0921  0.3035
+                           5H  ( S)0.0433  0.2080      7H  ( S)0.0000  0.0000
+                           7H  ( S)0.0312 -0.1765      2C  ( S)0.0000 -0.0000
+
+   Single occ. MO's              8  *              =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.08897 atom  AO   c**2     c       atom  AO   c**2     c
+                           7H  ( S)0.2019 -0.4493      1C  (Pz)0.4278 -0.6541
+                           2C  (Px)0.1743  0.4175      3C  (Pz)0.2438  0.4938
+                           6H  ( S)0.1711 -0.4136      2C  (Pz)0.2252  0.4745
+                           1C  (Px)0.1626 -0.4032      4O  (Pz)0.1032 -0.3213
+                           4O  (Py)0.1326  0.3642      1C  ( S)0.0000  0.0000
+                           5H  ( S)0.0274  0.1656      5H  ( S)0.0000 -0.0000
+
+   Single occ. MO's              9  *              =>       14  * 
+   Sq. CI coeff.: 0.42653 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Px)0.5477 -0.7401      3C  (Pz)0.5238  0.7237
+                           3C  (Px)0.1226  0.3502      2C  (Pz)0.2919 -0.5403
+                           8H  ( S)0.0955  0.3091      4O  (Pz)0.0922 -0.3036
+                           1C  (Py)0.0499  0.2233      1C  (Pz)0.0921  0.3035
+                           5H  ( S)0.0424  0.2060      7H  ( S)0.0000  0.0000
+                           2C  (Px)0.0388 -0.1971      2C  ( S)0.0000 -0.0000
+
+   Single occ. MO's              6  *              =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.23913 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.3540  0.5950      1C  (Pz)0.4278 -0.6541
+                           1C  (Px)0.1444  0.3800      3C  (Pz)0.2438  0.4938
+                           3C  (Px)0.0935 -0.3058      2C  (Pz)0.2252  0.4745
+                           2C  (Px)0.0803 -0.2834      4O  (Pz)0.1032 -0.3213
+                           2C  (Py)0.0599 -0.2448      1C  ( S)0.0000  0.0000
+                           8H  ( S)0.0544 -0.2332      5H  ( S)0.0000 -0.0000
+
+
+ ====> CI STATE (singly excited) no.  1:  4.055 ev
+                                      32708.9 cm**-1
+                                        305.73 nm    f=0.00000, Symmetry:  * 
+
+         *** ATOMIC ELECTRON POPULATION IN THE EXCITED STATE  1 ***
+             (dQ = -(PE - P), where PE and P are electron
+             integral charges in the excited and ground state,
+             respectively, and QE expresses the S, P and inte-
+             gral SP charge)
+
+   atom    PE(s)  PE(p)  PE(sp)   QE(s)  QE(p)  QE(sp)   dQ(s)  dQ(p)  dQ(sp)
+
+     1 C   1.100  3.135  4.235   -0.100 -0.135 -0.235   -0.002 -0.363 -0.365
+     2 C   1.136  2.773  3.909   -0.136  0.227  0.091    0.016 -0.025 -0.009
+     3 C   1.162  2.092  3.254   -0.162  0.908  0.746    0.005 -0.131 -0.126
+     4 O   1.794  4.648  6.442    0.206 -0.648 -0.442    0.000  0.333  0.333
+     5 H   1.018  0.000  1.018   -0.018  0.000 -0.018    0.042  0.000  0.042
+     6 H   1.070  0.000  1.070   -0.070  0.000 -0.070   -0.001  0.000 -0.001
+     7 H   1.036  0.000  1.036   -0.036  0.000 -0.036    0.031  0.000  0.031
+     8 H   1.036  0.000  1.036   -0.036  0.000 -0.036    0.095  0.000  0.095
+
+               **************************************************
+                  DIPOLE MOMENT OF THE STATE  1 (in Debyes)
+               **************************************************
+
+ Contribution    MU    dMU         X     dX       Y     dY       Z     dZ
+ ---------------------------------------------------------------------------
+
+ ATOMIC        1.422 -2.765    -0.103 -3.488  -1.418 -3.881   0.000  0.000
+ HYBRIDATION   0.997 -0.158     0.915 -0.085   0.398 -0.182   0.000  0.000
+
+ TOTAL         1.304 -4.034     0.812 -3.573  -1.020 -4.063   0.000  0.000
+
+ Differences are dMU = MU(excited) - MU(ground)
+
+ CPU time for building CI matrix:      0.0000 s
+
+ CPU time for diagonalizing CI matrix:      0.0000 s
+
+
+
+                      *** CONFIGURATION INTERACTION ***
+
+
+ TRIPLET - TRIPLET TRANSITIONS
+ E is the transition energy, EC is the Coulomb-exchange energy,
+ EB is the additional energy for a Koopman's ionization,
+ and WL is the wave length
+
+
+  CI     E      EC     EB    WL    OSC.     COMPONENTS       LOG E  SYMMETRY
+ STATE  (EV)   (EV)   (EV)  (NM)   STR.     X     Y     Z
+
+    1  4.055  6.247  5.447  305.7 0.0000                                * 
+    2  4.173  6.804  5.329  297.1 0.2430  0.82  0.57  0.00   4.3855     * 
+    3  5.797  6.268  3.705  213.9 0.0000                                * 
+    4  6.552  6.476  2.951  189.2 0.0719 -0.60 -0.80  0.00   3.8568     * 
+    5  6.593  6.041  2.910  188.1 0.1938 -0.01  1.00  0.00   4.2874     * 
+    6  6.806  6.600  2.696  182.2 0.0000                                * 
+    7  7.252  6.357  2.250  171.0 0.0000                                * 
+    8  7.339  6.420  2.164  168.9 0.0000                                * 
+    9  8.543  6.223  0.960  145.1 0.0000                                * 
+   10  8.555  5.729  0.948  144.9 0.1014 -0.84 -0.55  0.00   4.0061     * 
+   11  9.280  6.261  0.222  133.6 0.0000                                * 
+   12  9.401  5.640  0.102  131.9 0.1383  0.86  0.50  0.00   4.1407     * 
+   13  9.456  6.569  0.046  131.1 0.0000                                * 
+   14  9.566  6.433 -0.064  129.6 0.0103 -0.19  0.98  0.00   3.0119     * 
+   15  9.860  5.391 -0.358  125.7 0.0018 -0.55 -0.83  0.00   2.2484     * 
+   16 10.046  6.282 -0.543  123.4 0.0000                                * 
+   17 10.191  5.804 -0.688  121.7 0.0795 -0.81 -0.58  0.00   3.9002     * 
+   18 10.610  6.517 -1.107  116.9 0.0000                                * 
+   19 10.777  6.532 -1.275  115.0 0.0000                                * 
+   20 11.268  6.225 -1.766  110.0 0.0000                                * 
+
+
+ MAJOR ATOMIC ORBITAL CONTRIBUTIONS TO THE FIRST  11 CI STATES
+
+ ====> SINGLY EXCITED CI STATE no.  1:  4.055 ev  * 
+                                    32708.9 cm**-1
+                                      305.73 nm       f= 0.00000
+
+   Single occ. MO's             11 (HOMO)  *       =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.90469 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      1C  (Pz)0.4278 -0.6541
+                           2C  (Py)0.2007 -0.4480      3C  (Pz)0.2438  0.4938
+                           3C  (Py)0.1200  0.3464      2C  (Pz)0.2252  0.4745
+                           8H  ( S)0.0978 -0.3128      4O  (Pz)0.1032 -0.3213
+                           5H  ( S)0.0433  0.2080      1C  ( S)0.0000  0.0000
+                           7H  ( S)0.0312 -0.1765      5H  ( S)0.0000 -0.0000
+
+   Single occ. MO's             11 (HOMO)  *       =>       14  * 
+   Sq. CI coeff.: 0.08194 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      3C  (Pz)0.5238  0.7237
+                           2C  (Py)0.2007 -0.4480      2C  (Pz)0.2919 -0.5403
+                           3C  (Py)0.1200  0.3464      4O  (Pz)0.0922 -0.3036
+                           8H  ( S)0.0978 -0.3128      1C  (Pz)0.0921  0.3035
+                           5H  ( S)0.0433  0.2080      7H  ( S)0.0000  0.0000
+                           7H  ( S)0.0312 -0.1765      2C  ( S)0.0000 -0.0000
+
+ ====> SINGLY EXCITED CI STATE no.  2:  4.173 ev  * 
+                                    33662.2 cm**-1
+                                      297.07 nm       f= 0.24296
+
+   Single occ. MO's             10  *              =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.88531 atom  AO   c**2     c       atom  AO   c**2     c
+                           1C  (Pz)0.3794  0.6159      1C  (Pz)0.4278 -0.6541
+                           4O  (Pz)0.3077 -0.5547      3C  (Pz)0.2438  0.4938
+                           2C  (Pz)0.3070  0.5540      2C  (Pz)0.2252  0.4745
+                           3C  (Pz)0.0060 -0.0775      4O  (Pz)0.1032 -0.3213
+                           2C  (Py)0.0000 -0.0000      1C  ( S)0.0000  0.0000
+                           3C  (Py)0.0000  0.0000      5H  ( S)0.0000 -0.0000
+
+   Single occ. MO's             10  *              =>       14  * 
+   Sq. CI coeff.: 0.05011 atom  AO   c**2     c       atom  AO   c**2     c
+                           1C  (Pz)0.3794  0.6159      3C  (Pz)0.5238  0.7237
+                           4O  (Pz)0.3077 -0.5547      2C  (Pz)0.2919 -0.5403
+                           2C  (Pz)0.3070  0.5540      4O  (Pz)0.0922 -0.3036
+                           3C  (Pz)0.0060 -0.0775      1C  (Pz)0.0921  0.3035
+                           2C  (Py)0.0000 -0.0000      7H  ( S)0.0000  0.0000
+                           3C  (Py)0.0000  0.0000      2C  ( S)0.0000 -0.0000
+
+   Single occ. MO's              7  *              =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.06458 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Pz)0.4969  0.7049      1C  (Pz)0.4278 -0.6541
+                           3C  (Pz)0.2264  0.4758      3C  (Pz)0.2438  0.4938
+                           2C  (Pz)0.1760  0.4195      2C  (Pz)0.2252  0.4745
+                           1C  (Pz)0.1007  0.3173      4O  (Pz)0.1032 -0.3213
+                           6H  ( S)0.0000 -0.0000      1C  ( S)0.0000  0.0000
+                           1C  (Px)0.0000 -0.0000      5H  ( S)0.0000 -0.0000
+
+ ====> SINGLY EXCITED CI STATE no.  3:  5.797 ev  * 
+                                    46758.5 cm**-1
+                                      213.86 nm       f= 0.00000
+
+   Single occ. MO's              9  *              =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.73140 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Px)0.5477 -0.7401      1C  (Pz)0.4278 -0.6541
+                           3C  (Px)0.1226  0.3502      3C  (Pz)0.2438  0.4938
+                           8H  ( S)0.0955  0.3091      2C  (Pz)0.2252  0.4745
+                           1C  (Py)0.0499  0.2233      4O  (Pz)0.1032 -0.3213
+                           5H  ( S)0.0424  0.2060      1C  ( S)0.0000  0.0000
+                           2C  (Px)0.0388 -0.1971      5H  ( S)0.0000 -0.0000
+
+   Single occ. MO's             11 (HOMO)  *       =>       14  * 
+   Sq. CI coeff.: 0.12258 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      3C  (Pz)0.5238  0.7237
+                           2C  (Py)0.2007 -0.4480      2C  (Pz)0.2919 -0.5403
+                           3C  (Py)0.1200  0.3464      4O  (Pz)0.0922 -0.3036
+                           8H  ( S)0.0978 -0.3128      1C  (Pz)0.0921  0.3035
+                           5H  ( S)0.0433  0.2080      7H  ( S)0.0000  0.0000
+                           7H  ( S)0.0312 -0.1765      2C  ( S)0.0000 -0.0000
+
+   Single occ. MO's              9  *              =>       14  * 
+   Sq. CI coeff.: 0.10701 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Px)0.5477 -0.7401      3C  (Pz)0.5238  0.7237
+                           3C  (Px)0.1226  0.3502      2C  (Pz)0.2919 -0.5403
+                           8H  ( S)0.0955  0.3091      4O  (Pz)0.0922 -0.3036
+                           1C  (Py)0.0499  0.2233      1C  (Pz)0.0921  0.3035
+                           5H  ( S)0.0424  0.2060      7H  ( S)0.0000  0.0000
+                           2C  (Px)0.0388 -0.1971      2C  ( S)0.0000 -0.0000
+
+ ====> SINGLY EXCITED CI STATE no.  4:  6.552 ev  * 
+                                    52847.1 cm**-1
+                                      189.23 nm       f= 0.07191
+
+   Single occ. MO's             10  *              =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.11461 atom  AO   c**2     c       atom  AO   c**2     c
+                           1C  (Pz)0.3794  0.6159      1C  (Pz)0.4278 -0.6541
+                           4O  (Pz)0.3077 -0.5547      3C  (Pz)0.2438  0.4938
+                           2C  (Pz)0.3070  0.5540      2C  (Pz)0.2252  0.4745
+                           3C  (Pz)0.0060 -0.0775      4O  (Pz)0.1032 -0.3213
+                           2C  (Py)0.0000 -0.0000      1C  ( S)0.0000  0.0000
+                           3C  (Py)0.0000  0.0000      5H  ( S)0.0000 -0.0000
+
+   Single occ. MO's             10  *              =>       14  * 
+   Sq. CI coeff.: 0.41177 atom  AO   c**2     c       atom  AO   c**2     c
+                           1C  (Pz)0.3794  0.6159      3C  (Pz)0.5238  0.7237
+                           4O  (Pz)0.3077 -0.5547      2C  (Pz)0.2919 -0.5403
+                           2C  (Pz)0.3070  0.5540      4O  (Pz)0.0922 -0.3036
+                           3C  (Pz)0.0060 -0.0775      1C  (Pz)0.0921  0.3035
+                           2C  (Py)0.0000 -0.0000      7H  ( S)0.0000  0.0000
+                           3C  (Py)0.0000  0.0000      2C  ( S)0.0000 -0.0000
+
+   Single occ. MO's              7  *              =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.47362 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Pz)0.4969  0.7049      1C  (Pz)0.4278 -0.6541
+                           3C  (Pz)0.2264  0.4758      3C  (Pz)0.2438  0.4938
+                           2C  (Pz)0.1760  0.4195      2C  (Pz)0.2252  0.4745
+                           1C  (Pz)0.1007  0.3173      4O  (Pz)0.1032 -0.3213
+                           6H  ( S)0.0000 -0.0000      1C  ( S)0.0000  0.0000
+                           1C  (Px)0.0000 -0.0000      5H  ( S)0.0000 -0.0000
+
+ ====> SINGLY EXCITED CI STATE no.  5:  6.593 ev  * 
+                                    53175.8 cm**-1
+                                      188.06 nm       f= 0.19382
+
+   Single occ. MO's             11 (HOMO)  *       =>       13  * 
+   Sq. CI coeff.: 0.84937 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      2C  ( S)0.2221  0.4713
+                           2C  (Py)0.2007 -0.4480      3C  ( S)0.2108 -0.4591
+                           3C  (Py)0.1200  0.3464      1C  ( S)0.1672 -0.4089
+                           8H  ( S)0.0978 -0.3128      8H  ( S)0.0972  0.3118
+                           5H  ( S)0.0433  0.2080      7H  ( S)0.0923 -0.3039
+                           7H  ( S)0.0312 -0.1765      5H  ( S)0.0779  0.2791
+
+   Single occ. MO's             11 (HOMO)  *       =>       15  * 
+   Sq. CI coeff.: 0.14498 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      6H  ( S)0.2543 -0.5043
+                           2C  (Py)0.2007 -0.4480      1C  ( S)0.2045  0.4522
+                           3C  (Py)0.1200  0.3464      3C  ( S)0.1395 -0.3735
+                           8H  ( S)0.0978 -0.3128      8H  ( S)0.1084  0.3292
+                           5H  ( S)0.0433  0.2080      2C  (Py)0.1070 -0.3271
+                           7H  ( S)0.0312 -0.1765      1C  (Px)0.0835  0.2889
+
+ ====> SINGLY EXCITED CI STATE no.  6:  6.806 ev  * 
+                                    54898.2 cm**-1
+                                      182.16 nm       f= 0.00000
+
+   Single occ. MO's             11 (HOMO)  *       =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.05011 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      1C  (Pz)0.4278 -0.6541
+                           2C  (Py)0.2007 -0.4480      3C  (Pz)0.2438  0.4938
+                           3C  (Py)0.1200  0.3464      2C  (Pz)0.2252  0.4745
+                           8H  ( S)0.0978 -0.3128      4O  (Pz)0.1032 -0.3213
+                           5H  ( S)0.0433  0.2080      1C  ( S)0.0000  0.0000
+                           7H  ( S)0.0312 -0.1765      5H  ( S)0.0000 -0.0000
+
+   Single occ. MO's              9  *              =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.10908 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Px)0.5477 -0.7401      1C  (Pz)0.4278 -0.6541
+                           3C  (Px)0.1226  0.3502      3C  (Pz)0.2438  0.4938
+                           8H  ( S)0.0955  0.3091      2C  (Pz)0.2252  0.4745
+                           1C  (Py)0.0499  0.2233      4O  (Pz)0.1032 -0.3213
+                           5H  ( S)0.0424  0.2060      1C  ( S)0.0000  0.0000
+                           2C  (Px)0.0388 -0.1971      5H  ( S)0.0000 -0.0000
+
+   Single occ. MO's             11 (HOMO)  *       =>       14  * 
+   Sq. CI coeff.: 0.53328 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      3C  (Pz)0.5238  0.7237
+                           2C  (Py)0.2007 -0.4480      2C  (Pz)0.2919 -0.5403
+                           3C  (Py)0.1200  0.3464      4O  (Pz)0.0922 -0.3036
+                           8H  ( S)0.0978 -0.3128      1C  (Pz)0.0921  0.3035
+                           5H  ( S)0.0433  0.2080      7H  ( S)0.0000  0.0000
+                           7H  ( S)0.0312 -0.1765      2C  ( S)0.0000 -0.0000
+
+   Single occ. MO's              8  *              =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.21331 atom  AO   c**2     c       atom  AO   c**2     c
+                           7H  ( S)0.2019 -0.4493      1C  (Pz)0.4278 -0.6541
+                           2C  (Px)0.1743  0.4175      3C  (Pz)0.2438  0.4938
+                           6H  ( S)0.1711 -0.4136      2C  (Pz)0.2252  0.4745
+                           1C  (Px)0.1626 -0.4032      4O  (Pz)0.1032 -0.3213
+                           4O  (Py)0.1326  0.3642      1C  ( S)0.0000  0.0000
+                           5H  ( S)0.0274  0.1656      5H  ( S)0.0000 -0.0000
+
+   Single occ. MO's              9  *              =>       14  * 
+   Sq. CI coeff.: 0.05148 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Px)0.5477 -0.7401      3C  (Pz)0.5238  0.7237
+                           3C  (Px)0.1226  0.3502      2C  (Pz)0.2919 -0.5403
+                           8H  ( S)0.0955  0.3091      4O  (Pz)0.0922 -0.3036
+                           1C  (Py)0.0499  0.2233      1C  (Pz)0.0921  0.3035
+                           5H  ( S)0.0424  0.2060      7H  ( S)0.0000  0.0000
+                           2C  (Px)0.0388 -0.1971      2C  ( S)0.0000 -0.0000
+
+ ====> SINGLY EXCITED CI STATE no.  7:  7.252 ev  * 
+                                    58494.5 cm**-1
+                                      170.96 nm       f= 0.00000
+
+   Single occ. MO's             10  *              =>       13  * 
+   Sq. CI coeff.: 0.89045 atom  AO   c**2     c       atom  AO   c**2     c
+                           1C  (Pz)0.3794  0.6159      2C  ( S)0.2221  0.4713
+                           4O  (Pz)0.3077 -0.5547      3C  ( S)0.2108 -0.4591
+                           2C  (Pz)0.3070  0.5540      1C  ( S)0.1672 -0.4089
+                           3C  (Pz)0.0060 -0.0775      8H  ( S)0.0972  0.3118
+                           2C  (Py)0.0000 -0.0000      7H  ( S)0.0923 -0.3039
+                           3C  (Py)0.0000  0.0000      5H  ( S)0.0779  0.2791
+
+ ====> SINGLY EXCITED CI STATE no.  8:  7.339 ev  * 
+                                    59194.7 cm**-1
+                                      168.93 nm       f= 0.00000
+
+   Single occ. MO's             11 (HOMO)  *       =>       14  * 
+   Sq. CI coeff.: 0.13029 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      3C  (Pz)0.5238  0.7237
+                           2C  (Py)0.2007 -0.4480      2C  (Pz)0.2919 -0.5403
+                           3C  (Py)0.1200  0.3464      4O  (Pz)0.0922 -0.3036
+                           8H  ( S)0.0978 -0.3128      1C  (Pz)0.0921  0.3035
+                           5H  ( S)0.0433  0.2080      7H  ( S)0.0000  0.0000
+                           7H  ( S)0.0312 -0.1765      2C  ( S)0.0000 -0.0000
+
+   Single occ. MO's              8  *              =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.67890 atom  AO   c**2     c       atom  AO   c**2     c
+                           7H  ( S)0.2019 -0.4493      1C  (Pz)0.4278 -0.6541
+                           2C  (Px)0.1743  0.4175      3C  (Pz)0.2438  0.4938
+                           6H  ( S)0.1711 -0.4136      2C  (Pz)0.2252  0.4745
+                           1C  (Px)0.1626 -0.4032      4O  (Pz)0.1032 -0.3213
+                           4O  (Py)0.1326  0.3642      1C  ( S)0.0000  0.0000
+                           5H  ( S)0.0274  0.1656      5H  ( S)0.0000 -0.0000
+
+   Single occ. MO's              9  *              =>       14  * 
+   Sq. CI coeff.: 0.09055 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Px)0.5477 -0.7401      3C  (Pz)0.5238  0.7237
+                           3C  (Px)0.1226  0.3502      2C  (Pz)0.2919 -0.5403
+                           8H  ( S)0.0955  0.3091      4O  (Pz)0.0922 -0.3036
+                           1C  (Py)0.0499  0.2233      1C  (Pz)0.0921  0.3035
+                           5H  ( S)0.0424  0.2060      7H  ( S)0.0000  0.0000
+                           2C  (Px)0.0388 -0.1971      2C  ( S)0.0000 -0.0000
+
+   Single occ. MO's              6  *              =>       12 (LUMO)  * 
+   Sq. CI coeff.: 0.09646 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.3540  0.5950      1C  (Pz)0.4278 -0.6541
+                           1C  (Px)0.1444  0.3800      3C  (Pz)0.2438  0.4938
+                           3C  (Px)0.0935 -0.3058      2C  (Pz)0.2252  0.4745
+                           2C  (Px)0.0803 -0.2834      4O  (Pz)0.1032 -0.3213
+                           2C  (Py)0.0599 -0.2448      1C  ( S)0.0000  0.0000
+                           8H  ( S)0.0544 -0.2332      5H  ( S)0.0000 -0.0000
+
+ ====> SINGLY EXCITED CI STATE no.  9:  8.543 ev  * 
+                                    68904.9 cm**-1
+                                      145.13 nm       f= 0.00000
+
+   Single occ. MO's             10  *              =>       13  * 
+   Sq. CI coeff.: 0.06015 atom  AO   c**2     c       atom  AO   c**2     c
+                           1C  (Pz)0.3794  0.6159      2C  ( S)0.2221  0.4713
+                           4O  (Pz)0.3077 -0.5547      3C  ( S)0.2108 -0.4591
+                           2C  (Pz)0.3070  0.5540      1C  ( S)0.1672 -0.4089
+                           3C  (Pz)0.0060 -0.0775      8H  ( S)0.0972  0.3118
+                           2C  (Py)0.0000 -0.0000      7H  ( S)0.0923 -0.3039
+                           3C  (Py)0.0000  0.0000      5H  ( S)0.0779  0.2791
+
+   Single occ. MO's             10  *              =>       15  * 
+   Sq. CI coeff.: 0.79799 atom  AO   c**2     c       atom  AO   c**2     c
+                           1C  (Pz)0.3794  0.6159      6H  ( S)0.2543 -0.5043
+                           4O  (Pz)0.3077 -0.5547      1C  ( S)0.2045  0.4522
+                           2C  (Pz)0.3070  0.5540      3C  ( S)0.1395 -0.3735
+                           3C  (Pz)0.0060 -0.0775      8H  ( S)0.1084  0.3292
+                           2C  (Py)0.0000 -0.0000      2C  (Py)0.1070 -0.3271
+                           3C  (Py)0.0000  0.0000      1C  (Px)0.0835  0.2889
+
+   Single occ. MO's              7  *              =>       13  * 
+   Sq. CI coeff.: 0.12810 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Pz)0.4969  0.7049      2C  ( S)0.2221  0.4713
+                           3C  (Pz)0.2264  0.4758      3C  ( S)0.2108 -0.4591
+                           2C  (Pz)0.1760  0.4195      1C  ( S)0.1672 -0.4089
+                           1C  (Pz)0.1007  0.3173      8H  ( S)0.0972  0.3118
+                           6H  ( S)0.0000 -0.0000      7H  ( S)0.0923 -0.3039
+                           1C  (Px)0.0000 -0.0000      5H  ( S)0.0779  0.2791
+
+ ====> SINGLY EXCITED CI STATE no. 10:  8.555 ev  * 
+                                    69000.1 cm**-1
+                                      144.93 nm       f= 0.10142
+
+   Single occ. MO's             11 (HOMO)  *       =>       13  * 
+   Sq. CI coeff.: 0.09136 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      2C  ( S)0.2221  0.4713
+                           2C  (Py)0.2007 -0.4480      3C  ( S)0.2108 -0.4591
+                           3C  (Py)0.1200  0.3464      1C  ( S)0.1672 -0.4089
+                           8H  ( S)0.0978 -0.3128      8H  ( S)0.0972  0.3118
+                           5H  ( S)0.0433  0.2080      7H  ( S)0.0923 -0.3039
+                           7H  ( S)0.0312 -0.1765      5H  ( S)0.0779  0.2791
+
+   Single occ. MO's             11 (HOMO)  *       =>       15  * 
+   Sq. CI coeff.: 0.41758 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      6H  ( S)0.2543 -0.5043
+                           2C  (Py)0.2007 -0.4480      1C  ( S)0.2045  0.4522
+                           3C  (Py)0.1200  0.3464      3C  ( S)0.1395 -0.3735
+                           8H  ( S)0.0978 -0.3128      8H  ( S)0.1084  0.3292
+                           5H  ( S)0.0433  0.2080      2C  (Py)0.1070 -0.3271
+                           7H  ( S)0.0312 -0.1765      1C  (Px)0.0835  0.2889
+
+   Single occ. MO's              9  *              =>       13  * 
+   Sq. CI coeff.: 0.27536 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Px)0.5477 -0.7401      2C  ( S)0.2221  0.4713
+                           3C  (Px)0.1226  0.3502      3C  ( S)0.2108 -0.4591
+                           8H  ( S)0.0955  0.3091      1C  ( S)0.1672 -0.4089
+                           1C  (Py)0.0499  0.2233      8H  ( S)0.0972  0.3118
+                           5H  ( S)0.0424  0.2060      7H  ( S)0.0923 -0.3039
+                           2C  (Px)0.0388 -0.1971      5H  ( S)0.0779  0.2791
+
+   Single occ. MO's             11 (HOMO)  *       =>       17  * 
+   Sq. CI coeff.: 0.18414 atom  AO   c**2     c       atom  AO   c**2     c
+                           4O  (Py)0.4104 -0.6406      1C  (Px)0.2606  0.5105
+                           2C  (Py)0.2007 -0.4480      3C  (Py)0.1817 -0.4262
+                           3C  (Py)0.1200  0.3464      2C  ( S)0.1433  0.3785
+                           8H  ( S)0.0978 -0.3128      8H  ( S)0.1269 -0.3562
+                           5H  ( S)0.0433  0.2080      6H  ( S)0.0928 -0.3046
+                           7H  ( S)0.0312 -0.1765      3C  (Px)0.0557  0.2359
+
+ ====> SINGLY EXCITED CI STATE no. 11:  9.280 ev  * 
+                                    74854.4 cm**-1
+                                      133.59 nm       f= 0.00000
+
+   Single occ. MO's             10  *              =>       16  * 
+   Sq. CI coeff.: 0.95474 atom  AO   c**2     c       atom  AO   c**2     c
+                           1C  (Pz)0.3794  0.6159      5H  ( S)0.2481 -0.4981
+                           4O  (Pz)0.3077 -0.5547      1C  (Py)0.2429  0.4928
+                           2C  (Pz)0.3070  0.5540      7H  ( S)0.2057 -0.4536
+                           3C  (Pz)0.0060 -0.0775      2C  (Px)0.1024 -0.3199
+                           2C  (Py)0.0000 -0.0000      2C  (Py)0.0608  0.2465
+                           3C  (Py)0.0000  0.0000      2C  ( S)0.0423  0.2057
+
+
+ ====> CI STATE (singly excited) no.  1:  4.055 ev
+                                      32708.9 cm**-1
+                                        305.73 nm    f=0.00000, Symmetry:  * 
+
+         *** ATOMIC ELECTRON POPULATION IN THE EXCITED STATE  1 ***
+             (dQ = -(PE - P), where PE and P are electron
+             integral charges in the excited and ground state,
+             respectively, and QE expresses the S, P and inte-
+             gral SP charge)
+
+   atom    PE(s)  PE(p)  PE(sp)   QE(s)  QE(p)  QE(sp)   dQ(s)  dQ(p)  dQ(sp)
+
+     1 C   1.096  3.134  4.229   -0.096 -0.134 -0.229    0.002 -0.362 -0.359
+     2 C   1.136  2.767  3.903   -0.136  0.233  0.097    0.015 -0.019 -0.004
+     3 C   1.158  2.095  3.254   -0.158  0.905  0.746    0.008 -0.134 -0.126
+     4 O   1.794  4.660  6.454    0.206 -0.660 -0.454    0.001  0.320  0.321
+     5 H   1.020  0.000  1.020   -0.020  0.000 -0.020    0.041  0.000  0.041
+     6 H   1.063  0.000  1.063   -0.063  0.000 -0.063    0.006  0.000  0.006
+     7 H   1.038  0.000  1.038   -0.038  0.000 -0.038    0.029  0.000  0.029
+     8 H   1.039  0.000  1.039   -0.039  0.000 -0.039    0.092  0.000  0.092
+
+               **************************************************
+                  DIPOLE MOMENT OF THE STATE  1 (in Debyes)
+               **************************************************
+
+ Contribution    MU    dMU         X     dX       Y     dY       Z     dZ
+ ---------------------------------------------------------------------------
+
+ ATOMIC        1.274 -2.913     0.055 -3.331  -1.273 -3.736   0.000  0.000
+ HYBRIDATION   1.022 -0.133     0.938 -0.062   0.406 -0.173   0.000  0.000
+
+ TOTAL         1.318 -4.020     0.993 -3.392  -0.866 -3.909   0.000  0.000
+
+ Differences are dMU = MU(excited) - MU(ground)
+
+
+ Job ending at: Mon Jun 01 14:48:04 2015      
+
+
+ CPU time elapsed by the run :.4680000E-01 s

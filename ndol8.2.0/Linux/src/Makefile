@@ -73,6 +73,8 @@ qrdiag.o \
 reada.o \
 readint.o \
 rmopac.o \
+roptnum.o \
+roptreal.o \
 scfmat.o \
 scfout.o \
 scfq.o \
@@ -159,6 +161,8 @@ peglog.o:	peglog.f	$(INCLUDES)
 qrdiag.o: 	qrdiag.f	$(INCLUDES) 
 reada.o:  	reada.f  
 readint.o:	readint.f	$(INCLUDES)
+roptnum.o:	roptnum.f	$(INCLUDES)
+roptreal.o:	roptreal.f	$(INCLUDES)
 rmopac.o:	rmopac.f	$(INCLUDES)
 scfmat.o:	scfmat.f	$(INCLUDES)
 scfout.o:	scfout.f	$(INCLUDES)
