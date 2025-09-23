@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using these metadata."
+title: "NDOL8"
+version: 8.2.0  # or your current version
+doi: # Optional but highly recommended (see below)
+authors:
+  - given-names: Luis A.
+    family-names: Montero-Cabrera
+    email: lmc@fq.uh.cu
+    orcid: https://orcid.org/0000-0002-4128-1203 # Optional
+  - given-names: Ana L.
+    family-names: Montero-Alejo
+  - given-names: Carlos
+    family-names: Bunge-Molina
+  - given-names: Maria E.
+    family-names: Fuentes-Montero
+  - given-names: Rachel
+    family-names: Crespo-Otero
+  - given-names: Nelaine
+    family-names: Mora-Diez
+repository-code: "https://github.com/imtvi06/ndol/tree/master/ndol8.2.0"
+url: "https://github.com/imtvi06/ndol/tree/master/ndol8.2.0"
+license: MIT # or GPL-3.0, Apache-2.0, etc.
+keywords:
+  - fortran
+  - molecular science
+  - quantum chemistry
+  - excited states
+abstract: "The NDOL program addresses the critical challenge of predicting exciton behavior and electronic excitations in nanoscopic systems, which is essential for energy-related applications and understanding biological processes. Current quantum mechanical methods face significant limitations: semiempirical approaches rely on *a posteriori* parameterization against experimental data, compromising their predictive power for novel systems, while rigorous *ab initio* and Time-Dependent Density Functional Theory (TD-DFT) methods are computationally prohibitive for large systems.
+The NDOL program implements an *a priori*, parameter-free method that balances theoretical consistency with computational efficiency. Its Fockian matrix is constructed using only fundamental atomic properties—ionization potentials and electron affinities for each orbital—along with tabulated Slater exponents. This design eliminates the need for arbitrary parameters fitted to experimental molecular data, thereby enhancing predictive confidence for unknown polyatomic systems. Consequently, NDOL achieves accuracy comparable to semiempirical and *ab initio* methods but without their respective drawbacks of empirical fitting or exorbitant computational cost.
+Developed since 1985, the NDOLxxxx
